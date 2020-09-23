@@ -1,5 +1,7 @@
-package com.clearing;
+package repository;
 import org.springframework.data.repository.CrudRepository;
+
+import entity.Trade;
 
 // import com.clearing.Trade;
 

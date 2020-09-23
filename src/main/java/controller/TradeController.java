@@ -1,4 +1,4 @@
-package com.clearing;
+package controller;
 
 import java.util.ArrayList;
 
@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import entity.Trade;
+import repository.TradeRepository;
 
 // import com.clearing.Settle;
 

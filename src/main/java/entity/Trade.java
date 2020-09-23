@@ -1,4 +1,4 @@
-package com.clearing;
+package entity;
 
 import java.util.Random;
 
