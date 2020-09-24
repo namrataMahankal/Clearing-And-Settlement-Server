@@ -1,0 +1,26 @@
+insert into clearing_member values(1,"Citi",10000,0);
+insert into clearing_member values(2,"JP Morgan Chase",10000,0);
+insert into clearing_member values(3,"Bank of New York Mellon",10000,0);
+insert into clearing_member values(4,"State Street Corporation",10000,0);
+insert into clearing_member values(5,"BNP Paribas Securities Services",10000,0);
+insert into clearing_member values(6,"HSBC Securities Services",10000,0);
+insert into clearing_member values(7,"Northern Trust Corporation",10000,0);
+insert into clearing_member values(8,"UBS AG",10000,0);
+insert into clearing_member values(9,"Wells Fargo",10000,0);
+insert into clearing_member values(10,"Credit Suisse",10000,0);
+
+insert into security values(1,"Amazon",3022.00,1.5);
+insert into security values(2,"Apple",109.15,1.5);
+insert into security values(3,"Microsoft",203.76,1.5);
+insert into security values(4,"UBER",34.00,1.5);
+insert into security values(5,"FORD Motor Company",6.57,1.5);
+insert into security values(6,"Tesla Inc.",379.18,1.5);
+insert into security values(7,"QUALCOMM Inc.",302.00,1.5);
+insert into security values(8,"AT&T inc",242.60,1.5);
+insert into security values(9,"Intercontinental Exchange",123.50,1.5);
+insert into security values(10,"Alphabet Inc.",450.00,1.5);
+insert into security values(11,"Anheuser Busch Inbev NV",76.42,1.5);
+insert into security values(12,"WALMART INC",45.60,1.5);
+insert into security values(13,"TEXAS INSTRUMENTS INC",23.90,1.5);
+insert into security values(14,"STARBUCKS CORP",345.05,1.5);
+insert into security values(15,"NVIDIA Corporation",400.2,1.5);
