@@ -17,7 +17,7 @@ public class Trade {
   public int quantity;
   public float price;
   public int buyerClearingMemberId;
-  public int sellerClearningMemberId;
+  public int sellerClearingMemberId;
   public float transactionAmount;
   
   private static Random rand = new Random(System.currentTimeMillis());
@@ -33,7 +33,7 @@ public class Trade {
     do {
       sCMid = 1 + rand.nextInt(15);
     } while (sCMid == this.buyerClearingMemberId);
-    this.sellerClearningMemberId = sCMid;
+    this.sellerClearingMemberId = sCMid;
     this.transactionAmount = this.quantity*this.price;    
   }
 
@@ -43,7 +43,7 @@ public class Trade {
     this.quantity = qty;
     this.price = pc;
     this.buyerClearingMemberId = bCMid;
-    this.sellerClearningMemberId = sCMid;
+    this.sellerClearingMemberId = sCMid;
     this.transactionAmount = qty*price;
   }
   

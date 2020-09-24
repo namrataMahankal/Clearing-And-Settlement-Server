@@ -10,11 +10,9 @@ public class ClearingMember {
 	
 	@Id
 	private int clearingMemberId;
-	private String clearingMemberName;
-	private float clearingMemberFundBalance;
 	private float amountToPay;
-	
-	
+	private float clearingMemberFundBalance;
+	private String clearingMemberName;
 
 	public ClearingMember(int clearingMemberId, String clearingMemberName, float clearingMemberFundBalance,
 			float amountToPay) {
