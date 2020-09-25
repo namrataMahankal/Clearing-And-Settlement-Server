@@ -1,4 +1,4 @@
-package entity;
+package com.clearing.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,7 +16,7 @@ public class EquitySummary {
 	@Id
 	private int clearingMemberId;
 	int noOfShares;
-	
+
 	public EquitySummary(int securityId, int clearingMemberId, int noOfShares) {
 		this.securityId = securityId;
 		this.clearingMemberId = clearingMemberId;
@@ -25,6 +25,30 @@ public class EquitySummary {
 
 	public EquitySummary() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public int getSecurityId() {
+		return securityId;
+	}
+
+	public void setSecurityId(int securityId) {
+		this.securityId = securityId;
+	}
+
+	public int getClearingMemberId() {
+		return clearingMemberId;
+	}
+
+	public void setClearingMemberId(int clearingMemberId) {
+		this.clearingMemberId = clearingMemberId;
+	}
+
+	public int getNoOfShares() {
+		return noOfShares;
+	}
+
+	public void setNoOfShares(int noOfShares) {
+		this.noOfShares = noOfShares;
 	}
 
 }
