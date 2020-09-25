@@ -3,7 +3,7 @@ spring:
         driverClassName: com.mysql.jdbc.Driver
         url: jdbc:mysql://localhost:3306/new_schema
         username: root
-        password: Citiequities48063
+        password: root
 
     jpa:
         generate-ddl: true
