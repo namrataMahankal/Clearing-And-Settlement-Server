@@ -1,9 +1,11 @@
 package com.clearing.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import org.javatuples.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -74,6 +76,70 @@ public class TradeServiceImpl implements TradeService {
 	public List<Trade> getAllTrades() {
 		// TODO Auto-generated method stub
 		return tradeRepository.getAllTrades();
+	}
+	
+	public Pair<HashMap<Integer, Float>, HashMap<Integer, HashMap<Integer, Integer>>> hashMapifyTrades() {
+		Iterable<TradeEntity> tradesList = tradeRepository.findAll();
+		System.out.println(tradesList);
+		System.out.println("XXXXXXX");
+		HashMap<Integer, Float> transactionAmountHashMap = new HashMap<Integer, Float>();
+		HashMap<Integer, HashMap<Integer, Integer>> quantityHashMap = new HashMap<Integer, HashMap<Integer, Integer>>();
+
+		for (TradeEntity trade : tradesList) {
+			int buyerCMId = trade.getBuyerClearingMember().getClearingMemberId();
+			int sellerCMId = trade.getSellerClearingMember().getClearingMemberId();
+			int securityId = trade.getSecurityId().getSecurityId();
+
+			if (!transactionAmountHashMap.containsKey(buyerCMId)) {
+				transactionAmountHashMap.put(buyerCMId, -1 * trade.getTransactionAmount());
+			} else {
+				Float updatedTransactionAmount = transactionAmountHashMap.get(buyerCMId) - trade.getTransactionAmount();
+				transactionAmountHashMap.put(buyerCMId, updatedTransactionAmount);
+			}
+			if (!transactionAmountHashMap.containsKey(sellerCMId)) {
+				transactionAmountHashMap.put(sellerCMId, trade.getTransactionAmount());
+			} else {
+				Float updatedTransactionAmount = transactionAmountHashMap.get(sellerCMId)
+						+ trade.getTransactionAmount();
+				transactionAmountHashMap.put(sellerCMId, updatedTransactionAmount);
+			}
+
+			// NEXT HASHMAP
+			if (!quantityHashMap.containsKey(buyerCMId)) { //no cm
+				HashMap<Integer, Integer> quantityRecord = new HashMap<Integer, Integer>();
+				quantityRecord.put(securityId, trade.getQuantity());
+				quantityHashMap.put(buyerCMId, quantityRecord);
+			} else {
+				if (!quantityHashMap.get(buyerCMId).containsKey(securityId)) { //cm but no es
+					HashMap<Integer, Integer> quantityRecord = quantityHashMap.get(buyerCMId);
+					quantityRecord.put(securityId, trade.getQuantity());
+					quantityHashMap.put(buyerCMId, quantityRecord);
+					
+				} else { //both
+					Integer updatedQuantity = quantityHashMap.get(buyerCMId).get(securityId) + trade.getQuantity();
+					quantityHashMap.get(buyerCMId).put(securityId, updatedQuantity);
+				}
+			}
+			if (!quantityHashMap.containsKey(sellerCMId)) {
+				HashMap<Integer, Integer> quantityRecord = new HashMap<Integer, Integer>();
+				quantityRecord.put(securityId, -1 * trade.getQuantity());
+				quantityHashMap.put(sellerCMId, quantityRecord);
+			} else {
+				if (!quantityHashMap.get(sellerCMId).containsKey(securityId)) {
+					HashMap<Integer, Integer> quantityRecord =  quantityHashMap.get(sellerCMId);
+					quantityRecord.put(securityId, -1 * trade.getQuantity());
+					quantityHashMap.put(sellerCMId, quantityRecord);
+				} else {
+					Integer updatedQuantity = quantityHashMap.get(sellerCMId).get(securityId) - trade.getQuantity();
+					quantityHashMap.get(sellerCMId).put(securityId, updatedQuantity);
+				}
+			}
+
+		}
+		
+		
+		return new Pair<HashMap<Integer, Float>, HashMap<Integer, HashMap<Integer, Integer>>>(transactionAmountHashMap, quantityHashMap);
+		
 	}
 
 }

@@ -27,5 +27,9 @@ public interface TradeRepository extends JpaRepository<TradeEntity, Integer> {
 			+" join t.security s"
 			+" where t.buyerClearingMember.clearingMemberId = ?1 or t.sellerClearingMember.clearingMemberId = ?1")
 	List<Trade> getTradesById(int cMId);
+	
+//	@Query("SELECT new com.clearing.entity.TradeEntity(tradeId, securityId, quantity, price, buyerClearingMemberId, sellerClearingMemberId, transactionAmount)"
+//			+" from TradeEntity")
+//	List<TradeEntity> getAllTradeEntities();
 
 }

@@ -1,13 +1,14 @@
 package com.clearing.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import org.javatuples.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +17,6 @@ import com.clearing.entity.TradeEntity;
 import com.clearing.json.Trade;
 import com.clearing.repository.TradeRepository;
 import com.clearing.service.TradeService;
-import com.clearing.service.TradeServiceImpl;
 
 // import com.clearing.Settle;
 
@@ -50,21 +50,23 @@ public class TradeController {
 		ArrayList<TradeEntity> randomTrades = new ArrayList<TradeEntity>();
 
 		for (int i = 0; i < numTrades; ++i) {
-			randomTrades.add(new TradeEntity());
+			randomTrades.add(tradeService.createTrade());
 		}
 		tradeRepository.saveAll(randomTrades);
-	}
-
-	// Settle Trades
-	@GetMapping(path = "/settle") // Check for specific argument to ask
-	public @ResponseBody void settleTrades() {
-		// Basic Settling Algorithms
-		// Member[] members = memberRepository.findAll();
 	}
 
 	@GetMapping("/id/{CMId}")
 	public @ResponseBody List<Trade> getTradesById(@PathVariable("CMId") int CMId) {
 		return tradeService.getTradesById(CMId);
 	}
+	
+	@GetMapping(path = "/settle")
+	public @ResponseBody Pair<HashMap<Integer, Float>, HashMap<Integer, HashMap<Integer, Integer>>> settleTrades() {
+		Pair<HashMap<Integer, Float>, HashMap<Integer, HashMap<Integer, Integer>>> obligationHashMap = tradeService.hashMapifyTrades();
+		HashMap<Integer, Float> transactionAmountHashMap = obligationHashMap.getValue0();
+		HashMap<Integer, HashMap<Integer, Integer>> quantityHashMap = obligationHashMap.getValue1();
+		return obligationHashMap;
+	}
 
 }
+
