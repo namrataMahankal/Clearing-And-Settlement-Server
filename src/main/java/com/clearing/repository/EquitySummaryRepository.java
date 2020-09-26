@@ -1,8 +1,8 @@
-package repository;
+package com.clearing.repository;
 import org.springframework.data.repository.CrudRepository;
 
-import entity.EquitySummary;
-import entity.EquitySummaryId;
+import com.clearing.entity.EquitySummary;
+import com.clearing.entity.EquitySummaryId;
 
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository

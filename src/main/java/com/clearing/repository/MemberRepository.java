@@ -1,7 +1,7 @@
-package repository;
+package com.clearing.repository;
 import org.springframework.data.repository.CrudRepository;
 
-import entity.ClearingMember;
+import com.clearing.entity.ClearingMember;
 
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
