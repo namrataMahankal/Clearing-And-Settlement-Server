@@ -34,7 +34,7 @@ Send a request to localhost:8080/trades/generate
 
 **Fetch Trades in JSON format**
 
-Get Request to localhost:8080/trades/fetch
+Get Request to localhost:8080/trades/allTrades
 
 **For any configuration**
 

@@ -55,12 +55,6 @@ public class TradeController {
 		tradeRepository.saveAll(randomTrades);
 	}
 
-	// Fetch all trades in json
-	@GetMapping(path = "/fetch")
-	public @ResponseBody Iterable<TradeEntity> getAllUsers() {
-		return tradeRepository.findAll();
-	}
-
 	// Settle Trades
 	@GetMapping(path = "/settle") // Check for specific argument to ask
 	public @ResponseBody void settleTrades() {
