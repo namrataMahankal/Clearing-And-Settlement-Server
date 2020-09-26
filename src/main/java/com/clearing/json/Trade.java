@@ -2,7 +2,7 @@ package com.clearing.json;
 
 public class Trade {
 	private int tradeId;
-	private int securityId;
+	private String security;
 	private int quantity;
 	private float price;
 	private String buyerClearingMember;
@@ -12,11 +12,11 @@ public class Trade {
 	public Trade() {
 	}
 
-	public Trade(int tradeId, int securityId, int quantity, float price, String buyerClearingMember,
+	public Trade(int tradeId, String security, int quantity, float price, String buyerClearingMember,
 			String sellerClearingMember, float transactionAmount) {
 		super();
 		this.tradeId = tradeId;
-		this.securityId = securityId;
+		this.security = security;
 		this.quantity = quantity;
 		this.price = price;
 		this.buyerClearingMember = buyerClearingMember;
@@ -32,12 +32,12 @@ public class Trade {
 		this.tradeId = tradeId;
 	}
 
-	public int getSecurityId() {
-		return securityId;
+	public String getSecurity() {
+		return security;
 	}
 
-	public void setSecurityId(int securityId) {
-		this.securityId = securityId;
+	public void setSecurity(String security) {
+		this.security = security;
 	}
 
 	public int getQuantity() {

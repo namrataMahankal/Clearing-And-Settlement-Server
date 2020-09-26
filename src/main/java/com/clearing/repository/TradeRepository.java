@@ -15,10 +15,17 @@ import com.clearing.json.Trade;
 
 public interface TradeRepository extends JpaRepository<TradeEntity, Integer> {
 
-	//@Query(value = "Select t.tradId, t.securityId, t.quantity, t.price, 'abc' buyerClearingMember, c.clearingMemberName sellerClearingMember, t.transactionAmount from trade t join clearingMember c",nativeQuery=true)
-	//List<Trade> getAllTrades();
-	
-	List<TradeEntity> findAllByBuyerClearingMemberIdOrSellerClearingMemberId(@Param("buyerid") int buyerCMId,
-			@Param("sellerid") int sellerCMId);
+	@Query("SELECT new com.clearing.json.Trade(t.tradeId, s.securityName, t.quantity, t.price, cm1.clearingMemberName, cm2.clearingMemberName, t.transactionAmount)"
+			+" from TradeEntity t join t.buyerClearingMember"
+			+" cm1 join t.sellerClearingMember"
+			+" cm2 join t.security s")
+	List<Trade> getAllTrades();
+
+	@Query("SELECT new com.clearing.json.Trade(t.tradeId, s.securityName, t.quantity, t.price, cm1.clearingMemberName, cm2.clearingMemberName, t.transactionAmount) "
+			+"from TradeEntity t join t.buyerClearingMember cm1"
+			+" join t.sellerClearingMember cm2"
+			+" join t.security s"
+			+" where t.buyerClearingMember.clearingMemberId = ?1 or t.sellerClearingMember.clearingMemberId = ?1")
+	List<Trade> getTradesById(int cMId);
 
 }

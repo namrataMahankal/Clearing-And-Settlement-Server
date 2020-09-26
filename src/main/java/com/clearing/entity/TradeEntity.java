@@ -20,24 +20,22 @@ public class TradeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int tradeId;
-	
-	@ManyToOne(targetEntity = SecuritiesEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "securityId", referencedColumnName = "securityId")
-	private int securityId;
+
+	@ManyToOne
+	@JoinColumn(name = "securityId", referencedColumnName = "securityId", table = "trade")
+	private SecuritiesEntity security;
 	private int quantity;
 	private float price;
 
-	@ManyToOne(targetEntity = ClearingMember.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "buyerClearingMemberId", referencedColumnName = "clearingMemberId")
-	private int buyerClearingMemberId;
+	private ClearingMember buyerClearingMember;
 
-	@ManyToOne(targetEntity = ClearingMember.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "sellerClearingMemberId", referencedColumnName = "clearingMemberId")
-	private int sellerClearingMemberId;
+	private ClearingMember sellerClearingMember;
 
 	private float transactionAmount;
-
-	private String sellerClearingMember;
 
 	private static Random rand = new Random(System.currentTimeMillis());
 
@@ -46,15 +44,15 @@ public class TradeEntity {
 		// Random rand = new Random();
 	}
 
-	public TradeEntity(int tradeId, int securityId, int quantity, float price, int buyerClearingMemberId,
-			int sellerClearingMemberId, float transactionAmount) {
+	public TradeEntity(int tradeId, SecuritiesEntity securityId, int quantity, float price,
+			ClearingMember buyerClearingMember, ClearingMember sellerClearingMember, float transactionAmount) {
 		super();
 		this.tradeId = tradeId;
-		this.securityId = securityId;
+		this.security = securityId;
 		this.quantity = quantity;
 		this.price = price;
-		this.buyerClearingMemberId = buyerClearingMemberId;
-		this.sellerClearingMemberId = sellerClearingMemberId;
+		this.buyerClearingMember = buyerClearingMember;
+		this.sellerClearingMember = sellerClearingMember;
 		this.transactionAmount = transactionAmount;
 	}
 
@@ -66,12 +64,12 @@ public class TradeEntity {
 		this.tradeId = tradeId;
 	}
 
-	public int getSecurityId() {
-		return securityId;
+	public SecuritiesEntity getSecurityId() {
+		return security;
 	}
 
-	public void setSecurityId(int securityId) {
-		this.securityId = securityId;
+	public void setSecurityId(SecuritiesEntity securityId) {
+		this.security = securityId;
 	}
 
 	public int getQuantity() {
@@ -90,20 +88,20 @@ public class TradeEntity {
 		this.price = price;
 	}
 
-	public int getBuyerClearingMemberId() {
-		return buyerClearingMemberId;
+	public ClearingMember getBuyerClearingMember() {
+		return buyerClearingMember;
 	}
 
-	public void setBuyerClearingMemberId(int buyerClearingMemberId) {
-		this.buyerClearingMemberId = buyerClearingMemberId;
+	public void setBuyerClearingMember(ClearingMember buyerClearingMember) {
+		this.buyerClearingMember = buyerClearingMember;
 	}
 
-	public int getSellerClearingMemberId() {
-		return sellerClearingMemberId;
+	public ClearingMember getSellerClearingMember() {
+		return sellerClearingMember;
 	}
 
-	public void setSellerClearingMemberId(int sellerClearingMemberId) {
-		this.sellerClearingMemberId = sellerClearingMemberId;
+	public void setSellerClearingMember(ClearingMember sellerClearingMember) {
+		this.sellerClearingMember = sellerClearingMember;
 	}
 
 	public float getTransactionAmount() {
@@ -112,6 +110,22 @@ public class TradeEntity {
 
 	public void setTransactionAmount(float transactionAmount) {
 		this.transactionAmount = transactionAmount;
+	}
+
+	public static Random getRand() {
+		return rand;
+	}
+
+	public static void setRand(Random rand) {
+		TradeEntity.rand = rand;
+	}
+
+	@Override
+	public String toString() {
+		return "TradeEntity [tradeId=" + tradeId + ", securityId=" + security.toString() + ", quantity=" + quantity
+				+ ", price=" + price + ", buyerClearingMemberId=" + buyerClearingMember.toString()
+				+ ", sellerClearingMemberId=" + sellerClearingMember.toString() + ", transactionAmount="
+				+ transactionAmount + "]";
 	}
 
 }

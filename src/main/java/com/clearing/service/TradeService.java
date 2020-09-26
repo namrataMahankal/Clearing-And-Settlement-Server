@@ -7,7 +7,7 @@ import com.clearing.json.Trade;
 
 public interface TradeService {
 
-	List<TradeEntity> getTradesById(int cMId);
+	List<Trade> getTradesById(int cMId);
 	List<TradeEntity> generateTrades();
 	List<Trade> getAllTrades();
 }

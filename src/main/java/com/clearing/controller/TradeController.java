@@ -69,7 +69,7 @@ public class TradeController {
 	}
 
 	@GetMapping("/id/{CMId}")
-	public @ResponseBody List<TradeEntity> getTradesById(@PathVariable("CMId") int CMId) {
+	public @ResponseBody List<Trade> getTradesById(@PathVariable("CMId") int CMId) {
 		return tradeService.getTradesById(CMId);
 	}
 

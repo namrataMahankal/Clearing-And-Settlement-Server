@@ -58,4 +58,11 @@ public class ClearingMember {
 		this.clearingMemberName = clearingMemberName;
 	}
 
+	@Override
+	public String toString() {
+		return "ClearingMember [clearingMemberId=" + clearingMemberId + ", amountToPay=" + amountToPay
+				+ ", clearingMemberFundBalance=" + clearingMemberFundBalance + ", clearingMemberName="
+				+ clearingMemberName + "]";
+	}
+
 }

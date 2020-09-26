@@ -57,4 +57,10 @@ public class SecuritiesEntity {
 		this.securityName = securityName;
 	}
 
+	@Override
+	public String toString() {
+		return "SecuritiesEntity [securityId=" + securityId + ", interestRate=" + interestRate + ", marketPrice="
+				+ marketPrice + ", securityName=" + securityName + "]";
+	}
+
 }
