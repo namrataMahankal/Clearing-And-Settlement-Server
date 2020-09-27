@@ -80,8 +80,6 @@ public class TradeServiceImpl implements TradeService {
 	
 	public Pair<HashMap<Integer, Float>, HashMap<Integer, HashMap<Integer, Integer>>> hashMapifyTrades() {
 		Iterable<TradeEntity> tradesList = tradeRepository.findAll();
-		System.out.println(tradesList);
-		System.out.println("XXXXXXX");
 		HashMap<Integer, Float> transactionAmountHashMap = new HashMap<Integer, Float>();
 		HashMap<Integer, HashMap<Integer, Integer>> quantityHashMap = new HashMap<Integer, HashMap<Integer, Integer>>();
 
