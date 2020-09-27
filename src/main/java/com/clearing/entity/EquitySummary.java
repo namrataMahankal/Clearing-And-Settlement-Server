@@ -15,13 +15,16 @@ public class EquitySummary {
 	private int securityId;
 	@Id
 	private int clearingMemberId;
-	int noOfShares;
+	private int noOfShares;
+	private int settlementChange;
 
-	public EquitySummary(int securityId, int clearingMemberId, int noOfShares) {
+	public EquitySummary(int securityId, int clearingMemberId, int noOfShares,int settlementChange) {
 		this.securityId = securityId;
 		this.clearingMemberId = clearingMemberId;
 		this.noOfShares = noOfShares;
+		this.settlementChange = settlementChange;
 	}
+
 
 	public EquitySummary() {
 		// TODO Auto-generated constructor stub
@@ -49,6 +52,14 @@ public class EquitySummary {
 
 	public void setNoOfShares(int noOfShares) {
 		this.noOfShares = noOfShares;
+	}
+
+	public int getSettlementChange() {
+		return this.settlementChange;
+	}
+
+	public void setSettlementChange(int change) {
+		this.settlementChange = change;
 	}
 
 }

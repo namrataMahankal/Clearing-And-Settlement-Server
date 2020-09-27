@@ -3,6 +3,7 @@ package com.clearing.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import org.javatuples.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.clearing.entity.TradeEntity;
 import com.clearing.json.Trade;
 import com.clearing.repository.TradeRepository;
+import com.clearing.service.ClearingMemberService;
+import com.clearing.service.EquitySummaryService;
 import com.clearing.service.TradeService;
 
 // import com.clearing.Settle;
@@ -29,6 +32,12 @@ public class TradeController {
 
 	@Autowired
 	private TradeService tradeService;
+
+	@Autowired
+	private EquitySummaryService equitySummaryService;
+
+	@Autowired
+	private ClearingMemberService clearingMemberService;
 
 	// Generate Random Trades
 	@GetMapping(path = "/generate")
@@ -65,6 +74,13 @@ public class TradeController {
 		Pair<HashMap<Integer, Float>, HashMap<Integer, HashMap<Integer, Integer>>> obligationHashMap = tradeService.hashMapifyTrades();
 		HashMap<Integer, Float> transactionAmountHashMap = obligationHashMap.getValue0();
 		HashMap<Integer, HashMap<Integer, Integer>> quantityHashMap = obligationHashMap.getValue1();
+
+		// Adding settlementChange to equitySummary Table
+		equitySummaryService.addChangeAfterSettlement(quantityHashMap);
+
+		// Adding amountToPay to clearingMember Table
+		clearingMemberService.addChangeAfterSettlement(transactionAmountHashMap);
+
 		return obligationHashMap;
 	}
 
