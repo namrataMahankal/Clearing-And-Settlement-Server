@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.clearing.entity.CorporateActionSummary;
 import com.clearing.entity.EquitySummaryEntity;
+import com.clearing.entity.EquitySummaryId;
 import com.clearing.repository.EquitySummaryRepository;
 
 
@@ -25,16 +26,16 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 	
     public void addChangeAfterSettlement(HashMap<Integer, HashMap<Integer, Integer>> quantityHashMap){
       quantityHashMap.forEach((cmId,cmData) -> {
-			List<EquitySummary> cmSummary = equitySummaryRepository.findByIdClearingMemberId(cmId);
+			List<EquitySummaryEntity> cmSummary = equitySummaryRepository.findByIdClearingMemberId(cmId);
 			cmData.forEach((securityId,qty) -> {
-				for(EquitySummary eqs : cmSummary){
-					if(securityId == eqs.getId().getSecurity().getSecurityId()){
+				for(EquitySummaryEntity eqs : cmSummary){
+					if(securityId == eqs.getId().getSecurityId()){
 						eqs.setSettlementChange(qty);
 						return;
 					}
 				}
 				int openingShareQuantity = 1 + rand.nextInt(10000);
-				cmSummary.add(new EquitySummary(securityId,cmId,openingShareQuantity,qty));
+				cmSummary.add(new EquitySummaryEntity(new EquitySummaryId(securityId,cmId),openingShareQuantity,qty));
 			});
 			 
 			equitySummaryRepository.saveAll(cmSummary);
@@ -45,7 +46,7 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 	public ArrayList<CorporateActionSummary> stockSplitAction() {
 		List<EquitySummaryEntity> summaryList = IterableUtils.toList(equitySummaryRepository.findAll());
 		ArrayList<CorporateActionSummary> corporateActionSummary = new ArrayList<CorporateActionSummary>();
-		/*
+		
 		int summaryListLength = IterableUtils.size(summaryList);
 		int maxSplits = Math.min(10, summaryListLength);
 		int numberOfSplits = rand.nextInt((maxSplits - 2) + 1) + 2;
@@ -54,10 +55,10 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 		
 		for (int i = 0; i < numberOfSplits; i++) {
 			int splitRatio = splitRatioList.get(rand.nextInt(splitRatioList.size()));
-			EquitySummary summaryRecord = summaryList.get(rand.nextInt(summaryListLength));
+			EquitySummaryEntity summaryRecord = summaryList.get(rand.nextInt(summaryListLength));
 			
-			int newActionCMId = summaryRecord.getClearingMemberId();
-			int newActionSecurityId = summaryRecord.getSecurityId();
+			int newActionCMId = summaryRecord.getId().getClearingMemberId();
+			int newActionSecurityId = summaryRecord.getId().getSecurityId();
 			int newActionInitialShareBalance = summaryRecord.getNoOfShares()
 					+summaryRecord.getSettlementChange();
 			int newActionfinalShareBalance = (newActionInitialShareBalance)*splitRatio;
@@ -68,7 +69,7 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 					"Stock Split", newActionParameter);
 			corporateActionSummary.add(newAction);			
 		}
-		*/
+		
 		return corporateActionSummary;
 	}
 

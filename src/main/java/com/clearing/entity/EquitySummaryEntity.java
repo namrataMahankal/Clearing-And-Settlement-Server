@@ -31,14 +31,11 @@ public class EquitySummaryEntity {
 		super();
 	}
 
-	public EquitySummaryEntity(EquitySummaryId id, int noOfShares, int settlementChange, SecuritiesEntity security,
-			ClearingMemberEntity clearingMember) {
+	public EquitySummaryEntity(EquitySummaryId id, int noOfShares, int settlementChange) {
 		super();
 		this.id = id;
 		this.noOfShares = noOfShares;
 		this.settlementChange = settlementChange;
-		this.security = security;
-		this.clearingMember = clearingMember;
 	}
 
 	public EquitySummaryId getId() {
