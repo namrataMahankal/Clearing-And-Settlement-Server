@@ -3,10 +3,18 @@ package com.clearing.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Embeddable
 public class EquitySummaryId implements Serializable {
 
-	private int securityId;
-	private int clearingMemberId;
+	@Column(name = "securityId")
+    private int securityId;
+    @Column(name = "clearingMemberId")
+    private int clearingMemberId;
 
 	public EquitySummaryId() {
 		// TODO Auto-generated constructor stub
@@ -17,19 +25,21 @@ public class EquitySummaryId implements Serializable {
 		this.clearingMemberId = clearingMemberId;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		EquitySummaryId equitySummaryId = (EquitySummaryId) o;
-		return securityId == equitySummaryId.securityId && clearingMemberId == equitySummaryId.clearingMemberId;
+	public int getSecurityId() {
+		return securityId;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(securityId, clearingMemberId);
+	public void setSecurityId(int securityId) {
+		this.securityId = securityId;
 	}
 
+	public int getClearingMemberId() {
+		return clearingMemberId;
+	}
+
+	public void setClearingMemberId(int clearingMemberId) {
+		this.clearingMemberId = clearingMemberId;
+	}
+
+	
 }

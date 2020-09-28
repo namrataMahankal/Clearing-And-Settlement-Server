@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.clearing.entity.CorporateActionSummary;
-import com.clearing.entity.EquitySummary;
+import com.clearing.entity.EquitySummaryEntity;
 import com.clearing.repository.EquitySummaryRepository;
 
 
@@ -22,13 +22,13 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 	private EquitySummaryRepository equitySummaryRepository;
     private static Random rand = new Random(System.currentTimeMillis());
 
-	@Override
+	
     public void addChangeAfterSettlement(HashMap<Integer, HashMap<Integer, Integer>> quantityHashMap){
-        quantityHashMap.forEach((cmId,cmData) -> {
-			List<EquitySummary> cmSummary = equitySummaryRepository.findByClearingMemberId(cmId);
+      quantityHashMap.forEach((cmId,cmData) -> {
+			List<EquitySummary> cmSummary = equitySummaryRepository.findByIdClearingMemberId(cmId);
 			cmData.forEach((securityId,qty) -> {
 				for(EquitySummary eqs : cmSummary){
-					if(securityId == eqs.getSecurityId()){
+					if(securityId == eqs.getId().getSecurity().getSecurityId()){
 						eqs.setSettlementChange(qty);
 						return;
 					}
@@ -43,9 +43,9 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 
 	@Override
 	public ArrayList<CorporateActionSummary> stockSplitAction() {
-		List<EquitySummary> summaryList = IterableUtils.toList(equitySummaryRepository.findAll());
+		List<EquitySummaryEntity> summaryList = IterableUtils.toList(equitySummaryRepository.findAll());
 		ArrayList<CorporateActionSummary> corporateActionSummary = new ArrayList<CorporateActionSummary>();
-		
+		/*
 		int summaryListLength = IterableUtils.size(summaryList);
 		int maxSplits = Math.min(10, summaryListLength);
 		int numberOfSplits = rand.nextInt((maxSplits - 2) + 1) + 2;
@@ -68,6 +68,7 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 					"Stock Split", newActionParameter);
 			corporateActionSummary.add(newAction);			
 		}
+		*/
 		return corporateActionSummary;
 	}
 

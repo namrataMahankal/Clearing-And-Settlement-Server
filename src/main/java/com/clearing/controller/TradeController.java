@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.clearing.entity.TradeEntity;
-import com.clearing.json.Trade;
+import com.clearing.json.*;
 import com.clearing.repository.TradeRepository;
 import com.clearing.service.ClearingMemberService;
 import com.clearing.service.EquitySummaryService;
@@ -49,7 +49,31 @@ public class TradeController {
 	public @ResponseBody List<Trade> getAllTrades() {
 		return tradeService.getAllTrades();
 	}
+	
+	@GetMapping(path = "/clearing-member/{CMName}/buyer")
+	public @ResponseBody List<CMTrade> getBuyerTradesByCMName(@PathVariable("CMName") String cMName)
+	{
+		return tradeService.getBuyerTradesByCMName(cMName);
+	}
 
+	@GetMapping(path = "/clearing-member/{CMName}/seller")
+	public @ResponseBody List<CMTrade> getSellerTradesByCMName(@PathVariable("CMName") String cMName)
+	{
+		return tradeService.getSellerTradesByCMName(cMName);
+	}
+	
+	@GetMapping(path = "/clearing-member/{CMName}/openingFundBalance")
+	public @ResponseBody float getCMOpeningFundBalance(@PathVariable("CMName") String cMName)
+	{
+		return clearingMemberService.getCMOpeningFundBalance(cMName);
+	}
+
+	@GetMapping(path = "/clearing-member/{CMName}/openingShareBalance")
+	public @ResponseBody List<EquitySummary> getCMOpeningShareBalance(@PathVariable("CMName") String cMName)
+	{
+		return clearingMemberService.getCMOpeningShareBalance(cMName);
+	}
+	
 	// Add Random Trades
 	@GetMapping(path = "/addRandom") // Later add Parameter
 	public @ResponseBody void addRandomTrade() {
