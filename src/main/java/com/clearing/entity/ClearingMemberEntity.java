@@ -12,13 +12,44 @@ public class ClearingMemberEntity {
 	private float amountToPay;
 	private float clearingMemberFundBalance;
 	private String clearingMemberName;
+	private float interestRate;
+	private float shortage;
+	private float netPayable;
 
-	public ClearingMemberEntity(int clearingMemberId, String clearingMemberName, float clearingMemberFundBalance,
-			float amountToPay) {
+	public ClearingMemberEntity(int clearingMemberId, float amountToPay, float clearingMemberFundBalance,
+			String clearingMemberName, float interestRate, float shortage, float netPayable) {
+		super();
 		this.clearingMemberId = clearingMemberId;
-		this.clearingMemberName = clearingMemberName;
-		this.clearingMemberFundBalance = clearingMemberFundBalance;
 		this.amountToPay = amountToPay;
+		this.clearingMemberFundBalance = clearingMemberFundBalance;
+		this.clearingMemberName = clearingMemberName;
+		this.interestRate = interestRate;
+		this.shortage = shortage;
+		this.netPayable = netPayable;
+	}
+
+	public float getShortage() {
+		return shortage;
+	}
+
+	public void setShortage(float shortage) {
+		this.shortage = shortage;
+	}
+
+	public float getInterestRate() {
+		return interestRate;
+	}
+
+	public void setInterestRate(float interestRate) {
+		this.interestRate = interestRate;
+	}
+
+	public float getNetPayable() {
+		return netPayable;
+	}
+
+	public void setNetPayable(float netPayable) {
+		this.netPayable = netPayable;
 	}
 
 	public ClearingMemberEntity() {
