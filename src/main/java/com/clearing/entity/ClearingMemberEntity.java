@@ -7,7 +7,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "clearing_member")
 public class ClearingMemberEntity {
-
 	@Id
 	private int clearingMemberId;
 	private float amountToPay;
