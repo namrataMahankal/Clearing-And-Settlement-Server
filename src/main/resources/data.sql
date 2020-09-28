@@ -23,3 +23,10 @@ insert into securities(securityId, interestRate, marketPrice, securityName) valu
 insert into securities(securityId, interestRate, marketPrice, securityName) values(13,1+RAND(),RAND()*(300-10+1)+10,"TEXAS INSTRUMENTS INC");
 insert into securities(securityId, interestRate, marketPrice, securityName) values(14,1+RAND(),RAND()*(300-10+1)+10,"STARBUCKS CORP");
 insert into securities(securityId, interestRate, marketPrice, securityName) values(15,1+RAND(),RAND()*(300-10+1)+10,"NVIDIA Corporation");
+
+insert into corporate_action(corporateActionId,securityId,action,parameter) values(1,1+RAND(),"stock-split","5-for-1");
+insert into corporate_action(corporateActionId,securityId,action,parameter) values(2,1+RAND(),"reverse-split","1-for-2");
+insert into corporate_action(corporateActionId,securityId,action,parameter) values(3,1+RAND(),"stock-dividend","5");
+insert into corporate_action(corporateActionId,securityId,action,parameter) values(4,1+RAND(),"stock-split","5-for-1");
+insert into corporate_action(corporateActionId,securityId,action,parameter) values(5,1+RAND(),"reverse-split","1-for-4");
+insert into corporate_action(corporateActionId,securityId,action,parameter) values(6,1+RAND(),"stock-dividend","8");

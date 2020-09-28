@@ -11,4 +11,5 @@ import com.clearing.entity.EquitySummaryId;
 
 public interface EquitySummaryRepository extends CrudRepository<EquitySummary, Integer> {
     List<EquitySummary> findByClearingMemberId(int clearingMemberId);
+    List<EquitySummary> findBySecurityId(int securityId);
 }

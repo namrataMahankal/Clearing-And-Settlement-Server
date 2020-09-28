@@ -41,34 +41,4 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 		});
     }
 
-	@Override
-	public ArrayList<CorporateActionSummary> stockSplitAction() {
-		List<EquitySummary> summaryList = IterableUtils.toList(equitySummaryRepository.findAll());
-		ArrayList<CorporateActionSummary> corporateActionSummary = new ArrayList<CorporateActionSummary>();
-		
-		int summaryListLength = IterableUtils.size(summaryList);
-		int maxSplits = Math.min(10, summaryListLength);
-		int numberOfSplits = rand.nextInt((maxSplits - 2) + 1) + 2;
-		System.out.println(numberOfSplits);
-		List<Integer> splitRatioList = Arrays.asList(2, 3, 5, 10);
-		
-		for (int i = 0; i < numberOfSplits; i++) {
-			int splitRatio = splitRatioList.get(rand.nextInt(splitRatioList.size()));
-			EquitySummary summaryRecord = summaryList.get(rand.nextInt(summaryListLength));
-			
-			int newActionCMId = summaryRecord.getClearingMemberId();
-			int newActionSecurityId = summaryRecord.getSecurityId();
-			int newActionInitialShareBalance = summaryRecord.getNoOfShares()
-					+summaryRecord.getSettlementChange();
-			int newActionfinalShareBalance = (newActionInitialShareBalance)*splitRatio;
-			String newActionParameter = splitRatio+" For 1"; 
-			
-			CorporateActionSummary newAction = new CorporateActionSummary(newActionCMId,
-					newActionSecurityId, newActionInitialShareBalance, newActionfinalShareBalance,
-					"Stock Split", newActionParameter);
-			corporateActionSummary.add(newAction);			
-		}
-		return corporateActionSummary;
-	}
-
 }

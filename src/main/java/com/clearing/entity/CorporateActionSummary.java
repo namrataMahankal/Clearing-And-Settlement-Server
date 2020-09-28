@@ -1,8 +1,13 @@
 package com.clearing.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "corporate_action_summary")
 public class CorporateActionSummary {
-	
-	
+	@Id
 	private int clearingMemberId;
 	private int securityId;
 	private int initialShareBalance;
