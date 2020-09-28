@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "corporate_action")
-public class CorporateAction {
+public class CorporateActionEntity {
 	@Id
 	private int corporateActionId;
     private int securityId;
@@ -39,7 +39,7 @@ public class CorporateAction {
 		this.parameter = parameter;
 	}
 
-	public CorporateAction(){
+	public CorporateActionEntity(){
 
 	}
 

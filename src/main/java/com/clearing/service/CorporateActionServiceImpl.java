@@ -1,7 +1,8 @@
 package com.clearing.service;
 
-import com.clearing.entity.CorporateActionSummary;
-import com.clearing.entity.EquitySummary;
+import com.clearing.entity.CorporateActionSummaryEntity;
+import com.clearing.entity.EquitySummaryEntity;
+
 import com.clearing.entity.SecuritiesEntity;
 import com.clearing.repository.ClearingMemberRepository;
 import com.clearing.repository.CorporateActionRepository;
@@ -13,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.clearing.entity.ClearingMember;
-import com.clearing.entity.CorporateAction;
+import com.clearing.entity.ClearingMemberEntity;
+import com.clearing.entity.CorporateActionEntity;
 
 import org.apache.commons.collections4.IterableUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CorporateActionServiceImpl implements CorporateActionService {
     
-    // @Autowired
-	// private SecuritiesRepository securitiesRepository;
+    @Autowired
+	private SecuritiesRepository securitiesRepository;
 
     @Autowired
     private CorporateActionRepository corporateActionRepository;
@@ -40,22 +41,22 @@ public class CorporateActionServiceImpl implements CorporateActionService {
 	// private ClearingMemberRepository clearingMemberRepository;
 
     @Override
-	public ArrayList<CorporateActionSummary> applyCorporateActions() {
-		List<CorporateAction> corporateActions = IterableUtils.toList(corporateActionRepository.findAll());
-        ArrayList<CorporateActionSummary> corporateActionSummary = new ArrayList<CorporateActionSummary>();
+	public ArrayList<CorporateActionSummaryEntity> applyCorporateActions() {
+		List<CorporateActionEntity> corporateActions = IterableUtils.toList(corporateActionRepository.findAll());
+        ArrayList<CorporateActionSummaryEntity> corporateActionSummary = new ArrayList<CorporateActionSummaryEntity>();
 
         // Local Variable store
         String[] params;
         int splitRatio;
         Optional<SecuritiesEntity> securityObj;
-        Optional<ClearingMember> clearingMemberObj;  
-        CorporateActionSummary newAction;      
+        Optional<ClearingMemberEntity> clearingMemberObj;  
+        CorporateActionSummaryEntity newAction;      
 
-        for(CorporateAction ca: corporateActions){
+        for(CorporateActionEntity ca: corporateActions){
             int securityId = ca.getSecurityId();
             String action = ca.getAction();
             String parameter = ca.getParameter();
-            List<EquitySummary> summaries = IterableUtils.toList(equitySummaryRepository.findBySecurityId(securityId));
+            List<EquitySummaryEntity> summaries = IterableUtils.toList(equitySummaryRepository.findByIdSecurityId(securityId));
             // Actions = ['split','reverse-split','stock-dividend']
             switch (action) {
                 case "stock-split":
@@ -75,11 +76,12 @@ public class CorporateActionServiceImpl implements CorporateActionService {
                     // }
                     
                     // Change Number of stocks in EquitySummaries
-                    for(EquitySummary eqs: summaries){
+                    for(EquitySummaryEntity eqs: summaries){
                         int numStocks = eqs.getNoOfShares() + eqs.getSettlementChange();
                         if(numStocks > 0){
                             eqs.setNoOfShares(numStocks*splitRatio);   
-                            newAction = new CorporateActionSummary(eqs.getClearingMemberId(), securityId, numStocks, numStocks*splitRatio, "Stock Split",parameter);
+                            
+                            newAction = new CorporateActionSummaryEntity(eqs.getClearingMember().getClearingMemberId(),securitiesRepository.findBySecurityId(securityId) , numStocks, numStocks*splitRatio, "Stock Split",parameter);
                             corporateActionSummary.add(newAction);
                         }
                     }
@@ -104,7 +106,7 @@ public class CorporateActionServiceImpl implements CorporateActionService {
                     // }
                     
                     // Change Number of stocks in EquitySummaries and return non-convertible stocks to CM's funds
-                    for(EquitySummary eqs: summaries){
+                    for(EquitySummaryEntity eqs: summaries){
                         int numStocks = eqs.getNoOfShares() + eqs.getSettlementChange();
                         if(numStocks > 0){
                             eqs.setNoOfShares((int)(numStocks/splitRatio));
@@ -115,7 +117,7 @@ public class CorporateActionServiceImpl implements CorporateActionService {
                             //     /////////////////cm.set (numStocks%splitRatio)*securityPrice
                             //     // clearingmMemberRepository.save(cm)
                             // }
-                            newAction = new CorporateActionSummary(eqs.getClearingMemberId(), securityId, numStocks, (int)numStocks/splitRatio, "Reverse Split",parameter);
+                            newAction = new CorporateActionSummaryEntity(eqs.getClearingMember().getClearingMemberId(), securitiesRepository.findBySecurityId(securityId), numStocks, (int)numStocks/splitRatio, "Reverse Split",parameter);
                             corporateActionSummary.add(newAction);
                         }
                     }
@@ -126,11 +128,11 @@ public class CorporateActionServiceImpl implements CorporateActionService {
                     int dividendPercentage = Integer.parseInt(parameter);
                     float dividendRatio = (float)1.0 + dividendPercentage/(float)100.0;
                     // Change Number of stocks in EquitySummaries
-                    for(EquitySummary eqs: summaries){
+                    for(EquitySummaryEntity eqs: summaries){
                         int numStocks = eqs.getNoOfShares() + eqs.getSettlementChange();
                         if(numStocks > 0){
                             eqs.setNoOfShares((int)(numStocks*dividendRatio));
-                            newAction = new CorporateActionSummary(eqs.getClearingMemberId(), securityId, numStocks, (int)(numStocks*dividendRatio), "Stock Dividend",parameter);
+                            newAction = new CorporateActionSummaryEntity(eqs.getClearingMember().getClearingMemberId(), securitiesRepository.findBySecurityId(securityId), numStocks, (int)(numStocks*dividendRatio), "Stock Dividend",parameter);
                             corporateActionSummary.add(newAction);
                         }
                     }

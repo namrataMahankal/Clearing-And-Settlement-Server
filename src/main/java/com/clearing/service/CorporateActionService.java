@@ -2,8 +2,8 @@ package com.clearing.service;
 
 import java.util.ArrayList;
 
-import com.clearing.entity.CorporateActionSummary;
+import com.clearing.entity.CorporateActionSummaryEntity;
 
 public interface CorporateActionService {
-	ArrayList<CorporateActionSummary> applyCorporateActions();
+	ArrayList<CorporateActionSummaryEntity> applyCorporateActions();
 }

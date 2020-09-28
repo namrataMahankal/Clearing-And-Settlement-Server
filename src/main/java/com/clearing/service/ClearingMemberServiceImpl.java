@@ -44,7 +44,7 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 	public List<EquitySummary> getCMOpeningShareBalance(String cMName) {
 		// TODO Auto-generated method stub
 		return EquitySummaryUtil
-				.convertEquitySummaryEntityListIntoEquitySummaryList(equitySummaryRepository.findByClearingMemberId(
+				.convertEquitySummaryEntityListIntoEquitySummaryList(equitySummaryRepository.findByIdClearingMemberId(
 						clearingMemberRepository.findByClearingMemberName(cMName).getClearingMemberId()));
 		// return null;
 	}

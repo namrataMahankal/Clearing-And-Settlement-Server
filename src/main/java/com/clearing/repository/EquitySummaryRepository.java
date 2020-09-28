@@ -13,5 +13,6 @@ import com.clearing.entity.EquitySummaryId;
 // CRUD refers Create, Read, Update, Delete
 
 public interface EquitySummaryRepository extends JpaRepository<EquitySummaryEntity, Integer> {
-   List<EquitySummaryEntity> findByClearingMemberId(int cMId);
+   List<EquitySummaryEntity> findByIdClearingMemberId(int cMId);
+   List<EquitySummaryEntity> findByIdSecurityId(int securityId);
 }

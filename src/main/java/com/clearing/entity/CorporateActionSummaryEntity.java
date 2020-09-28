@@ -2,24 +2,30 @@ package com.clearing.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "corporate_action_summary")
-public class CorporateActionSummary {
+public class CorporateActionSummaryEntity {
 	@Id
 	private int clearingMemberId;
-	private int securityId;
+	
+	@ManyToOne
+	@JoinColumn(name = "securityId", referencedColumnName = "securityId")
+	private SecuritiesEntity security;
+	
 	private int initialShareBalance;
 	private int finalShareBalance;
 	private String action;
 	private String parameter;
 	
-	
-	public CorporateActionSummary(int clearingMemberId, int securityId, int initialShareBalance, int finalShareBalance,
+	public CorporateActionSummaryEntity(int clearingMemberId, SecuritiesEntity security, int initialShareBalance, int finalShareBalance,
 			String action, String parameter) {
 		this.clearingMemberId = clearingMemberId;
-		this.securityId = securityId;
+		this.security = security;
 		this.initialShareBalance = initialShareBalance;
 		this.finalShareBalance = finalShareBalance;
 		this.action = action;
@@ -37,13 +43,13 @@ public class CorporateActionSummary {
 	}
 
 
-	public int getSecurityId() {
-		return securityId;
+	public SecuritiesEntity getSecurity() {
+		return security;
 	}
 
 
-	public void setSecurityId(int securityId) {
-		this.securityId = securityId;
+	public void setSecurity(SecuritiesEntity security) {
+		this.security = security;
 	}
 
 
@@ -87,7 +93,7 @@ public class CorporateActionSummary {
 	}
 
 
-	public CorporateActionSummary() {
+	public CorporateActionSummaryEntity() {
 	}
 
 }
