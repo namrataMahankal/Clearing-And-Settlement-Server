@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.clearing.entity.ClearingMemberEntity;
-import com.clearing.json.CMTrade;
 import com.clearing.json.EquitySummary;
 import com.clearing.repository.ClearingMemberRepository;
 import com.clearing.repository.EquitySummaryRepository;
@@ -28,7 +27,7 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 			Optional<ClearingMemberEntity> obj = clearingMemberRepository.findById(cmId);
 			if (obj.isPresent()) {
 				ClearingMemberEntity cm = obj.get();
-				cm.setAmountToPay(-1 * fundChange);
+				cm.setAmountToPay(fundChange);
 				clearingMemberRepository.save(cm);
 			}
 		});
