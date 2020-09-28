@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import com.clearing.entity.ClearingMemberEntity;
 import com.clearing.entity.TradeEntity;
 import com.clearing.json.Trade;
 
@@ -15,19 +16,12 @@ import com.clearing.json.Trade;
 
 public interface TradeRepository extends JpaRepository<TradeEntity, Integer> {
 
-	@Query("SELECT new com.clearing.json.Trade(t.tradeId, s.securityName, t.quantity, t.price, cm1.clearingMemberName, cm2.clearingMemberName, t.transactionAmount)"
-			+" from TradeEntity t join t.buyerClearingMember"
-			+" cm1 join t.sellerClearingMember"
-			+" cm2 join t.security s")
-	List<Trade> getAllTrades();
+	List<TradeEntity> findByBuyerClearingMember(ClearingMemberEntity buyerCM);
 
-	@Query("SELECT new com.clearing.json.Trade(t.tradeId, s.securityName, t.quantity, t.price, cm1.clearingMemberName, cm2.clearingMemberName, t.transactionAmount) "
-			+"from TradeEntity t join t.buyerClearingMember cm1"
-			+" join t.sellerClearingMember cm2"
-			+" join t.security s"
-			+" where t.buyerClearingMember.clearingMemberId = ?1 or t.sellerClearingMember.clearingMemberId = ?1")
-	List<Trade> getTradesById(int cMId);
-	
+	List<TradeEntity> findBySellerClearingMember(ClearingMemberEntity sellerCM);
+
+	// List<Trade> findByBuyerClearingMember
+
 //	@Query("SELECT new com.clearing.entity.TradeEntity(tradeId, securityId, quantity, price, buyerClearingMemberId, sellerClearingMemberId, transactionAmount)"
 //			+" from TradeEntity")
 //	List<TradeEntity> getAllTradeEntities();

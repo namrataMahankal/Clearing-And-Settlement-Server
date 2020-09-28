@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "clearing_member")
-public class ClearingMember {
+public class ClearingMemberEntity {
 
 	@Id
 	private int clearingMemberId;
@@ -14,7 +14,7 @@ public class ClearingMember {
 	private float clearingMemberFundBalance;
 	private String clearingMemberName;
 
-	public ClearingMember(int clearingMemberId, String clearingMemberName, float clearingMemberFundBalance,
+	public ClearingMemberEntity(int clearingMemberId, String clearingMemberName, float clearingMemberFundBalance,
 			float amountToPay) {
 		this.clearingMemberId = clearingMemberId;
 		this.clearingMemberName = clearingMemberName;
@@ -22,7 +22,7 @@ public class ClearingMember {
 		this.amountToPay = amountToPay;
 	}
 
-	public ClearingMember() {
+	public ClearingMemberEntity() {
 		// TODO Auto-generated constructor stub
 	}
 

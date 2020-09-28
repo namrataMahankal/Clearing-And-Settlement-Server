@@ -30,3 +30,9 @@ insert into corporate_action(corporateActionId,securityId,action,parameter) valu
 insert into corporate_action(corporateActionId,securityId,action,parameter) values(4,1+RAND(),"stock-split","5-for-1");
 insert into corporate_action(corporateActionId,securityId,action,parameter) values(5,1+RAND(),"reverse-split","1-for-4");
 insert into corporate_action(corporateActionId,securityId,action,parameter) values(6,1+RAND(),"stock-dividend","8");
+insert into equity_summary values (1,2,1600,0);
+insert into equity_summary values (1,11,1200,0);
+insert into equity_summary values (5,2,800,0);
+insert into equity_summary values (1,4,900,0);
+insert into equity_summary values (1,6,900,0);
+
