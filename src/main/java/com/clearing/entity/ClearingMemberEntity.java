@@ -21,7 +21,7 @@ public class ClearingMemberEntity {
 	private float clearingMemberFundBalance;
 	private String clearingMemberName;
 	
-	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY, mappedBy = "memberEntity")
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY, mappedBy = "clearingMember")
     private Set<EquitySummaryEntity> equityEntity;
 	
 	

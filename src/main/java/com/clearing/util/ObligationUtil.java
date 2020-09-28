@@ -25,7 +25,7 @@ public class ObligationUtil {
 			Map<String,Integer>equities = new HashMap<String, Integer>();
 			
 			for(EquitySummaryEntity equityEntity: equityEntities) {
-				equities.put((equityEntity.getSecurityEntity()).getSecurityName(),equityEntity.getNoOfShares());
+				equities.put((equityEntity.getSecurity()).getSecurityName(),equityEntity.getNoOfShares());
 		}
 	    obligation.setEquityObligation(equities); 
 	    obligation.setCMName(name);
