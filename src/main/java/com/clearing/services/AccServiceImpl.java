@@ -18,11 +18,11 @@ public class AccServiceImpl implements AccService{
 	private AccRepo accRep;
 	
 	@Override
-	public String getAuth(long userId, String password) {
+	public String getAuth(Account account) {
 		
 		try {
-		      List<AccountEntity> accEntityList = accRep.findById(userId);
-		      return AccountUtil.getAuth_Token(accEntityList, password);
+		      List<AccountEntity> accEntityList = accRep.findById(account.getUserId());
+		      return AccountUtil.getAuth_Token(accEntityList, account.getPswd());
 		    }
 		    catch(Exception e) {
 		    	e.printStackTrace();

@@ -1,7 +1,9 @@
 package com.clearing.services;
 
+import com.clearing.json.Account;
+
 public interface AccService {
 	
-	 String getAuth(long userId,String password);
+	 String getAuth(Account account);
 
 }

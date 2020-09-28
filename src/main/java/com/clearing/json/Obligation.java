@@ -4,23 +4,23 @@ import java.util.Map;
 
 public class Obligation {
 
-	private long CMID;
+	private String CMName;
 	private float fundObligation;
 	//private float shortage;
-	private Map<Integer, Integer> equityObligation;
+	private Map<String, Integer> equityObligation;
 	
 	public Obligation(){}
-	public Obligation(long cmid, float fund, Map<Integer,Integer>equities){
-		   this.CMID = cmid;
+	public Obligation(String cmName, float fund, Map<String,Integer>equities){
+		   this.CMName = cmName;
 		   this.fundObligation = fund;
 		   this.equityObligation = equities;
 		}
 	
-	public long getCMId() {
-		return CMID;
+	public String getCMName() {
+		return CMName;
 	}
-	public void setCMId(long cmid) {
-		this.CMID = cmid;
+	public void setCMName(String cmName) {
+		this.CMName = cmName;
 	}
 	public float getFundObligation() {
 		return fundObligation;
@@ -34,16 +34,16 @@ public class Obligation {
 	public void setShortage(float shortages) {
 		this.shortage = shortages;
 	}*/
-	public Map<Integer,Integer> getEquitiyObligation() {
+	public Map<String,Integer> getEquitiyObligation() {
 		return equityObligation;
 	}
-	public void setEquityObligation(Map<Integer,Integer> equities) {
+	public void setEquityObligation(Map<String,Integer> equities) {
 		this.equityObligation = equities;
 	}
 	
 	
 	@Override
 	public String toString() {
-		return "Obligation [CMID=" + CMID + ", fundObligation=" + fundObligation +", equityObligation" + equityObligation+ "]";
+		return "Obligation [CMName=" + CMName + ", fundObligation=" + fundObligation +", equityObligation" + equityObligation+ "]";
 	}
 }

@@ -17,17 +17,12 @@ public class ClearingMemberEntity {
 	
 	@Id
 	private int clearingMemberId;
-	
-	private String clearingMemberName;
-
-	private float clearingMemberFundBalance;
-	
 	private float amountToPay;
+	private float clearingMemberFundBalance;
+	private String clearingMemberName;
 	
-	//@JoinColumn(name = "clearingMemberId")
 	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY, mappedBy = "memberEntity")
     private Set<EquitySummaryEntity> equityEntity;
-	
 	
 	
 	public Set<EquitySummaryEntity> getEquityEntity() {

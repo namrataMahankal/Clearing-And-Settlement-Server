@@ -4,6 +4,6 @@ import com.clearing.json.Obligation;
 
 public interface ObligationService {
 	
-	Obligation getObligations(int id);
+	Obligation getObligations(int id, String name);
 
 }

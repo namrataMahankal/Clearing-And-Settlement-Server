@@ -8,10 +8,10 @@ import com.clearing.entity.AccountEntity;
 
 public class AccountUtil {
 
-	public static String get_token(AccountEntity accEntity) {
+	/*public static String get_token(AccountEntity accEntity) {
 		return accEntity.getToken();
 	}
-	
+	*/
 	public static String getAuth_Token(List<AccountEntity> accEntityList, String password ) {
 		
 		System.out.println((accEntityList.get(0)).getPswd()+" & "+password);
@@ -19,17 +19,18 @@ public class AccountUtil {
 		try {
 		      if(password.equals((accEntityList.get(0)).getPswd())) {
 			
-			    String token = null;
-				  token = (String)get_token(accEntityList.get(0));
-			    return "{"+'"'+"auth_token"+'"'+":"+token+"}";
+			    //String token = null;
+				//  token = (String)get_token(accEntityList.get(0));
+			   // return "{"+'"'+"auth_token"+'"'+":"+token+"}";
+		    	  return "{"+ "valid user" +"}";
 		     }
 		    else {
-		    	return "invalid creds";
+		    	return "invalid user";
 		    	}
 		}
 		catch(Exception e){
 			e.printStackTrace();
-			return "exception_util";
+			return "exception";
 		}
 		   
     }

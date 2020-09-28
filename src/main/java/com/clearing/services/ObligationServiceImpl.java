@@ -15,9 +15,9 @@ public class ObligationServiceImpl implements ObligationService {
 	
 	
 	@Override
-    public Obligation getObligations(int id){
+    public Obligation getObligations(int id, String name){
 		
-		return ObligationUtil.convertToObligation(obligationRepo.findById(id)); 
+		return ObligationUtil.convertToObligation(obligationRepo.findById(id), name); 
 		
 	}
 }

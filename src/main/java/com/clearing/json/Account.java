@@ -2,23 +2,23 @@ package com.clearing.json;
 
 public class Account {
 
-	private long userId;
+	private int userId;
 	private String pswd;
 	private String type;
-	private String token;
+	private String token = "invalid user";
 	
 	public Account(){}
-	public Account(long id, String pswd, String type, String token){
+	public Account(int id, String pswd, String type, String token){
 		   this.userId = id;
 		   this.pswd = pswd;
 		   this.type = type;
 		   this.token = token;
 		}
 	
-	public long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(long userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	public String getPswd() {

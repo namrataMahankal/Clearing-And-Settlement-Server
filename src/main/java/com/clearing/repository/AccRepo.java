@@ -3,10 +3,13 @@ package com.clearing.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.clearing.entity.AccountEntity;
+import org.springframework.data.jpa.repository.Query;
 
-public interface AccRepo extends JpaRepository<AccountEntity, Long> {
+import com.clearing.entity.AccountEntity;
+import com.clearing.json.Account;
+
+public interface AccRepo extends JpaRepository<AccountEntity, Integer> {
    
-	List<AccountEntity> findById(long id);
+	List<AccountEntity> findById(int id);
 	
 }

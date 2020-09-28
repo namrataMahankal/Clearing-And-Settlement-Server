@@ -16,16 +16,19 @@ public class ObligationUtil {
 	@Autowired
 	static Obligation obligation = new Obligation();
 	
-	public static Obligation convertToObligation(List<ClearingMemberEntity> memberEntityList) {
+	public static Obligation convertToObligation(List<ClearingMemberEntity> memberEntityList, String name) {
 		
 		for(ClearingMemberEntity memberEntity: memberEntityList) {
+			
 			Set<EquitySummaryEntity> equityEntities = memberEntity.getEquityEntity();
-			Map<Integer,Integer>equities = new HashMap<Integer, Integer>();
+			
+			Map<String,Integer>equities = new HashMap<String, Integer>();
+			
 			for(EquitySummaryEntity equityEntity: equityEntities) {
-				equities.put(equityEntity.getSecurityId(),equityEntity.getNoOfShares());
+				equities.put((equityEntity.getSecurityEntity()).getSecurityName(),equityEntity.getNoOfShares());
 		}
 	    obligation.setEquityObligation(equities); 
-	    obligation.setCMId(memberEntity.getClearingMemberId());
+	    obligation.setCMName(name);
 	    obligation.setFundObligaton(memberEntity.getAmountToPay());
 	}
 		return obligation;
