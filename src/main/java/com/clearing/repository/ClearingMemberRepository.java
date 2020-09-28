@@ -6,4 +6,5 @@ import com.clearing.entity.ClearingMemberEntity;
 public interface ClearingMemberRepository extends JpaRepository<ClearingMemberEntity, Integer> {
 
 	ClearingMemberEntity findByClearingMemberName(String CMName);
+	ClearingMemberEntity findByClearingMemberId(int id);
 }

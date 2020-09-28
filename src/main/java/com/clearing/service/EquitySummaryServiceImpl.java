@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import com.clearing.entity.CorporateActionSummary;
 import com.clearing.entity.EquitySummaryEntity;
 import com.clearing.entity.EquitySummaryId;
+import com.clearing.repository.ClearingMemberRepository;
 import com.clearing.repository.EquitySummaryRepository;
+import com.clearing.repository.SecuritiesRepository;
 
 
 @Service
@@ -21,6 +23,15 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 
     @Autowired
 	private EquitySummaryRepository equitySummaryRepository;
+    
+    @Autowired
+    private ClearingMemberRepository clearingMemberRepository;
+    
+    @Autowired
+    private SecuritiesRepository securitiesRepository;
+    
+    
+    
     private static Random rand = new Random(System.currentTimeMillis());
 
 	
@@ -35,7 +46,7 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 					}
 				}
 				int openingShareQuantity = 1 + rand.nextInt(10000);
-				cmSummary.add(new EquitySummaryEntity(new EquitySummaryId(securityId,cmId),openingShareQuantity,qty));
+				cmSummary.add(new EquitySummaryEntity(new EquitySummaryId(securityId,cmId),openingShareQuantity,qty,securitiesRepository.findBySecurityId(securityId),clearingMemberRepository.findByClearingMemberId(cmId)));
 			});
 			 
 			equitySummaryRepository.saveAll(cmSummary);
