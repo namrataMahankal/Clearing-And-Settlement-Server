@@ -1,7 +1,12 @@
 package com.clearing.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,11 +19,16 @@ public class SecuritiesEntity {
 	private float marketPrice;
 	private String securityName;
 
-	public SecuritiesEntity(int securityId, String securityName, float marketPrice, float interestRate) {
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY, mappedBy = "clearingMember")
+    private Set<EquitySummaryEntity> equityEntity;
+	
+	
+	public SecuritiesEntity(int securityId, String securityName, float marketPrice, float interestRate, Set<EquitySummaryEntity> equityEntity) {
 		this.securityId = securityId;
 		this.securityName = securityName;
 		this.marketPrice = marketPrice;
 		this.interestRate = interestRate;
+		this.equityEntity = equityEntity;
 	}
 
 	public SecuritiesEntity() {
@@ -56,6 +66,15 @@ public class SecuritiesEntity {
 	public void setSecurityName(String securityName) {
 		this.securityName = securityName;
 	}
+	
+	public Set<EquitySummaryEntity> getEquityEntity() {
+		return equityEntity;
+	}
+
+	public void setEquityEntity(Set<EquitySummaryEntity> equityEntity) {
+		this.equityEntity = equityEntity;
+	}
+
 
 	@Override
 	public String toString() {

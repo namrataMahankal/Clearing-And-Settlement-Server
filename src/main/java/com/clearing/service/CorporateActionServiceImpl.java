@@ -4,11 +4,13 @@ import com.clearing.entity.CorporateActionSummaryEntity;
 import com.clearing.entity.EquitySummaryEntity;
 
 import com.clearing.entity.SecuritiesEntity;
+import com.clearing.json.CorporateActionSummary;
 import com.clearing.repository.ClearingMemberRepository;
 import com.clearing.repository.CorporateActionRepository;
 import com.clearing.repository.CorporateActionSummaryRepository;
 import com.clearing.repository.EquitySummaryRepository;
 import com.clearing.repository.SecuritiesRepository;
+import com.clearing.util.CorporateActionSummaryUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +53,11 @@ public class CorporateActionServiceImpl implements CorporateActionService {
         List<CorporateActionSummaryEntity> summary = corporateActionSummaryRepository.findAll();
         return summary;
     }
+
+    @Override
+    public CorporateActionSummary getCorporateActionSummary(int id, String name){
+		return CorporateActionSummaryUtil.convertEntityToSummary(corporateActionSummaryRepository.findByClearingMemberId(id), name); 
+	}
 
     @Override
 	public ArrayList<CorporateActionSummaryEntity> applyCorporateActions() {
