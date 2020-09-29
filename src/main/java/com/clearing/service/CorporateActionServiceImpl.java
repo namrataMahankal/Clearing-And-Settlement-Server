@@ -61,6 +61,7 @@ public class CorporateActionServiceImpl implements CorporateActionService {
 
     @Override
 	public ArrayList<CorporateActionSummaryEntity> applyCorporateActions() {
+        corporateActionSummaryRepository.deleteAll();
 		List<CorporateActionEntity> corporateActions = IterableUtils.toList(corporateActionRepository.findAll());
         ArrayList<CorporateActionSummaryEntity> corporateActionSummary = new ArrayList<CorporateActionSummaryEntity>();
 
@@ -76,7 +77,7 @@ public class CorporateActionServiceImpl implements CorporateActionService {
             String action = ca.getAction();
             String parameter = ca.getParameter();
             List<EquitySummaryEntity> summaries = IterableUtils.toList(equitySummaryRepository.findByIdSecurityId(securityId));
-            System.out.println(summaries.size());
+
             // Actions = ['split','reverse-split','stock-dividend']
             switch (action) {
                 case "stock-split":
