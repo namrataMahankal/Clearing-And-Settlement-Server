@@ -29,11 +29,11 @@ public class TradeEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "buyerClearingMemberId", referencedColumnName = "clearingMemberId")
-	private ClearingMember buyerClearingMember;
+	private ClearingMemberEntity buyerClearingMember;
 
 	@ManyToOne
 	@JoinColumn(name = "sellerClearingMemberId", referencedColumnName = "clearingMemberId")
-	private ClearingMember sellerClearingMember;
+	private ClearingMemberEntity sellerClearingMember;
 
 	private float transactionAmount;
 
@@ -45,7 +45,7 @@ public class TradeEntity {
 	}
 
 	public TradeEntity(int tradeId, SecuritiesEntity securityId, int quantity, float price,
-			ClearingMember buyerClearingMember, ClearingMember sellerClearingMember, float transactionAmount) {
+			ClearingMemberEntity buyerClearingMember, ClearingMemberEntity sellerClearingMember, float transactionAmount) {
 		super();
 		this.tradeId = tradeId;
 		this.security = securityId;
@@ -88,19 +88,19 @@ public class TradeEntity {
 		this.price = price;
 	}
 
-	public ClearingMember getBuyerClearingMember() {
+	public ClearingMemberEntity getBuyerClearingMember() {
 		return buyerClearingMember;
 	}
 
-	public void setBuyerClearingMember(ClearingMember buyerClearingMember) {
+	public void setBuyerClearingMember(ClearingMemberEntity buyerClearingMember) {
 		this.buyerClearingMember = buyerClearingMember;
 	}
 
-	public ClearingMember getSellerClearingMember() {
+	public ClearingMemberEntity getSellerClearingMember() {
 		return sellerClearingMember;
 	}
 
-	public void setSellerClearingMember(ClearingMember sellerClearingMember) {
+	public void setSellerClearingMember(ClearingMemberEntity sellerClearingMember) {
 		this.sellerClearingMember = sellerClearingMember;
 	}
 

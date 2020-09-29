@@ -7,7 +7,7 @@ import java.util.List;
 import org.javatuples.Pair;
 
 import com.clearing.entity.TradeEntity;
-import com.clearing.json.Trade;
+import com.clearing.json.*;
 
 public interface TradeService {
 
@@ -16,4 +16,6 @@ public interface TradeService {
 	List<Trade> getAllTrades();
 	TradeEntity createTrade();
 	Pair<HashMap<Integer, Float>, HashMap<Integer, HashMap<Integer, Integer>>> hashMapifyTrades();
+	List<CMTrade> getBuyerTradesByCMName(String cMName);
+	List<CMTrade> getSellerTradesByCMName(String cMName);
 }
