@@ -47,11 +47,11 @@ public class CorporateActionController {
 	}
 
 
-	// @GetMapping(path = "/corporate-actions/apply")
-	// public @ResponseBody void apply() {
-	// 	ArrayList<CorporateActionSummaryEntity> corporateActionSummaryList =  corporateActionService.applyCorporateActions();
-	// 	// return corporateActionSummaryList;
-	// }
+	@GetMapping(path = "/corporate-actions/apply")
+	public @ResponseBody void apply() {
+		// Applying Corporate Actions
+		corporateActionService.applyCorporateActions();
+	}
 
 	@GetMapping(path="/corporate-actions/summary")
 	public @ResponseBody List<CorporateActionSummaryEntity> showCorporateActionsSummary() {
