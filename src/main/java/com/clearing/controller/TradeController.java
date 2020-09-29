@@ -1,5 +1,6 @@
 package com.clearing.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.clearing.entity.ClearingMemberEntity;
+import com.clearing.entity.EquitySummaryEntity;
 import com.clearing.entity.TradeEntity;
 import com.clearing.json.CMTrade;
 import com.clearing.json.EquitySummary;
@@ -82,7 +85,8 @@ public class TradeController {
 
 		// Adding amountToPay to clearingMember Table
 		clearingMemberService.addChangeAfterSettlement(transactionAmountHashMap);
-
+		ArrayList<ClearingMemberEntity> clearingMemberEntity =  clearingMemberService.calculateFundShortage();
+		ArrayList<EquitySummaryEntity> equitySummaryEntity = equitySummaryService.calculateESShortage();
 		return obligationHashMap;
 	}
 
