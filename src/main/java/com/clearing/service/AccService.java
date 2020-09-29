@@ -1,9 +1,10 @@
 package com.clearing.service;
 
 import com.clearing.json.Account;
+import com.clearing.json.Credentials;
 
 public interface AccService {
 	
-	 String getAuth(Account account);
+	 Account getAuth(Credentials credentials);
 
 }
