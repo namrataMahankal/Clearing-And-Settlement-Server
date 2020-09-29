@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.clearing.json.Obligation;
-import com.clearing.services.MappingServiceImpl;
-import com.clearing.services.ObligationService;
+import com.clearing.service.MappingServiceImpl;
+import com.clearing.service.ObligationService;
 
 @RestController
 @RequestMapping("/clearingmember")

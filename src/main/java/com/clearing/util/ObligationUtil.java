@@ -29,7 +29,7 @@ public class ObligationUtil {
 		}
 	    obligation.setEquityObligation(equities); 
 	    obligation.setCMName(name);
-	    obligation.setFundObligaton(memberEntity.getAmountToPay());
+	    obligation.setFundObligaton(memberEntity.getNetPayable());
 	}
 		return obligation;
 	
