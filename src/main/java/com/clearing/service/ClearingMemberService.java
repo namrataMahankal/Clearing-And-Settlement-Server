@@ -13,11 +13,7 @@ public interface ClearingMemberService {
 
 	public float getCMOpeningFundBalance(String cMName);
 	public List<EquitySummary> getCMOpeningShareBalance(String cMName);	
-	public ArrayList<ClearingMemberEntity> calculateFundShortage();
 	public CostOfSettlementFund getCostOfSettlementFund(String cMName);
 	public List<CostOfSettlementShares> getCostOfSettlementShares(String cMName);
-
-	public List<EquitySummary> getCMOpeningShareBalance(String cMName);
-
 	public void calculateFundShortage();
 }
