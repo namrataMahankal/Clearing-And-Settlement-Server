@@ -14,10 +14,10 @@ public class AccountUtil {
 	*/
 	public static String getAuth_Token(List<AccountEntity> accEntityList, String password ) {
 		
-		System.out.println((accEntityList.get(0)).getPswd()+" & "+password);
+		System.out.println((accEntityList.get(0)).getPassword()+" & "+password);
 		
 		try {
-		      if(password.equals((accEntityList.get(0)).getPswd())) {
+		      if(password.equals((accEntityList.get(0)).getPassword())) {
 			
 			    //String token = null;
 				//  token = (String)get_token(accEntityList.get(0));

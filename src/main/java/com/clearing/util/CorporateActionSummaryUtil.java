@@ -26,7 +26,7 @@ public class CorporateActionSummaryUtil {
 			corpList.setFinalShareBalance(summaryEntity.getFinalShareBalance());
 			corpList.setInitialShareBalance(summaryEntity.getInitialShareBalance());
 			corpList.setParameter(summaryEntity.getParameter());
-			corpList.setSecurityName((summaryEntity.getSecurityEntity()).getSecurityName());
+			corpList.setSecurityName((summaryEntity.getSecurity()).getSecurityName());
 			summary.setClearingMemberId(name);
 			(summary.getActionList()).add(corpList);
 			//System.out.println(summary.get)
