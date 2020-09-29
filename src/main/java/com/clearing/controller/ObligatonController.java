@@ -13,18 +13,18 @@ import com.clearing.service.MappingServiceImpl;
 import com.clearing.service.ObligationService;
 
 @RestController
-@RequestMapping("/clearingmember")
+@RequestMapping("/clearing-and-settlement")
 public class ObligatonController {
 
 	@Autowired
 	ObligationService obligationService;
-	
+
 	@Autowired
-	private MappingServiceImpl map ;
-	
-	@GetMapping(value="/obligations/{name}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Obligation getObligations(@PathVariable("name")String name) {
-		return obligationService.getObligations(map.getId(name),name);
+	private MappingServiceImpl map;
+
+	@GetMapping(value = "/clearing-member/obligations/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Obligation getObligations(@PathVariable("name") String name) {
+		return obligationService.getObligations(map.getId(name), name);
 	}
-	
+
 }
