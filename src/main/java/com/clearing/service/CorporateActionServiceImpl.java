@@ -41,6 +41,18 @@ public class CorporateActionServiceImpl implements CorporateActionService {
 	// private ClearingMemberRepository clearingMemberRepository;
 
     @Override
+    public List<CorporateActionEntity> showCorporateActions(){
+        List<CorporateActionEntity> corporateActions = corporateActionRepository.findAll();
+        return corporateActions;
+    }   
+
+    @Override
+    public List<CorporateActionSummaryEntity> showCorporateActionsSummary(){
+        List<CorporateActionSummaryEntity> summary = corporateActionSummaryRepository.findAll();
+        return summary;
+    }
+
+    @Override
 	public ArrayList<CorporateActionSummaryEntity> applyCorporateActions() {
 		List<CorporateActionEntity> corporateActions = IterableUtils.toList(corporateActionRepository.findAll());
         ArrayList<CorporateActionSummaryEntity> corporateActionSummary = new ArrayList<CorporateActionSummaryEntity>();
@@ -57,6 +69,7 @@ public class CorporateActionServiceImpl implements CorporateActionService {
             String action = ca.getAction();
             String parameter = ca.getParameter();
             List<EquitySummaryEntity> summaries = IterableUtils.toList(equitySummaryRepository.findByIdSecurityId(securityId));
+            System.out.println(summaries.size());
             // Actions = ['split','reverse-split','stock-dividend']
             switch (action) {
                 case "stock-split":

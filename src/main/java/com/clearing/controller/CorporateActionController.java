@@ -1,6 +1,7 @@
 package com.clearing.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,20 +9,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.clearing.entity.CorporateActionEntity;
 import com.clearing.entity.CorporateActionSummaryEntity;
 import com.clearing.service.CorporateActionService;
 
 @Controller // This means that this class is a Controller
-@RequestMapping(path = "/corporateAction")
+@RequestMapping(path = "/clearing-and-settlement")
 public class CorporateActionController {
 	
 	@Autowired
 	private CorporateActionService corporateActionService;
 
-	@GetMapping(path = "/apply")
-	public @ResponseBody ArrayList<CorporateActionSummaryEntity> apply() {
-		ArrayList<CorporateActionSummaryEntity> corporateActionList =  corporateActionService.applyCorporateActions();
+	@GetMapping(path = "/corporate-actions")
+	public @ResponseBody List<CorporateActionEntity> showCorporateActions() {
+		List<CorporateActionEntity> corporateActionList =  corporateActionService.showCorporateActions();
 		return corporateActionList;
 	}
 
+
+	@GetMapping(path = "/corporate-actions/apply")
+	public @ResponseBody ArrayList<CorporateActionSummaryEntity> apply() {
+		ArrayList<CorporateActionSummaryEntity> corporateActionSummaryList =  corporateActionService.applyCorporateActions();
+		return corporateActionSummaryList;
+	}
+
+	@GetMapping(path="/corporate-actions/summary")
+	public @ResponseBody List<CorporateActionSummaryEntity> showCorporateActionsSummary() {
+		List<CorporateActionSummaryEntity> corporateActionSummaryList =  corporateActionService.showCorporateActionsSummary();
+		return corporateActionSummaryList;
+	}
 }
