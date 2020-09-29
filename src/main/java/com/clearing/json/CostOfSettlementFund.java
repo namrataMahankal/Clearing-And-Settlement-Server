@@ -2,7 +2,6 @@ package com.clearing.json;
 
 public class CostOfSettlementFund {
 
-	private float totalCost;
 	private int fundsToBeBorrowed;
 	private float borrowingRate;
 	private float costIncurred;

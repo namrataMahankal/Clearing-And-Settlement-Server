@@ -48,7 +48,7 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 					SecuritiesEntity security = securitiesRepository.findBySecurityId(securityId);
 					int ratePerShare = security.getInterestRate();
 					cmSummary.add(new EquitySummaryEntity(new EquitySummaryId(securityId, cmId), openingShareQuantity,
-							qty,0,ratePerShare,0, security, cmObj.get()));
+							qty, 0, 0, security, cmObj.get()));
 				} else {
 					throw new Error("Clearing Member not found by id");
 				}
@@ -66,7 +66,7 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 			int quantity = es.getNoOfShares() + es.getSettlementChange();
 			if (quantity < 0) {
 				quantity *= -1;
-				float netPayable = quantity * es.getSecurity().getInterestRate();//getRatePerShare();
+				float netPayable = quantity * es.getSecurity().getInterestRate();// getRatePerShare();
 				es.setNetPayable(netPayable);
 				es.setShortage(quantity);
 				eSSettlementList.add(es);
