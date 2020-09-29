@@ -13,4 +13,5 @@ public interface CorporateActionSummaryRepository extends JpaRepository<Corporat
     // List<CorporateActionSummaryEntity> findByClearingMemberId(int id);
     
     List<CorporateActionSummaryEntity> findByIdClearingMemberId(int cmId);
+    List<CorporateActionSummaryEntity> findByIdSecurityId(int securityId);
 }
