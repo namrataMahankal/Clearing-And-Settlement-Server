@@ -15,7 +15,7 @@ public class SecuritiesEntity {
 
 	@Id
 	private int securityId;
-	private float interestRate;
+	private int interestRate;
 	private float marketPrice;
 	private String securityName;
 
@@ -23,7 +23,7 @@ public class SecuritiesEntity {
     private Set<EquitySummaryEntity> equityEntity;
 	
 	
-	public SecuritiesEntity(int securityId, String securityName, float marketPrice, float interestRate, Set<EquitySummaryEntity> equityEntity) {
+	public SecuritiesEntity(int securityId, String securityName, float marketPrice, int interestRate, Set<EquitySummaryEntity> equityEntity) {
 		this.securityId = securityId;
 		this.securityName = securityName;
 		this.marketPrice = marketPrice;
@@ -43,11 +43,11 @@ public class SecuritiesEntity {
 		this.securityId = securityId;
 	}
 
-	public float getInterestRate() {
+	public int getInterestRate() {
 		return interestRate;
 	}
 
-	public void setInterestRate(float interestRate) {
+	public void setInterestRate(int interestRate) {
 		this.interestRate = interestRate;
 	}
 
