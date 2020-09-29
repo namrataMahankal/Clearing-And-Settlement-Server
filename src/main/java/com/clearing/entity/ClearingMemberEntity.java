@@ -23,21 +23,29 @@ public class ClearingMemberEntity {
 	private float interestRate;
 	private float shortage;
 	private float netPayable;
+	private float corporateActionChange;
 	
 	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY, mappedBy = "clearingMember")
-    private Set<EquitySummaryEntity> equityEntity;
+	@Column(insertable=false, updatable=false)
+	private Set<EquitySummaryEntity> equityEntity;
 	
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY, mappedBy = "clearingMember")
+	@Column(insertable=false, updatable=false)
+    private Set<CorporateActionSummaryEntity> corporateSummaryEntity;
+
 	
 	public ClearingMemberEntity(int clearingMemberId, String clearingMemberName, float clearingMemberFundBalance,
-			float amountToPay,Set<EquitySummaryEntity> equityEntity, float interestRate, float shortage, float netPayable) {
+			float amountToPay,Set<EquitySummaryEntity> equityEntity,Set<CorporateActionSummaryEntity> corporateSummaryEntity, float interestRate, float shortage, float netPayable) {
 		this.clearingMemberId = clearingMemberId;
 		this.clearingMemberName = clearingMemberName;
 		this.clearingMemberFundBalance = clearingMemberFundBalance;
 		this.amountToPay = amountToPay;
 		this.equityEntity = equityEntity;
+		this.corporateSummaryEntity = corporateSummaryEntity;
 		this.interestRate = interestRate;
 		this.shortage = shortage;
 		this.netPayable = netPayable;
+
 	}
 
 	public ClearingMemberEntity() {}
@@ -121,5 +129,12 @@ public class ClearingMemberEntity {
 		this.netPayable = netPayable;
 	}
 
-	
+	public float getCorporateActionChange() {
+		return corporateActionChange;
+	}
+
+	public void setCorporateActionChange(float corporateActionChange) {
+		this.corporateActionChange = corporateActionChange;
+	}
+
 }

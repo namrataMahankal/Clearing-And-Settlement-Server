@@ -8,5 +8,9 @@ import com.clearing.entity.CorporateActionSummaryEntity;
 
 
 public interface CorporateActionSummaryRepository extends JpaRepository<CorporateActionSummaryEntity, Integer> {
-    List<CorporateActionSummaryEntity> findByClearingMemberId(int id);
+
+    //@Query("SELECT * FROM CorporateSummaryActionEntity WHERE clearingMemberId = id")
+    // List<CorporateActionSummaryEntity> findByClearingMemberId(int id);
+    
+    List<CorporateActionSummaryEntity> findByIdClearingMemberId(int cmId);
 }

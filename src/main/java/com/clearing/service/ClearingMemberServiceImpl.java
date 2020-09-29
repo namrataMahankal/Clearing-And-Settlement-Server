@@ -1,6 +1,5 @@
 package com.clearing.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -40,13 +39,11 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 
 	@Override
 	public float getCMOpeningFundBalance(String cMName) {
-		// TODO Auto-generated method stub
 		return clearingMemberRepository.findByClearingMemberName(cMName).getClearingMemberFundBalance();
 	}
 
 	@Override
 	public List<EquitySummary> getCMOpeningShareBalance(String cMName) {
-		// TODO Auto-generated method stub
 		return EquitySummaryUtil
 				.convertEquitySummaryEntityListIntoEquitySummaryList(equitySummaryRepository.findByIdClearingMemberId(
 						clearingMemberRepository.findByClearingMemberName(cMName).getClearingMemberId()));
@@ -54,7 +51,7 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 	}
 
 	@Override
-	public ArrayList<ClearingMemberEntity> calculateFundShortage() {
+	public void calculateFundShortage() {
 		List<ClearingMemberEntity> cmList = IterableUtils.toList(clearingMemberRepository.findAll());
 		ArrayList<ClearingMemberEntity> fundSettlementList = new ArrayList<ClearingMemberEntity>();
 
@@ -69,7 +66,6 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 				clearingMemberRepository.save(cm);
 			}
 		}
-		return fundSettlementList;
 	}
 
 	@Override

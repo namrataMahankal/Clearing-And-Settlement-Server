@@ -1,6 +1,5 @@
 package com.clearing.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -58,9 +57,8 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 		});
 	}
 
-	public ArrayList<EquitySummaryEntity> calculateESShortage() {
+	public void calculateESShortage() {
 		List<EquitySummaryEntity> esList = IterableUtils.toList(equitySummaryRepository.findAll());
-		ArrayList<EquitySummaryEntity> eSSettlementList = new ArrayList<EquitySummaryEntity>();
 
 		for (EquitySummaryEntity es : esList) {
 			int quantity = es.getNoOfShares() + es.getSettlementChange();
@@ -69,10 +67,8 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 				float netPayable = quantity * es.getSecurity().getInterestRate();// getRatePerShare();
 				es.setNetPayable(netPayable);
 				es.setShortage(quantity);
-				eSSettlementList.add(es);
 				equitySummaryRepository.save(es);
 			}
 		}
-		return eSSettlementList;
 	}
 }
