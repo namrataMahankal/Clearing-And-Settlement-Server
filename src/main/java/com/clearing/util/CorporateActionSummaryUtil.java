@@ -19,7 +19,8 @@ public class CorporateActionSummaryUtil {
 	public static CorporateActionSummary convertEntityToSummary(List<CorporateActionSummaryEntity> summaryEntityList, String name) {
 		
 		CorporateActionSummary summary = new CorporateActionSummary();
-		
+		summary.setClearingMemberId(name);
+
 		for(CorporateActionSummaryEntity summaryEntity: summaryEntityList) {
 			CorporateActionList corpList = new CorporateActionList();
 			corpList.setAction(summaryEntity.getAction());
@@ -27,7 +28,6 @@ public class CorporateActionSummaryUtil {
 			corpList.setInitialShareBalance(summaryEntity.getInitialShareBalance());
 			corpList.setParameter(summaryEntity.getParameter());
 			corpList.setSecurityName((summaryEntity.getSecurity()).getSecurityName());
-			summary.setClearingMemberId(name);
 			(summary.getActionList()).add(corpList);			
 	}	
 		System.out.println(summary.getClearingMemberName());
