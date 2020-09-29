@@ -1,5 +1,6 @@
 package com.clearing.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,16 @@ public class ObligationServiceImpl implements ObligationService {
 		
 		return ObligationUtil.convertEquityEntityToObligation(equityObligationRepo.findByIdClearingMemberId(id)); 
 		
+	}
+
+	@Override
+	public HashMap<String,List<EquityObligations>> getAllEquityObligations(){
+		return ObligationUtil.convertToObligationMatrix(equityObligationRepo.findAll());
+	}
+
+	@Override
+	public List<Obligation> getAllObligations(){
+		return ObligationUtil.convertToObligation(obligationRepo.findAll()); 
 	}
 	
 }

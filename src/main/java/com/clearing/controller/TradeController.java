@@ -34,8 +34,8 @@ public class TradeController {
 	@Autowired
 	private ClearingMemberService clearingMemberService;
 
-	@Autowired
-	private CorporateActionService corporateActionService;
+	// @Autowired
+	// private CorporateActionService corporateActionService;
 
 	// Generate Random Trades
 	@GetMapping(path = "/trade/generate")
@@ -76,9 +76,6 @@ public class TradeController {
 		// Generating shortage information
 		clearingMemberService.calculateFundShortage();
 		equitySummaryService.calculateESShortage();
-
-		// Applying Corporate Actions
-		corporateActionService.applyCorporateActions();
 
 		return obligationHashMap;
 	}

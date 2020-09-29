@@ -1,5 +1,6 @@
 package com.clearing.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +39,13 @@ public class ObligatonController {
 		return obligationService.getEquityObligations(map.getId(name));
 	}
 
+	@GetMapping(value = "/clearing-house/equity-obligations", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody HashMap<String,List<EquityObligations>> getObligationMatrixShares() {
+		return obligationService.getAllEquityObligations();
+	}
+
+	@GetMapping(value = "/clearing-house/fund-obligations", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Obligation> getObligationMatrixFunds() {
+		return obligationService.getAllObligations();
+	}
 }

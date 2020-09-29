@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.clearing.json.CorporateActionSummary;
-import com.clearing.service.CorporateActionSummaryService;
+import com.clearing.json.CorporateActionSummarySecurity;
 import com.clearing.service.MappingServiceImpl;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -47,11 +47,11 @@ public class CorporateActionController {
 	}
 
 
-	// @GetMapping(path = "/corporate-actions/apply")
-	// public @ResponseBody void apply() {
-	// 	ArrayList<CorporateActionSummaryEntity> corporateActionSummaryList =  corporateActionService.applyCorporateActions();
-	// 	// return corporateActionSummaryList;
-	// }
+	@GetMapping(path = "/corporate-actions/apply")
+	public @ResponseBody void apply() {
+		// Applying Corporate Actions
+		corporateActionService.applyCorporateActions();
+	}
 
 	@GetMapping(path="/corporate-actions/summary")
 	public @ResponseBody List<CorporateActionSummaryEntity> showCorporateActionsSummary() {
@@ -62,6 +62,11 @@ public class CorporateActionController {
 	@GetMapping(value="/corporate-actions/cm/{name}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody CorporateActionSummary getCorporateActionSummary(@PathVariable("name")String name) {
 		return corporateActionService.getCorporateActionSummary(map.getId(name), name);
+	}
+	
+	@GetMapping(value="/corporate-actions/clearing-house/summary", produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<CorporateActionSummarySecurity> getCorporateActionSummarySecurity() {
+		return corporateActionService.getCorporateActionSummarySecurity();
 	}
 
 }
