@@ -81,4 +81,5 @@ public class EquitySummaryEntity {
 		this.clearingMember = clearingMember;
 	}
 
+
 }

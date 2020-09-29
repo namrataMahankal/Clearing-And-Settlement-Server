@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.clearing.entity.AccountEntity;
 import com.clearing.json.Account;
-import com.clearing.services.AccService;
+import com.clearing.service.AccService;
 
 @RestController
 @RequestMapping("/acclogin")

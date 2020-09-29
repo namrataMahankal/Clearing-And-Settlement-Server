@@ -1,4 +1,4 @@
-package com.clearing.services;
+package com.clearing.service;
 
 import java.util.List;
 

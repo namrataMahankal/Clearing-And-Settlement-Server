@@ -13,7 +13,6 @@ import com.clearing.entity.EquitySummaryEntity;
 import com.clearing.json.CorporateActionList;
 import com.clearing.json.CorporateActionSummary;
 import com.clearing.json.Obligation;
-import com.clearing.services.MappingServiceImpl;
 
 public class CorporateActionSummaryUtil {
 	
