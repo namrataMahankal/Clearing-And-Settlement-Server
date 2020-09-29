@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.clearing.json.Obligation;
@@ -22,7 +23,7 @@ public class ObligatonController {
 	private MappingServiceImpl map ;
 	
 	@GetMapping(value="/obligations/{name}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public Obligation getObligations(@PathVariable("name")String name) {
+	public @ResponseBody Obligation getObligations(@PathVariable("name")String name) {
 		return obligationService.getObligations(map.getId(name),name);
 	}
 	
