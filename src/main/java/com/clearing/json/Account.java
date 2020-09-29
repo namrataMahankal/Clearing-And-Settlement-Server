@@ -17,7 +17,7 @@ public class Account {
 	}
 	public Account() {}
 	
-	public long getClearingMemberId() {
+	public int getClearingMemberId() {
 		return clearingMemberId;
 	}
 	public void setClearingMemberId(int clearingMemberId) {
@@ -35,14 +35,17 @@ public class Account {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public long getClearingMemberName() {
-		return clearingMemberId;
+	public String getClearingMemberName() {
+		return clearingMemberName;
 	}
 	public void setClearingMemberName(String clearingMemberName) {
 		this.clearingMemberName = clearingMemberName;
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public String getUserName() {
+		return userName;
 	}
 	
 	@Override

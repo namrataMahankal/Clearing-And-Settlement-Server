@@ -20,8 +20,6 @@ public class AccServiceImpl implements AccService{
 	@Override
 	public Account getAuth(Credentials credentials) {
 		
-		System.out.println("@serviceImpl");
-		
 		try {
 			  System.out.println(credentials.getUserName());
 		      List<AccountEntity> accEntityList = accountRep.findByUserName(credentials.getUserName());
