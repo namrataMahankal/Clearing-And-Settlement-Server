@@ -23,7 +23,9 @@ public class AccountEntity {
 		   this.type = type;
 		   this.userName = userName;
 	}
+
 	public AccountEntity() {}
+	
 	
 	public int getClearingMemberId() {
 		return clearingMemberId;
@@ -56,8 +58,10 @@ public class AccountEntity {
 		this.userName = userName;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "Account [clearingMemberId=" + clearingMemberId + ", password=" + password + ", type=" + type + ", clearingMemberName=" + clearingMemberName + ", userName=" + userName +"]";
 	}
+	
 }

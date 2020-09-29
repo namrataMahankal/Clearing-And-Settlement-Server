@@ -15,7 +15,9 @@ public class Account {
 		   this.type = type;
 		   this.userName = userName;
 	}
+	
 	public Account() {}
+	
 	
 	public int getClearingMemberId() {
 		return clearingMemberId;
@@ -48,8 +50,10 @@ public class Account {
 		return userName;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "Account [clearingMemberId=" + clearingMemberId + ", password=" + password + ", type=" + type + ", clearingMemberName=" + clearingMemberName + ", userName=" + userName +"]";
 	}
+	
 }

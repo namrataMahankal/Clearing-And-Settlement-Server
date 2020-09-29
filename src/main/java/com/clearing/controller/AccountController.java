@@ -25,7 +25,9 @@ public class AccountController {
 	 
      @PostMapping(value="/credentials", produces=MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody Account getAuth(@RequestBody Credentials credential) { 
+    	 
     	 return accountService.getAuth(credential);
-     }
+     
+       }
 
 }

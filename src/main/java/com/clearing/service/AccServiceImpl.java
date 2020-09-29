@@ -11,9 +11,8 @@ import com.clearing.repository.AccRepo;
 import com.clearing.util.AccountUtil;
 
 @Service
-public class AccServiceImpl implements AccService{
+public class AccServiceImpl implements AccService {
 
-	
 	@Autowired
 	private AccRepo accountRep;
 	
@@ -30,10 +29,10 @@ public class AccServiceImpl implements AccService{
 		    	  return AccountUtil.getAuth(accEntityList, credentials.getPassword());
 		      }
 		    }
-		    catch(Exception e) {
-		    	e.printStackTrace();
-		    	return null;
-		    }
-	}
+		   catch(Exception e) {
+		      e.printStackTrace();
+		      return null;
+		   }
+	 }
 
 }
