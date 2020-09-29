@@ -43,9 +43,9 @@ public class CorporateActionController {
 
 
 	@GetMapping(path = "/corporate-actions/apply")
-	public @ResponseBody ArrayList<CorporateActionSummaryEntity> apply() {
+	public @ResponseBody void apply() {
 		ArrayList<CorporateActionSummaryEntity> corporateActionSummaryList =  corporateActionService.applyCorporateActions();
-		return corporateActionSummaryList;
+		// return corporateActionSummaryList;
 	}
 
 	@GetMapping(path="/corporate-actions/summary")
@@ -54,7 +54,7 @@ public class CorporateActionController {
 		return corporateActionSummaryList;
 	}
 	
-	@GetMapping(value="/corporateactions/{name}", produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/corporate-actions/cm/{name}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public CorporateActionSummary getCorporateActionSummary(@PathVariable("name")String name) {
 		return corporateActionService.getCorporateActionSummary(map.getId(name), name);
 	}
