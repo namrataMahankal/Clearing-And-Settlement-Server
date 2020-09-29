@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.clearing.json.CorporateActionSummary;
 import com.clearing.service.CorporateActionSummaryService;
 import com.clearing.service.MappingServiceImpl;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 
 @Controller // This means that this class is a Controller
@@ -45,6 +47,9 @@ public class CorporateActionController {
 	@GetMapping(path = "/corporate-actions/apply")
 	public @ResponseBody void apply() {
 		ArrayList<CorporateActionSummaryEntity> corporateActionSummaryList =  corporateActionService.applyCorporateActions();
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson = builder.create();
+		
 		// return corporateActionSummaryList;
 	}
 
@@ -55,7 +60,7 @@ public class CorporateActionController {
 	}
 	
 	@GetMapping(value="/corporate-actions/cm/{name}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public CorporateActionSummary getCorporateActionSummary(@PathVariable("name")String name) {
+	public @ResponseBody CorporateActionSummary getCorporateActionSummary(@PathVariable("name")String name) {
 		return corporateActionService.getCorporateActionSummary(map.getId(name), name);
 	}
 
