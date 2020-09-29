@@ -1,6 +1,5 @@
 package com.clearing.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -48,7 +47,7 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 					SecuritiesEntity security = securitiesRepository.findBySecurityId(securityId);
 					int ratePerShare = security.getInterestRate();
 					cmSummary.add(new EquitySummaryEntity(new EquitySummaryId(securityId, cmId), openingShareQuantity,
-							qty,0,ratePerShare,0, security, cmObj.get()));
+							qty, 0, ratePerShare, 0, security, cmObj.get()));
 				} else {
 					throw new Error("Clearing Member not found by id");
 				}
@@ -58,21 +57,18 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 		});
 	}
 
-	public ArrayList<EquitySummaryEntity> calculateESShortage() {
+	public void calculateESShortage() {
 		List<EquitySummaryEntity> esList = IterableUtils.toList(equitySummaryRepository.findAll());
-		ArrayList<EquitySummaryEntity> eSSettlementList = new ArrayList<EquitySummaryEntity>();
 
 		for (EquitySummaryEntity es : esList) {
 			int quantity = es.getNoOfShares() + es.getSettlementChange();
 			if (quantity < 0) {
 				quantity *= -1;
-				float netPayable = quantity * es.getSecurity().getInterestRate();//getRatePerShare();
+				float netPayable = quantity * es.getSecurity().getInterestRate();
 				es.setNetPayable(netPayable);
 				es.setShortage(quantity);
-				eSSettlementList.add(es);
 				equitySummaryRepository.save(es);
 			}
 		}
-		return eSSettlementList;
 	}
 }

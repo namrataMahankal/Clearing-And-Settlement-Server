@@ -1,6 +1,5 @@
 package com.clearing.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -37,13 +36,11 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 
 	@Override
 	public float getCMOpeningFundBalance(String cMName) {
-		// TODO Auto-generated method stub
 		return clearingMemberRepository.findByClearingMemberName(cMName).getClearingMemberFundBalance();
 	}
 
 	@Override
 	public List<EquitySummary> getCMOpeningShareBalance(String cMName) {
-		// TODO Auto-generated method stub
 		return EquitySummaryUtil
 				.convertEquitySummaryEntityListIntoEquitySummaryList(equitySummaryRepository.findByIdClearingMemberId(
 						clearingMemberRepository.findByClearingMemberName(cMName).getClearingMemberId()));
@@ -51,22 +48,19 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 	}
 
 	@Override
-	public ArrayList<ClearingMemberEntity> calculateFundShortage() {
+	public void calculateFundShortage() {
 		List<ClearingMemberEntity> cmList = IterableUtils.toList(clearingMemberRepository.findAll());
-		ArrayList<ClearingMemberEntity> fundSettlementList = new ArrayList<ClearingMemberEntity>();
-		
-		for(ClearingMemberEntity cm: cmList) {
-			float amount = cm.getClearingMemberFundBalance()+cm.getAmountToPay();
-			if(amount<0) {
+
+		for (ClearingMemberEntity cm : cmList) {
+			float amount = cm.getClearingMemberFundBalance() + cm.getAmountToPay();
+			if (amount < 0) {
 				amount *= -1;
-				float netPayable = amount*cm.getInterestRate();
+				float netPayable = amount * cm.getInterestRate();
 				cm.setNetPayable(netPayable);
 				cm.setShortage(amount);
-				fundSettlementList.add(cm);	
 				clearingMemberRepository.save(cm);
 			}
 		}
-		return fundSettlementList;
 	}
 
 }
