@@ -53,6 +53,7 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 		});
     }
 
+
 	@Override
 	public ArrayList<CorporateActionSummary> stockSplitAction() {
 		List<EquitySummaryEntity> summaryList = IterableUtils.toList(equitySummaryRepository.findAll());
@@ -83,5 +84,6 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 		
 		return corporateActionSummary;
 	}
+
 
 }
