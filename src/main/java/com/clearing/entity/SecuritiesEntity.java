@@ -1,6 +1,6 @@
 package com.clearing.entity;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,21 +15,20 @@ public class SecuritiesEntity {
 
 	@Id
 	private int securityId;
-	private float interestRate;
+	private int interestRate;
 	private float marketPrice;
 	private String securityName;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "security")
-	private List<TradeEntity> trades;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "security")
-	private List<EquitySummaryEntity> equitySummary;
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY, mappedBy = "clearingMember")
+    private Set<EquitySummaryEntity> equityEntity;
 	
-	public SecuritiesEntity(int securityId, String securityName, float marketPrice, float interestRate) {
+	
+	public SecuritiesEntity(int securityId, String securityName, float marketPrice, int interestRate, Set<EquitySummaryEntity> equityEntity) {
 		this.securityId = securityId;
 		this.securityName = securityName;
 		this.marketPrice = marketPrice;
 		this.interestRate = interestRate;
+		this.equityEntity = equityEntity;
 	}
 
 	public SecuritiesEntity() {
@@ -44,11 +43,11 @@ public class SecuritiesEntity {
 		this.securityId = securityId;
 	}
 
-	public float getInterestRate() {
+	public int getInterestRate() {
 		return interestRate;
 	}
 
-	public void setInterestRate(float interestRate) {
+	public void setInterestRate(int interestRate) {
 		this.interestRate = interestRate;
 	}
 
@@ -67,6 +66,15 @@ public class SecuritiesEntity {
 	public void setSecurityName(String securityName) {
 		this.securityName = securityName;
 	}
+	
+	public Set<EquitySummaryEntity> getEquityEntity() {
+		return equityEntity;
+	}
+
+	public void setEquityEntity(Set<EquitySummaryEntity> equityEntity) {
+		this.equityEntity = equityEntity;
+	}
+
 
 	@Override
 	public String toString() {

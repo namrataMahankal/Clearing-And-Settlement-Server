@@ -14,4 +14,5 @@ import com.clearing.entity.EquitySummaryId;
 
 public interface EquitySummaryRepository extends JpaRepository<EquitySummaryEntity, Integer> {
    List<EquitySummaryEntity> findByIdClearingMemberId(int cMId);
+   List<EquitySummaryEntity> findByIdSecurityId(int securityId);
 }

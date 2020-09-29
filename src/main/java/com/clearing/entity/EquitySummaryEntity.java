@@ -17,12 +17,15 @@ public class EquitySummaryEntity {
 	private EquitySummaryId id;
 	private int noOfShares;
 	private int settlementChange;
-	
+	private int shortage;
+	private int RatePerShare;
+	private float netPayable;
+
 	@MapsId("securityId")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "securityId", referencedColumnName = "securityId")
 	private SecuritiesEntity security;
-	
+
 	@MapsId("clearingMemberId")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "clearingMemberId", referencedColumnName = "clearingMemberId")
@@ -32,12 +35,15 @@ public class EquitySummaryEntity {
 		super();
 	}
 
-	public EquitySummaryEntity(EquitySummaryId id, int noOfShares, int settlementChange, SecuritiesEntity security,
-			ClearingMemberEntity clearingMember) {
+	public EquitySummaryEntity(EquitySummaryId id, int noOfShares, int settlementChange, int shortage, int ratePerShare,
+			float netPayable, SecuritiesEntity security, ClearingMemberEntity clearingMember) {
 		super();
 		this.id = id;
 		this.noOfShares = noOfShares;
 		this.settlementChange = settlementChange;
+		this.shortage = shortage;
+		RatePerShare = ratePerShare;
+		this.netPayable = netPayable;
 		this.security = security;
 		this.clearingMember = clearingMember;
 	}
@@ -82,5 +88,28 @@ public class EquitySummaryEntity {
 		this.clearingMember = clearingMember;
 	}
 
+	public int getShortage() {
+		return shortage;
+	}
+
+	public void setShortage(int shortage) {
+		this.shortage = shortage;
+	}
+
+	public int getRatePerShare() {
+		return RatePerShare;
+	}
+
+	public void setRatePerShare(int ratePerShare) {
+		RatePerShare = ratePerShare;
+	}
+
+	public float getNetPayable() {
+		return netPayable;
+	}
+
+	public void setNetPayable(float netPayable) {
+		this.netPayable = netPayable;
+	}
 
 }

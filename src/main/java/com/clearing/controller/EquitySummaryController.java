@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.clearing.entity.CorporateActionSummary;
+import com.clearing.entity.EquitySummaryEntity;
 import com.clearing.service.EquitySummaryService;
 
-@Controller // This means that this class is a Controller
-@RequestMapping(path = "/equitySummary")
+@Controller
+@RequestMapping(path = "/equity-summary")
 public class EquitySummaryController {
-	
+
 	@Autowired
 	private EquitySummaryService equitySummaryService;
 
-	@GetMapping(path = "/generateCA")
-	public @ResponseBody ArrayList<CorporateActionSummary> generateCorporateAction() {
-		ArrayList<CorporateActionSummary> corporateActionList =  equitySummaryService.stockSplitAction();
-		return corporateActionList;
+	@GetMapping(path = "/es-shortage")
+	public @ResponseBody ArrayList<EquitySummaryEntity> calculateESShortage() {
+		ArrayList<EquitySummaryEntity> equitySummaryEntity = equitySummaryService.calculateESShortage();
+		return equitySummaryEntity;
 	}
 
 }
