@@ -63,17 +63,20 @@ public class TradeServiceImpl implements TradeService {
 
 	public TradeEntity createTrade() {
 		TradeEntity trade = new TradeEntity();
-		SecuritiesEntity security = allSecurities.get(rand.nextInt(15));
+		SecuritiesEntity security = allSecurities.get(rand.nextInt(allSecurities.size()));
 		trade.setSecurityId(security);
 		trade.setQuantity(1 + rand.nextInt(10000));
 		trade.setPrice(security.getMarketPrice());
-		int bCMId = rand.nextInt(10);
-		trade.setBuyerClearingMember(allCM.get(bCMId));
+		ClearingMemberEntity bCM = allCM.get(rand.nextInt(allCM.size()));
+		trade.setBuyerClearingMember(bCM);
+		int bCMId = bCM.getClearingMemberId();
+		ClearingMemberEntity sCM;
 		int sCMid;
 		do {
-			sCMid = rand.nextInt(10);
+			sCM = allCM.get(rand.nextInt(allCM.size()));
+			sCMid = sCM.getClearingMemberId();
 		} while (sCMid == bCMId);
-		trade.setSellerClearingMember(allCM.get(sCMid));
+		trade.setSellerClearingMember(sCM);
 		trade.setTransactionAmount(trade.getQuantity() * trade.getPrice());
 		return trade;
 	}
