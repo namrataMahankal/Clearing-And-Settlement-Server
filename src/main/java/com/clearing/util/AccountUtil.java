@@ -4,33 +4,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.clearing.entity.AccountEntity;
+import com.clearing.json.Account;
 
 
 public class AccountUtil {
 
-	/*public static String get_token(AccountEntity accEntity) {
-		return accEntity.getToken();
+	/*public static Account convertAccountEntityToAccount(AccountEntity accountEntity) {
+		
+		Account account = new Account(accountEntity.getClearingMemberId(),accountEntity.getClearingMemberName(),accountEntity.getPassword(),accountEntity.getType(),accountEntity.getUserName());
+	    return account;
 	}
 	*/
-	public static String getAuth_Token(List<AccountEntity> accEntityList, String password ) {
+	public static Account getAuth(List<AccountEntity> accEntityList, String password ) {
 		
-		System.out.println((accEntityList.get(0)).getPassword()+" & "+password);
+		System.out.println("@util");
 		
 		try {
 		      if(password.equals((accEntityList.get(0)).getPassword())) {
-			
-			    //String token = null;
-				//  token = (String)get_token(accEntityList.get(0));
-			   // return "{"+'"'+"auth_token"+'"'+":"+token+"}";
-		    	  return "{"+ "valid user" +"}";
+		
+		    	  //return convertAccountEntityToAccount(accEntityList.get(0));
+		    	 Account account = new Account();
+		    	 account.setClearingMemberId(accEntityList.get(0).getClearingMemberId());
+		    	 account.setClearingMemberName(accEntityList.get(0).getClearingMemberName());
+		    	 account.setPassword(accEntityList.get(0).getPassword());
+		    	 account.setType(accEntityList.get(0).getType());
+		    	 account.setUserName(accEntityList.get(0).getUserName());
+		  	    return account;
+		    	  
 		     }
 		    else {
-		    	return "invalid user";
+		    	return null;
 		    	}
 		}
 		catch(Exception e){
 			e.printStackTrace();
-			return "exception";
+			return null;
 		}
 		   
     }

@@ -10,6 +10,6 @@ import com.clearing.json.Account;
 
 public interface AccRepo extends JpaRepository<AccountEntity, Integer> {
    
-	List<AccountEntity> findById(int id);
+	List<AccountEntity> findByUserName(String userName);
 	
 }
