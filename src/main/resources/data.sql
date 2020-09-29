@@ -23,9 +23,9 @@ insert into securities(securityId, interestRate, marketPrice, securityName) valu
 insert into securities(securityId, interestRate, marketPrice, securityName) values(13,1+RAND(),RAND()*(300-10+1)+10,"TEXAS INSTRUMENTS INC");
 insert into securities(securityId, interestRate, marketPrice, securityName) values(14,1+RAND(),RAND()*(300-10+1)+10,"STARBUCKS CORP");
 insert into securities(securityId, interestRate, marketPrice, securityName) values(15,1+RAND(),RAND()*(300-10+1)+10,"NVIDIA Corporation");
--- insert into equity_summary values (1,2,1600,0);
--- insert into equity_summary values (1,11,1200,0);
--- insert into equity_summary values (5,2,800,0);
--- insert into equity_summary values (1,4,900,0);
--- insert into equity_summary values (1,6,900,0);
+insert into equity_summary values (1,2,1600,0);
+insert into equity_summary values (1,11,1200,0);
+insert into equity_summary values (5,2,800,0);
+insert into equity_summary values (1,4,900,0);
+insert into equity_summary values (1,6,900,0);
 

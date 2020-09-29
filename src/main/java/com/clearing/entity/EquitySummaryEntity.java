@@ -2,6 +2,7 @@ package com.clearing.entity;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
@@ -18,12 +19,12 @@ public class EquitySummaryEntity {
 	private int settlementChange;
 	
 	@MapsId("securityId")
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "securityId", referencedColumnName = "securityId")
 	private SecuritiesEntity security;
 	
 	@MapsId("clearingMemberId")
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "clearingMemberId", referencedColumnName = "clearingMemberId")
 	private ClearingMemberEntity clearingMember;
 

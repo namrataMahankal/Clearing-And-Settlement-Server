@@ -1,7 +1,12 @@
 package com.clearing.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +18,13 @@ public class SecuritiesEntity {
 	private float interestRate;
 	private float marketPrice;
 	private String securityName;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "security")
+	private List<TradeEntity> trades;
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "security")
+	private List<EquitySummaryEntity> equitySummary;
+	
 	public SecuritiesEntity(int securityId, String securityName, float marketPrice, float interestRate) {
 		this.securityId = securityId;
 		this.securityName = securityName;

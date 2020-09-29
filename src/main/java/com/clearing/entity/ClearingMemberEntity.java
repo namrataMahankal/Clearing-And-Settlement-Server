@@ -1,7 +1,12 @@
 package com.clearing.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +22,13 @@ public class ClearingMemberEntity {
 	private float shortage;
 	private float netPayable;
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "buyerClearingMember")
+	private List<TradeEntity> buyerTrades;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sellerClearingMember")
+	private List<TradeEntity> sellerTrades;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "clearingMember")
+	private List<EquitySummaryEntity> equitySummary;
+	
 	public ClearingMemberEntity(int clearingMemberId, float amountToPay, float clearingMemberFundBalance,
 			String clearingMemberName, float interestRate, float shortage, float netPayable) {
 		super();
