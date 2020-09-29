@@ -41,5 +41,9 @@ public class ObligationServiceImpl implements ObligationService {
 		return ObligationUtil.convertToObligationMatrix(equityObligationRepo.findAll());
 	}
 
+	@Override
+	public List<Obligation> getAllObligations(){
+		return ObligationUtil.convertToObligation(obligationRepo.findAll()); 
+	}
 	
 }

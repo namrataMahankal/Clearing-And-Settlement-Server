@@ -12,4 +12,5 @@ public interface ObligationService {
 	
 	List<EquityObligations> getEquityObligations(int id);
 	HashMap<String,List<EquityObligations>> getAllEquityObligations();
+	List<Obligation> getAllObligations();
 }

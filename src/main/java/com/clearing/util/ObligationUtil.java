@@ -73,4 +73,21 @@ public class ObligationUtil {
 		  }
 		return obligationMatrix;
 	}
+
+	public static List<Obligation> convertToObligation(List<ClearingMemberEntity> memberEntityList) {
+		
+		List<Obligation> fundObligations = new ArrayList<Obligation>();
+
+		// Local Variable
+		Obligation obligation;
+
+		for(ClearingMemberEntity memberEntity: memberEntityList) {
+			obligation = new Obligation();
+			obligation.setClearingMemberName(memberEntity.getClearingMemberName());
+			obligation.setFundObligaton(memberEntity.getAmountToPay());
+			fundObligations.add(obligation);
+		}
+		return fundObligations;
+  }
+
 }

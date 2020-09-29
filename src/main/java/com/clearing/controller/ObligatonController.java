@@ -44,5 +44,8 @@ public class ObligatonController {
 		return obligationService.getAllEquityObligations();
 	}
 
-	
+	@GetMapping(value = "/clearing-house/fund-obligations", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Obligation> getObligationMatrixFunds() {
+		return obligationService.getAllObligations();
+	}
 }
