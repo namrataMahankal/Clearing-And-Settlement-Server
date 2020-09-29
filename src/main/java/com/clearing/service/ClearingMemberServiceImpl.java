@@ -1,14 +1,15 @@
 package com.clearing.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.collections4.IterableUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.clearing.entity.ClearingMemberEntity;
-import com.clearing.json.CMTrade;
 import com.clearing.json.EquitySummary;
 import com.clearing.repository.ClearingMemberRepository;
 import com.clearing.repository.EquitySummaryRepository;
@@ -28,7 +29,7 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 			Optional<ClearingMemberEntity> obj = clearingMemberRepository.findById(cmId);
 			if (obj.isPresent()) {
 				ClearingMemberEntity cm = obj.get();
-				cm.setAmountToPay(-1 * fundChange);
+				cm.setAmountToPay(fundChange);
 				clearingMemberRepository.save(cm);
 			}
 		});
@@ -47,6 +48,25 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 				.convertEquitySummaryEntityListIntoEquitySummaryList(equitySummaryRepository.findByIdClearingMemberId(
 						clearingMemberRepository.findByClearingMemberName(cMName).getClearingMemberId()));
 		// return null;
+	}
+
+	@Override
+	public ArrayList<ClearingMemberEntity> calculateFundShortage() {
+		List<ClearingMemberEntity> cmList = IterableUtils.toList(clearingMemberRepository.findAll());
+		ArrayList<ClearingMemberEntity> fundSettlementList = new ArrayList<ClearingMemberEntity>();
+		
+		for(ClearingMemberEntity cm: cmList) {
+			float amount = cm.getClearingMemberFundBalance()+cm.getAmountToPay();
+			if(amount<0) {
+				amount *= -1;
+				float netPayable = amount*cm.getInterestRate();
+				cm.setNetPayable(netPayable);
+				cm.setShortage(amount);
+				fundSettlementList.add(cm);	
+				clearingMemberRepository.save(cm);
+			}
+		}
+		return fundSettlementList;
 	}
 
 }

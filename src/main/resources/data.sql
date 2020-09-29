@@ -1,13 +1,13 @@
-insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName) values(1,0,1000,"Citi");
-insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName) values(2,0,1000,"JP Morgan Chase");
-insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName) values(3,0,1000,"Bank of New York Mellon");
-insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName) values(4,0,1000,"State Street Corporation");
-insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName) values(5,0,1000,"BNP Paribas Securities Services");
-insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName) values(6,0,1000,"HSBC Securities Services");
-insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName) values(7,0,1000,"Northern Trust Corporation");
-insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName) values(8,0,1000,"UBS AG");
-insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName) values(9,0,1000,"Wells Fargo");
-insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName) values(10,0,1000,"Credit Suisse");
+insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName,interestRate, netPayable, shortage) values(1,0,1000,"Citi",1.25,0,0);
+insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName,interestRate, netPayable, shortage) values(2,0,1000,"JP Morgan Chase",1.25,0,0);
+insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName,interestRate, netPayable, shortage) values(3,0,1000,"Bank of New York Mellon",1.25,0,0);
+insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName,interestRate, netPayable, shortage) values(4,0,1000,"State Street Corporation",1.25,0,0);
+insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName,interestRate, netPayable, shortage) values(5,0,1000,"BNP Paribas Securities Services",1.25,0,0);
+insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName,interestRate, netPayable, shortage) values(6,0,1000,"HSBC Securities Services",1.25,0,0);
+insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName,interestRate, netPayable, shortage) values(7,0,1000,"Northern Trust Corporation",1.25,0,0);
+insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName,interestRate, netPayable, shortage) values(8,0,1000,"UBS AG",1.25,0,0);
+insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName,interestRate, netPayable, shortage) values(9,0,1000,"Wells Fargo",1.25,0,0);
+insert into clearing_member(clearingMemberId, amountToPay, clearingMemberFundBalance, clearingMemberName,interestRate, netPayable, shortage) values(10,0,1000,"Credit Suisse",1.25,0,0);
 insert into securities(securityId, interestRate, marketPrice, securityName) values(1,1+RAND(),RAND()*(300-10+1)+10,"Amazon");
 insert into securities(securityId, interestRate, marketPrice, securityName) values(2,1+RAND(),RAND()*(300-10+1)+10,"Apple");
 insert into securities(securityId, interestRate, marketPrice, securityName) values(3,1+RAND(),RAND()*(300-10+1)+10,"Microsoft");
@@ -30,9 +30,9 @@ insert into corporate_action(corporateActionId,securityId,action,parameter) valu
 insert into corporate_action(corporateActionId,securityId,action,parameter) values(4,1+RAND(),"stock-split","5-for-1");
 insert into corporate_action(corporateActionId,securityId,action,parameter) values(5,1+RAND(),"reverse-split","1-for-4");
 insert into corporate_action(corporateActionId,securityId,action,parameter) values(6,1+RAND(),"stock-dividend","8");
-insert into equity_summary values (1,2,1600,0);
-insert into equity_summary values (1,11,1200,0);
-insert into equity_summary values (5,2,800,0);
-insert into equity_summary values (1,4,900,0);
-insert into equity_summary values (1,6,900,0);
+-- insert into equity_summary values (1,2,1600,0);
+-- insert into equity_summary values (1,11,1200,0);
+-- insert into equity_summary values (5,2,800,0);
+-- insert into equity_summary values (1,4,900,0);
+-- insert into equity_summary values (1,6,900,0);
 
