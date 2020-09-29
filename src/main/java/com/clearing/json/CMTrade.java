@@ -1,49 +1,41 @@
 package com.clearing.json;
 
 public class CMTrade {
-	private String ES;
-	private int Qty;
-	private float Price;
-	private float TransactionAmt;
-
-	public CMTrade(String eS, int qty, float price, float transactionAmt) {
+	private String es;
+	private int qty;
+	private float price;
+	private float transactionAmt;
+	public CMTrade(String es, int qty, float price, float transactionAmt) {
 		super();
-		ES = eS;
-		Qty = qty;
-		Price = price;
-		TransactionAmt = transactionAmt;
+		this.es = es;
+		this.qty = qty;
+		this.price = price;
+		this.transactionAmt = transactionAmt;
 	}
-
-	public String getES() {
-		return ES;
+	public String getEs() {
+		return es;
 	}
-
-	public void setES(String eS) {
-		ES = eS;
+	public void setEs(String es) {
+		this.es = es;
 	}
-
 	public int getQty() {
-		return Qty;
+		return qty;
 	}
-
 	public void setQty(int qty) {
-		Qty = qty;
+		this.qty = qty;
 	}
-
 	public float getPrice() {
-		return Price;
+		return price;
 	}
-
 	public void setPrice(float price) {
-		Price = price;
+		this.price = price;
 	}
-
 	public float getTransactionAmt() {
-		return TransactionAmt;
+		return transactionAmt;
 	}
-
 	public void setTransactionAmt(float transactionAmt) {
-		TransactionAmt = transactionAmt;
+		this.transactionAmt = transactionAmt;
 	}
 
+	
 }

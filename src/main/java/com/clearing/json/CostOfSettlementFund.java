@@ -2,22 +2,22 @@ package com.clearing.json;
 
 public class CostOfSettlementFund {
 
-	private int fundsToBeBorrowed;
+	private float fundsToBeBorrowed;
 	private float borrowingRate;
 	private float costIncurred;
 
-	public CostOfSettlementFund(float totalCost, int fundsToBeBorrowed, float borrowingRate, float costIncurred) {
+	public CostOfSettlementFund(float fundsToBeBorrowed, float borrowingRate, float costIncurred) {
 		super();
 		this.fundsToBeBorrowed = fundsToBeBorrowed;
 		this.borrowingRate = borrowingRate;
 		this.costIncurred = costIncurred;
 	}
 
-	public int getFundsToBeBorrowed() {
+	public float getFundsToBeBorrowed() {
 		return fundsToBeBorrowed;
 	}
 
-	public void setFundsToBeBorrowed(int fundsToBeBorrowed) {
+	public void setFundsToBeBorrowed(float fundsToBeBorrowed) {
 		this.fundsToBeBorrowed = fundsToBeBorrowed;
 	}
 

@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.clearing.entity.ClearingMemberEntity;
+import com.clearing.entity.EquitySummaryEntity;
+import com.clearing.json.CostOfSettlementFund;
+import com.clearing.json.CostOfSettlementShares;
 import com.clearing.json.EquitySummary;
 import com.clearing.repository.ClearingMemberRepository;
 import com.clearing.repository.EquitySummaryRepository;
@@ -54,19 +57,40 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 	public ArrayList<ClearingMemberEntity> calculateFundShortage() {
 		List<ClearingMemberEntity> cmList = IterableUtils.toList(clearingMemberRepository.findAll());
 		ArrayList<ClearingMemberEntity> fundSettlementList = new ArrayList<ClearingMemberEntity>();
-		
-		for(ClearingMemberEntity cm: cmList) {
-			float amount = cm.getClearingMemberFundBalance()+cm.getAmountToPay();
-			if(amount<0) {
+
+		for (ClearingMemberEntity cm : cmList) {
+			float amount = cm.getClearingMemberFundBalance() + cm.getAmountToPay();
+			if (amount < 0) {
 				amount *= -1;
-				float netPayable = amount*cm.getInterestRate();
+				float netPayable = amount * cm.getInterestRate();
 				cm.setNetPayable(netPayable);
 				cm.setShortage(amount);
-				fundSettlementList.add(cm);	
+				fundSettlementList.add(cm);
 				clearingMemberRepository.save(cm);
 			}
 		}
 		return fundSettlementList;
+	}
+
+	@Override
+	public CostOfSettlementFund getCostOfSettlementFund(String cMName) {
+		// TODO Auto-generated method stub
+		ClearingMemberEntity cm = clearingMemberRepository.findByClearingMemberName(cMName);
+		return new CostOfSettlementFund(cm.getShortage(), cm.getInterestRate(), cm.getNetPayable());
+	}
+
+	@Override
+	public List<CostOfSettlementShares> getCostOfSettlementShares(String cMName) {
+		// TODO Auto-generated method stub
+		ClearingMemberEntity cm = clearingMemberRepository.findByClearingMemberName(cMName);
+		List<EquitySummaryEntity> shares = equitySummaryRepository.findByIdClearingMemberId(cm.getClearingMemberId());
+		List<CostOfSettlementShares> sharesCost = new ArrayList<CostOfSettlementShares>();
+		for (EquitySummaryEntity share : shares) {
+			if(share.getShortage()>0)
+			sharesCost.add(new CostOfSettlementShares(share.getSecurity().getSecurityName(), share.getShortage(),
+					share.getSecurity().getInterestRate(), share.getNetPayable()));
+		}
+		return sharesCost;
 	}
 
 }
