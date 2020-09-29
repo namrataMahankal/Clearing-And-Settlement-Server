@@ -1,48 +1,35 @@
 package com.clearing.entity;
 
-import java.io.Serializable;
-
-import javax.persistence.CascadeType;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@IdClass(CorporateActionSummaryId.class)
-@Table(name="corporate_action_summary")
-public class CorporateActionSummaryEntity implements Serializable {
-	
-	
-	@Id
-	private int securityId;
+@Table(name = "corporate_action_summary")
+public class CorporateActionSummaryEntity {
 	@Id
 	private int clearingMemberId;
+	
+	@ManyToOne
+	@JoinColumn(name = "securityId", referencedColumnName = "securityId")
+	private SecuritiesEntity security;
+	
 	private int initialShareBalance;
 	private int finalShareBalance;
 	private String action;
 	private String parameter;
 	
-	@OneToOne(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
-	@JoinColumn(name="securityId",insertable=false, updatable=false)
-	private SecuritiesEntity securityEntity;
-
-	
-	public CorporateActionSummaryEntity(int clearingMemberId, int securityId, int initialShareBalance, int finalShareBalance,
-			String action, String parameter, SecuritiesEntity securityEntity) {
-		
+	public CorporateActionSummaryEntity(int clearingMemberId, SecuritiesEntity security, int initialShareBalance, int finalShareBalance,
+			String action, String parameter) {
 		this.clearingMemberId = clearingMemberId;
-		this.securityId = securityId;
+		this.security = security;
 		this.initialShareBalance = initialShareBalance;
 		this.finalShareBalance = finalShareBalance;
 		this.action = action;
 		this.parameter = parameter;
-		this.securityEntity = securityEntity;
 	}
 
 
@@ -56,13 +43,13 @@ public class CorporateActionSummaryEntity implements Serializable {
 	}
 
 
-	public int getSecurityId() {
-		return securityId;
+	public SecuritiesEntity getSecurity() {
+		return security;
 	}
 
 
-	public void setSecurityId(int securityId) {
-		this.securityId = securityId;
+	public void setSecurity(SecuritiesEntity security) {
+		this.security = security;
 	}
 
 
@@ -95,6 +82,7 @@ public class CorporateActionSummaryEntity implements Serializable {
 		this.action = action;
 	}
 
+
 	public String getParameter() {
 		return parameter;
 	}
@@ -102,15 +90,6 @@ public class CorporateActionSummaryEntity implements Serializable {
 
 	public void setParameter(String parameter) {
 		this.parameter = parameter;
-	}
-	
-	public SecuritiesEntity getSecurityEntity() {
-		return securityEntity;
-	}
-
-
-	public void setSecurityEntity(SecuritiesEntity securityEntity) {
-		this.securityEntity = securityEntity;
 	}
 
 
