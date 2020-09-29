@@ -6,13 +6,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+
+
 
 @Entity
 @Table(name = "corporate_action_summary")
 public class CorporateActionSummaryEntity {
-	@Id
-	private int clearingMemberId;
+	@EmbeddedId
+	private CorporateActionSummaryId id;
+
+	@MapsId("clearingMemberId")
+	@ManyToOne
+	@JoinColumn(name="clearingMemberId", referencedColumnName = "clearingMemberId")
+	private ClearingMemberEntity clearingMember;
 	
+	@MapsId("securityId")
 	@ManyToOne
 	@JoinColumn(name = "securityId", referencedColumnName = "securityId")
 	private SecuritiesEntity security;
@@ -22,9 +34,10 @@ public class CorporateActionSummaryEntity {
 	private String action;
 	private String parameter;
 	
-	public CorporateActionSummaryEntity(int clearingMemberId, SecuritiesEntity security, int initialShareBalance, int finalShareBalance,
+	public CorporateActionSummaryEntity(CorporateActionSummaryId id ,ClearingMemberEntity clearingMember, SecuritiesEntity security, int initialShareBalance, int finalShareBalance,
 			String action, String parameter) {
-		this.clearingMemberId = clearingMemberId;
+		this.id = id;
+		this.clearingMember = clearingMember;
 		this.security = security;
 		this.initialShareBalance = initialShareBalance;
 		this.finalShareBalance = finalShareBalance;
@@ -32,14 +45,22 @@ public class CorporateActionSummaryEntity {
 		this.parameter = parameter;
 	}
 
+	public CorporateActionSummaryId getId() {
+		return id;
+	}
 
-	public int getClearingMemberId() {
-		return clearingMemberId;
+	public void setId(CorporateActionSummaryId id) {
+		this.id = id;
 	}
 
 
-	public void setClearingMemberId(int clearingMemberId) {
-		this.clearingMemberId = clearingMemberId;
+	public ClearingMemberEntity getClearingMember() {
+		return clearingMember;
+	}
+
+
+	public void setClearingMember(ClearingMemberEntity clearingMember) {
+		this.clearingMember = clearingMember;
 	}
 
 

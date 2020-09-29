@@ -3,6 +3,7 @@ package com.clearing.entity;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ public class SecuritiesEntity {
 	private String securityName;
 
 	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY, mappedBy = "clearingMember")
+	@Column(insertable=false, updatable=false)
     private Set<EquitySummaryEntity> equityEntity;
 	
 	
