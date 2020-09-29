@@ -47,14 +47,11 @@ public class CorporateActionController {
 	}
 
 
-	@GetMapping(path = "/corporate-actions/apply")
-	public @ResponseBody void apply() {
-		ArrayList<CorporateActionSummaryEntity> corporateActionSummaryList =  corporateActionService.applyCorporateActions();
-		GsonBuilder builder = new GsonBuilder();
-		Gson gson = builder.create();
-		
-		// return corporateActionSummaryList;
-	}
+	// @GetMapping(path = "/corporate-actions/apply")
+	// public @ResponseBody void apply() {
+	// 	ArrayList<CorporateActionSummaryEntity> corporateActionSummaryList =  corporateActionService.applyCorporateActions();
+	// 	// return corporateActionSummaryList;
+	// }
 
 	@GetMapping(path="/corporate-actions/summary")
 	public @ResponseBody List<CorporateActionSummaryEntity> showCorporateActionsSummary() {
