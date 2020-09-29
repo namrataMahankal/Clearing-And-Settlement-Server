@@ -1,5 +1,7 @@
 package com.clearing.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.clearing.json.EquityObligations;
 import com.clearing.json.Obligation;
 import com.clearing.service.MappingServiceImpl;
 import com.clearing.service.ObligationService;
@@ -22,9 +25,14 @@ public class ObligatonController {
 	@Autowired
 	private MappingServiceImpl map;
 
-	@GetMapping(value = "/clearing-member/obligations/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/clearing-member/fund-obligations/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Obligation getObligations(@PathVariable("name") String name) {
 		return obligationService.getObligations(map.getId(name), name);
+	}
+	
+	@GetMapping(value = "/clearing-member/equity-obligations/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<EquityObligations> getEquityObligations(@PathVariable("name") String name) {
+		return obligationService.getEquityObligations(map.getId(name));
 	}
 
 }
