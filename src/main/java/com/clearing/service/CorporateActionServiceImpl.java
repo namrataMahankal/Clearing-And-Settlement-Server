@@ -23,9 +23,9 @@ import com.clearing.entity.ClearingMemberEntity;
 import com.clearing.entity.CorporateActionEntity;
 
 import org.apache.commons.collections4.IterableUtils;
-import org.aspectj.weaver.NewConstructorTypeMunger;
+
 import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -84,20 +84,11 @@ public class CorporateActionServiceImpl implements CorporateActionService {
 			List<EquitySummaryEntity> summaries = IterableUtils
 					.toList(equitySummaryRepository.findByIdSecurityId(securityId));
 
-			// Actions = ['split','reverse-split','stock-dividend','cash-dividend']
 			switch (action) {
 			case "stock-split":
 				// Parameter format "X-for-1"
 				params = parameter.split("-", 3);
 				splitRatio = Integer.parseInt(params[0]);
-
-				// // Change Stock Price
-				// securityObj = securitiesRepository.findById(securityId);
-				// if(securityObj.isPresent()){
-				// SecuritiesEntity security = securityObj.get();
-				// security.setMarketPrice(security.getMarketPrice()/splitRatio);
-				// securitiesRepository.save(security);
-				// }
 
 				// Change Number of stocks in EquitySummaries
 				for (EquitySummaryEntity eqs : summaries) {
@@ -117,16 +108,6 @@ public class CorporateActionServiceImpl implements CorporateActionService {
 				// Parameter format "1-for-X"
 				params = parameter.split("-", 3);
 				splitRatio = Integer.parseInt(params[2]);
-
-				// float securityPrice;
-				// // Change Stock Price
-				// securityObj = securitiesRepository.findById(securityId);
-				// if(securityObj.isPresent()){
-				// SecuritiesEntity security = securityObj.get();
-				// securityPrice = security.getMarketPrice();
-				// security.setMarketPrice(securityPrice*splitRatio);
-				// securitiesRepository.save(security);
-				// }
 
 				// Change Number of stocks in EquitySummaries and return non-convertible stocks
 				// to CM's funds
@@ -148,9 +129,9 @@ public class CorporateActionServiceImpl implements CorporateActionService {
 				}
 				break;
 			case "stock-dividend":
-				// Parameter format "X" X% of accumulated shares
-				// params = parameter.split("-",3);
-				int dividendPercentage = Integer.parseInt(parameter);
+				// Parameter format "X%" X% of accumulated shares
+				parameter = parameter.replace("%", "");
+				float dividendPercentage = Float.parseFloat(parameter);
 				float dividendRatio = (float) 1.0 + dividendPercentage / (float) 100.0;
 				// Change Number of stocks in EquitySummaries
 				for (EquitySummaryEntity eqs : summaries) {
@@ -167,8 +148,9 @@ public class CorporateActionServiceImpl implements CorporateActionService {
 
 				break;
 			case "cash-dividend":
-				// Parameter format "5" $ per share
-				int dividend = Integer.parseInt(parameter);
+				// Parameter format "5$" $ per share
+				parameter = parameter.replace("$", "");
+				float dividend = Float.parseFloat(parameter);
 
 				// Change Number of stocks in EquitySummaries and return non-convertible stocks
 				// to CM's funds
@@ -192,7 +174,7 @@ public class CorporateActionServiceImpl implements CorporateActionService {
 
 	@Override
 	public List<CorporateActionSummarySecurity> getCorporateActionSummarySecurity() {
-		// TODO Auto-generated method stub
+
 		List<CorporateActionSummarySecurity> corporateActionSummaryCH = new ArrayList<CorporateActionSummarySecurity>();
 		List<SecuritiesEntity> allSecurities = securitiesRepository.findAll();
 		for (SecuritiesEntity security : allSecurities) {
