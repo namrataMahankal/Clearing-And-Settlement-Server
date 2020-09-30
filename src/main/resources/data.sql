@@ -37,6 +37,7 @@ insert into corporate_action(corporateActionId,securityId,action,parameter) valu
 -- insert into equity_summary values (5,2,800,0);
 -- insert into equity_summary values (1,4,900,0);
 -- insert into equity_summary values (1,6,900,0);
+
 insert into account(clearingMemberId, clearingMemberName, password, type, userName) values('1001', 'Citi', 'password1001', 'cm', 'citi');
 insert into account(clearingMemberId, clearingMemberName, password, type, userName) values('1002', 'JP Morgan Chase', 'password1002', 'cm', 'jpmc');
 insert into account(clearingMemberId, clearingMemberName, password, type, userName) values('1003', 'Bank of New York Mellon', 'password1003', 'cm', 'bonym');
