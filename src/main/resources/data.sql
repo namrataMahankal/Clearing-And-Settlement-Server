@@ -37,4 +37,15 @@ insert into corporate_action(corporateActionId,securityId,action,parameter) valu
 -- insert into equity_summary values (5,2,800,0);
 -- insert into equity_summary values (1,4,900,0);
 -- insert into equity_summary values (1,6,900,0);
-
+insert into account(clearingMemberId, clearingMemberName, password, type, userName) values('1001', 'Citi', 'password1001', 'cm', 'citi');
+insert into account(clearingMemberId, clearingMemberName, password, type, userName) values('1002', 'JP Morgan Chase', 'password1002', 'cm', 'jpmc');
+insert into account(clearingMemberId, clearingMemberName, password, type, userName) values('1003', 'Bank of New York Mellon', 'password1003', 'cm', 'bonym');
+insert into account(clearingMemberId, clearingMemberName, password, type, userName) values('1004', 'State Street Corporation', 'password1004', 'cm', 'stcorp');
+insert into account(clearingMemberId, clearingMemberName, password, type, userName) values('1005', 'BNP Paribas Securities Services', 'password1005', 'cm', 'bnppss');
+insert into account(clearingMemberId, clearingMemberName, password, type, userName) values('1006', 'HSBC Securities Services', 'password1006', 'cm', 'hsbcss');
+insert into account(clearingMemberId, clearingMemberName, password, type, userName) values('1007', 'Northern Trust Corporation', 'password1007', 'cm', 'ntcorp');
+insert into account(clearingMemberId, clearingMemberName, password, type, userName) values('1008', 'UBS AG', 'password1008', 'cm', 'ubsag');
+insert into account(clearingMemberId, clearingMemberName, password, type, userName) values('1009', 'Wells Fargo', 'password1009', 'cm', 'wells');
+insert into account(clearingMemberId, clearingMemberName, password, type, userName) values('10010', 'Credit Suisse', 'password1010', 'cm', 'credits');
+insert into account(clearingMemberId, clearingMemberName, password, type, userName) values('1', 'Clearing House', 'ClearingHouse', 'ch', 'clearing');
+insert into account(clearingMemberId, clearingMemberName, password, type, userName) values('1000', 'Admin', 'root', 'admin', 'root');
