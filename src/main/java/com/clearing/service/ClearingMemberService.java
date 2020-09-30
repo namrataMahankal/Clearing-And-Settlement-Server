@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.clearing.entity.ClearingMemberEntity;
+import com.clearing.json.CostOfSettlement;
 import com.clearing.json.CostOfSettlementFund;
 import com.clearing.json.CostOfSettlementShares;
 import com.clearing.json.EquitySummary;
@@ -18,4 +19,6 @@ public interface ClearingMemberService {
 	public void calculateFundShortage();
 	public List<String> getAllSecurities();
 	public List<String> getAllClearingMembers();
+	
+	public List<CostOfSettlement> getCostOfSettlement();
 }

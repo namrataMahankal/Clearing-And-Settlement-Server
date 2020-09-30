@@ -39,14 +39,14 @@ public class TradeServiceImpl implements TradeService {
 
 	@Override
 	public List<Trade> getTradesById(int cMId) {
-		// TODO Auto-generated method stub
+
 		return null;// tradeRepository.getTradesById(cMId);
 
 	}
 
 	@Override
 	public List<TradeEntity> generateTrades() {
-		// TODO Auto-generated method stub
+
 		tradeRepository.deleteAll();
 		allCM = cMRepository.findAll();
 		allSecurities = securitiesRepository.findAll();
@@ -83,7 +83,7 @@ public class TradeServiceImpl implements TradeService {
 
 	@Override
 	public List<Trade> getAllTrades() {
-		// TODO Auto-generated method stub
+
 		return (TradeUtil.convertTradeEntityListIntoTradeList(tradeRepository.findAll()));
 	}
 
@@ -151,14 +151,14 @@ public class TradeServiceImpl implements TradeService {
 
 	@Override
 	public List<CMTrade> getBuyerTradesByCMName(String cMName) {
-		// TODO Auto-generated method stub
+
 		ClearingMemberEntity cm = cMRepository.findByClearingMemberName(cMName);
 		return TradeUtil.convertTradeEntityListIntoCMTradeList(tradeRepository.findByBuyerClearingMember(cm));
 	}
 
 	@Override
 	public List<CMTrade> getSellerTradesByCMName(String cMName) {
-		// TODO Auto-generated method stub
+
 		ClearingMemberEntity cm = cMRepository.findByClearingMemberName(cMName);
 		return TradeUtil.convertTradeEntityListIntoCMTradeList(tradeRepository.findBySellerClearingMember(cm));
 	}

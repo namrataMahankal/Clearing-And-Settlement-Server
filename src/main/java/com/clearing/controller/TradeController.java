@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.clearing.entity.TradeEntity;
+
 import com.clearing.json.CMTrade;
 import com.clearing.json.Trade;
 import com.clearing.service.ClearingMemberService;
-import com.clearing.service.CorporateActionService;
+
 import com.clearing.service.EquitySummaryService;
 import com.clearing.service.TradeService;
 
@@ -36,8 +36,7 @@ public class TradeController {
 	@Autowired
 	private ClearingMemberService clearingMemberService;
 
-	// @Autowired
-	// private CorporateActionService corporateActionService;
+	
 
 	// Generate Random Trades
 	@GetMapping(path = "/trade/generate")
