@@ -47,7 +47,6 @@ public class TradeServiceImpl implements TradeService {
 	@Override
 	public List<TradeEntity> generateTrades() {
 
-		tradeRepository.deleteAll();
 		allCM = cMRepository.findAll();
 		allSecurities = securitiesRepository.findAll();
 		int numTrades = 50; // For now
