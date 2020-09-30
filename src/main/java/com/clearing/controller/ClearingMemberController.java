@@ -56,7 +56,7 @@ public class ClearingMemberController {
 	public @ResponseBody List<String> getAllClearingMembers()
 	{
 		return clearingMemberService.getAllClearingMembers();
-	
+	}
 	@GetMapping(path = "/cost-of-settlement")
 	public @ResponseBody List<CostOfSettlement> getCostOfSettlement() {
 		
