@@ -87,5 +87,6 @@ public class TradeController {
 	{
 		return tradeService.addNewTrade(trade);
 	}
+	
 
 }

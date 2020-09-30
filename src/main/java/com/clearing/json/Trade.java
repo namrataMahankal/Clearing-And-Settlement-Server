@@ -1,72 +1,73 @@
 package com.clearing.json;
 
 public class Trade {
-	private String ES;
-	private int Qty;
-	private float Price;
-	private String BuyerCM;
-	private String SellerCM;
-	private float TransactionAmt;
+	private String eS;
+	private int qty;
+	private float price;
+	private String buyerCM;
+	private String sellerCM;
+	private float transactionAmt;
 
 	public Trade() {
 	}
 
 	public Trade(String eS, int qty, float price, String buyerCM, String sellerCM, float transactionAmt) {
 		super();
-		ES = eS;
-		Qty = qty;
-		Price = price;
-		BuyerCM = buyerCM;
-		SellerCM = sellerCM;
-		TransactionAmt = transactionAmt;
+		this.eS = eS;
+		this.qty = qty;
+		this.price = price;
+		this.buyerCM = buyerCM;
+		this.sellerCM = sellerCM;
+		this.transactionAmt = transactionAmt;
 	}
 
-	public String getES() {
-		return ES;
+	public String geteS() {
+		return eS;
 	}
 
-	public void setES(String eS) {
-		ES = eS;
+	public void seteS(String eS) {
+		this.eS = eS;
 	}
 
 	public int getQty() {
-		return Qty;
+		return qty;
 	}
 
 	public void setQty(int qty) {
-		Qty = qty;
+		this.qty = qty;
 	}
 
 	public float getPrice() {
-		return Price;
+		return price;
 	}
 
 	public void setPrice(float price) {
-		Price = price;
+		this.price = price;
 	}
 
 	public String getBuyerCM() {
-		return BuyerCM;
+		return buyerCM;
 	}
 
 	public void setBuyerCM(String buyerCM) {
-		BuyerCM = buyerCM;
+		this.buyerCM = buyerCM;
 	}
 
 	public String getSellerCM() {
-		return SellerCM;
+		return sellerCM;
 	}
 
 	public void setSellerCM(String sellerCM) {
-		SellerCM = sellerCM;
+		this.sellerCM = sellerCM;
 	}
 
 	public float getTransactionAmt() {
-		return TransactionAmt;
+		return transactionAmt;
 	}
 
 	public void setTransactionAmt(float transactionAmt) {
-		TransactionAmt = transactionAmt;
+		this.transactionAmt = transactionAmt;
 	}
 
+	
 }

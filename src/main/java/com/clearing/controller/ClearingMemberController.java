@@ -43,4 +43,17 @@ public class ClearingMemberController {
 	public @ResponseBody List<CostOfSettlementShares> getCostOfSettlementShares(@PathVariable("cMName") String cMName) {
 		return clearingMemberService.getCostOfSettlementShares(cMName);
 	}
+	
+
+	@GetMapping(path = "/securities")
+	public @ResponseBody List<String> getAllSecurities()
+	{
+		return clearingMemberService.getAllSecurities();
+	}
+	
+	@GetMapping(path = "/clearing-members")
+	public @ResponseBody List<String> getAllClearingMembers()
+	{
+		return clearingMemberService.getAllClearingMembers();
+	}
 }

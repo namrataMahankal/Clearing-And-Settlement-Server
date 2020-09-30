@@ -16,4 +16,6 @@ public interface ClearingMemberService {
 	public CostOfSettlementFund getCostOfSettlementFund(String cMName);
 	public List<CostOfSettlementShares> getCostOfSettlementShares(String cMName);
 	public void calculateFundShortage();
+	public List<String> getAllSecurities();
+	public List<String> getAllClearingMembers();
 }

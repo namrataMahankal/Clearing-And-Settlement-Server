@@ -11,11 +11,13 @@ import org.springframework.stereotype.Service;
 
 import com.clearing.entity.ClearingMemberEntity;
 import com.clearing.entity.EquitySummaryEntity;
+import com.clearing.entity.SecuritiesEntity;
 import com.clearing.json.CostOfSettlementFund;
 import com.clearing.json.CostOfSettlementShares;
 import com.clearing.json.EquitySummary;
 import com.clearing.repository.ClearingMemberRepository;
 import com.clearing.repository.EquitySummaryRepository;
+import com.clearing.repository.SecuritiesRepository;
 import com.clearing.util.EquitySummaryUtil;
 
 @Service
@@ -25,6 +27,8 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 	private ClearingMemberRepository clearingMemberRepository;
 	@Autowired
 	private EquitySummaryRepository equitySummaryRepository;
+	@Autowired
+	private SecuritiesRepository securitiesRepository;
 
 	@Override
 	public void addChangeAfterSettlement(HashMap<Integer, Float> transactionAmountHashMap) {
@@ -83,11 +87,31 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 		List<EquitySummaryEntity> shares = equitySummaryRepository.findByIdClearingMemberId(cm.getClearingMemberId());
 		List<CostOfSettlementShares> sharesCost = new ArrayList<CostOfSettlementShares>();
 		for (EquitySummaryEntity share : shares) {
-			if(share.getShortage()>0)
-			sharesCost.add(new CostOfSettlementShares(share.getSecurity().getSecurityName(), share.getShortage(),
-					share.getSecurity().getInterestRate(), share.getNetPayable()));
+			if (share.getShortage() > 0)
+				sharesCost.add(new CostOfSettlementShares(share.getSecurity().getSecurityName(), share.getShortage(),
+						share.getSecurity().getInterestRate(), share.getNetPayable()));
 		}
 		return sharesCost;
+	}
+
+	@Override
+	public List<String> getAllSecurities() {
+		// TODO Auto-generated method stub
+		List<String> securities = new ArrayList<String>();
+		List<SecuritiesEntity> securitiesEntities = securitiesRepository.findAll();
+		for (SecuritiesEntity security : securitiesEntities)
+			securities.add(security.getSecurityName());
+		return securities;
+	}
+
+	@Override
+	public List<String> getAllClearingMembers() {
+		// TODO Auto-generated method stub
+		List<String> clearingMembers = new ArrayList<String>();
+		List<ClearingMemberEntity> clearingMemberEntities = clearingMemberRepository.findAll();
+		for (ClearingMemberEntity clearingMember : clearingMemberEntities)
+			clearingMembers.add(clearingMember.getClearingMemberName());
+		return clearingMembers;
 	}
 
 }
