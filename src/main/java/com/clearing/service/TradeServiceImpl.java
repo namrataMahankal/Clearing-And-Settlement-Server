@@ -46,8 +46,6 @@ public class TradeServiceImpl implements TradeService {
 
 	@Override
 	public List<TradeEntity> generateTrades() {
-
-		tradeRepository.deleteAll();
 		allCM = cMRepository.findAll();
 		allSecurities = securitiesRepository.findAll();
 		int numTrades = 50; // For now
@@ -66,7 +64,8 @@ public class TradeServiceImpl implements TradeService {
 		SecuritiesEntity security = allSecurities.get(rand.nextInt(allSecurities.size()));
 		trade.setSecurityId(security);
 		trade.setQuantity(1 + rand.nextInt(10000));
-		trade.setPrice(security.getMarketPrice()+rand.nextInt(10)+(float)(Math.round(rand.nextFloat() * 100.0) / 100.0));
+		trade.setPrice(
+				security.getMarketPrice() + rand.nextInt(10) + (float) (Math.round(rand.nextFloat() * 100.0) / 100.0));
 		ClearingMemberEntity bCM = allCM.get(rand.nextInt(allCM.size()));
 		trade.setBuyerClearingMember(bCM);
 		int bCMId = bCM.getClearingMemberId();
@@ -166,18 +165,18 @@ public class TradeServiceImpl implements TradeService {
 	@Override
 	public boolean addNewTrade(Trade trade) {
 		// TODO Auto-generated method stub
-			ClearingMemberEntity cMBuyer = cMRepository.findByClearingMemberName(trade.getBuyerCM());
-			if(cMBuyer == null)
-				return false;
-			ClearingMemberEntity cMSeller = cMRepository.findByClearingMemberName(trade.getSellerCM());
-			if(cMSeller == null)
-				return false;
-			SecuritiesEntity security = securitiesRepository.findBySecurityName(trade.geteS());
-			if(security == null)
-				return false;
-			TradeEntity tradeEntity = TradeUtil.convertTradeIntoTradeEntity(trade, cMBuyer, cMSeller, security);
-			tradeRepository.save(tradeEntity);
-			return true;
+		ClearingMemberEntity cMBuyer = cMRepository.findByClearingMemberName(trade.getBuyerCM());
+		if (cMBuyer == null)
+			return false;
+		ClearingMemberEntity cMSeller = cMRepository.findByClearingMemberName(trade.getSellerCM());
+		if (cMSeller == null)
+			return false;
+		SecuritiesEntity security = securitiesRepository.findBySecurityName(trade.geteS());
+		if (security == null)
+			return false;
+		TradeEntity tradeEntity = TradeUtil.convertTradeIntoTradeEntity(trade, cMBuyer, cMSeller, security);
+		tradeRepository.save(tradeEntity);
+		return true;
 	}
 
 }
