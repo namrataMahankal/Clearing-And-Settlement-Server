@@ -93,11 +93,8 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 	
 	@Override
 	public List<CostOfSettlement> getCostOfSettlement(){
-		
 		List<CostOfSettlement> costOfSettlementList = new ArrayList<CostOfSettlement>();
-		
 		List<ClearingMemberEntity> memberEntities = clearingMemberRepository.findAll(); 
-		
 		for(ClearingMemberEntity memberEntity: memberEntities) {	
 			CostOfSettlementFund settlementFund = new CostOfSettlementFund(memberEntity.getShortage(), memberEntity.getInterestRate(), memberEntity.getNetPayable());
 		    List<CostOfSettlementShares> settlementShares = new ArrayList<CostOfSettlementShares>();
@@ -108,7 +105,6 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 		    }
 		    costOfSettlementList.add(new CostOfSettlement(memberEntity.getClearingMemberName(), settlementFund, settlementShares));
 		}
-		
 		return costOfSettlementList;
 	}
 
