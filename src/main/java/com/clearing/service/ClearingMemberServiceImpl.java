@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.clearing.entity.ClearingMemberEntity;
 import com.clearing.entity.EquitySummaryEntity;
+import com.clearing.json.CostOfSettlement;
 import com.clearing.json.CostOfSettlementFund;
 import com.clearing.json.CostOfSettlementShares;
 import com.clearing.json.EquitySummary;
@@ -88,6 +89,27 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 					share.getSecurity().getInterestRate(), share.getNetPayable()));
 		}
 		return sharesCost;
+	}
+	
+	@Override
+	public List<CostOfSettlement> getCostOfSettlement(){
+		
+		List<CostOfSettlement> costOfSettlementList = new ArrayList<CostOfSettlement>();
+		
+		List<ClearingMemberEntity> memberEntities = clearingMemberRepository.findAll(); 
+		
+		for(ClearingMemberEntity memberEntity: memberEntities) {	
+			CostOfSettlementFund settlementFund = new CostOfSettlementFund(memberEntity.getShortage(), memberEntity.getInterestRate(), memberEntity.getNetPayable());
+		    List<CostOfSettlementShares> settlementShares = new ArrayList<CostOfSettlementShares>();
+			
+		    for(EquitySummaryEntity share:memberEntity.getEquityEntity()) {
+				   settlementShares.add(new CostOfSettlementShares(share.getSecurity().getSecurityName(), share.getShortage(),
+						share.getSecurity().getInterestRate(), share.getNetPayable()));
+		    }
+		    costOfSettlementList.add(new CostOfSettlement(memberEntity.getClearingMemberName(), settlementFund, settlementShares));
+		}
+		
+		return costOfSettlementList;
 	}
 
 }

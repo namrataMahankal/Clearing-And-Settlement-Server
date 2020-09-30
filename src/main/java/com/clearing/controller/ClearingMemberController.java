@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.clearing.json.CostOfSettlement;
 import com.clearing.json.CostOfSettlementFund;
 import com.clearing.json.CostOfSettlementShares;
 import com.clearing.json.EquitySummary;
@@ -42,5 +43,10 @@ public class ClearingMemberController {
 	@GetMapping(path = "/clearing-member/{cMName}/cost-of-settlement/shares")
 	public @ResponseBody List<CostOfSettlementShares> getCostOfSettlementShares(@PathVariable("cMName") String cMName) {
 		return clearingMemberService.getCostOfSettlementShares(cMName);
+	}
+	
+	@GetMapping(path = "/cost-of-settlement")
+	public @ResponseBody List<CostOfSettlement> getCostOfSettlement() {
+		return clearingMemberService.getCostOfSettlement();
 	}
 }
