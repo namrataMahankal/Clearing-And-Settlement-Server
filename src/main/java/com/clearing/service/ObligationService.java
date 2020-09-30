@@ -12,7 +12,7 @@ public interface ObligationService {
 	Obligation getObligations(int id, String name);
 	
 	List<EquityObligations> getEquityObligations(int id);
-	HashMap<String,List<EquityObligations>> getAllEquityObligations();
+	List<HashMap<String,String>> getAllEquityObligations();
 	List<Obligation> getAllObligations();
 	List<ObligationReport> getObligationReport();
 }

@@ -17,6 +17,7 @@ import com.clearing.repository.ClearingMemberRepository;
 import com.clearing.repository.EquityObligationRepo;
 import com.clearing.repository.EquitySummaryRepository;
 import com.clearing.repository.ObligationRepo;
+import com.clearing.repository.SecuritiesRepository;
 import com.clearing.util.ObligationUtil;
 
 @Service
@@ -34,6 +35,10 @@ public class ObligationServiceImpl implements ObligationService {
 	@Autowired
 	private EquitySummaryRepository equitySummaryRepository;
 
+	@Autowired
+	private SecuritiesRepository securitiesRepository;
+
+
 	@Override
 	public Obligation getObligations(int id, String name) {
 
@@ -49,8 +54,29 @@ public class ObligationServiceImpl implements ObligationService {
 	}
 
 	@Override
-	public HashMap<String, List<EquityObligations>> getAllEquityObligations() {
-		return ObligationUtil.convertToObligationMatrix(equityObligationRepo.findAll());
+	public List<HashMap<String,String>> getAllEquityObligations() {
+		List<HashMap<String,String>> obligationMatrix = new ArrayList<HashMap<String, String>>();
+		
+
+		// ClearingMember
+		List<ClearingMemberEntity> cms = clearingMemberRepository.findAll();
+		// Securties
+		List<SecuritiesEntity> scs = securitiesRepository.findAll();
+
+		for(ClearingMemberEntity cm: cms){
+			List<EquitySummaryEntity> cmEqutiySummary = equityObligationRepo.findByIdClearingMemberId(cm.getClearingMemberId());
+			HashMap<String,String> cmObligation = new HashMap<String,String>();
+			cmObligation.put("CM",cm.getClearingMemberName());
+			for(EquitySummaryEntity cEntity: cmEqutiySummary){
+				cmObligation.put(cEntity.getSecurity().getSecurityName(),Integer.toString(cEntity.getSettlementChange()));
+			}
+			for(SecuritiesEntity sc : scs){
+				cmObligation.putIfAbsent(sc.getSecurityName(),Integer.toString(0));
+			}
+			obligationMatrix.add(cmObligation);
+		}
+
+		return obligationMatrix;
 	}
 
 	@Override
@@ -60,7 +86,7 @@ public class ObligationServiceImpl implements ObligationService {
 
 	@Override
 	public List<ObligationReport> getObligationReport() {
-		// TODO Auto-generated method stub
+
 		List<ObligationReport> obligationReports = new ArrayList<ObligationReport>();
 		List<ClearingMemberEntity> allCMs = clearingMemberRepository.findAll();
 		for (ClearingMemberEntity cm : allCMs) {

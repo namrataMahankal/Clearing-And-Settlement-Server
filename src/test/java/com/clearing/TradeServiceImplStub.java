@@ -1,92 +1,49 @@
-package com.clearing.service;
+package com.clearing;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 import org.javatuples.Pair;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import com.clearing.entity.ClearingMemberEntity;
-import com.clearing.entity.SecuritiesEntity;
 import com.clearing.entity.TradeEntity;
 import com.clearing.json.CMTrade;
 import com.clearing.json.Trade;
-import com.clearing.repository.ClearingMemberRepository;
-import com.clearing.repository.SecuritiesRepository;
 import com.clearing.repository.TradeRepository;
-import com.clearing.util.TradeUtil;
+import com.clearing.service.TradeService;
 
-@Service
-public class TradeServiceImpl implements TradeService {
-
-	@Autowired
-	private TradeRepository tradeRepository;
-	@Autowired
-	private SecuritiesRepository securitiesRepository;
-	@Autowired
-	private ClearingMemberRepository cMRepository;
-
-	private static Random rand = new Random(System.currentTimeMillis());
-	private List<ClearingMemberEntity> allCM;
-	private List<SecuritiesEntity> allSecurities;
-
-	private TradeServiceImpl() {
-
+public class TradeServiceImplStub implements TradeService {
+	
+	TradeRepository tradeRepository = new TradeRepositoryStub();
+	
+	public TradeServiceImplStub() {
+		
 	}
 
 	@Override
 	public List<Trade> getTradesById(int cMId) {
-
-		return null;// tradeRepository.getTradesById(cMId);
-
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<TradeEntity> generateTrades() {
-
-		allCM = cMRepository.findAll();
-		allSecurities = securitiesRepository.findAll();
-		int numTrades = 50; // For now
-		List<TradeEntity> randomTrades = new ArrayList<TradeEntity>();
-
-		for (int i = 0; i < numTrades; ++i) {
-			TradeEntity newTrade = createTrade();
-			randomTrades.add(newTrade);
-		}
-		tradeRepository.saveAll(randomTrades);
-		return randomTrades;
-	}
-
-	public TradeEntity createTrade() {
-		TradeEntity trade = new TradeEntity();
-		SecuritiesEntity security = allSecurities.get(rand.nextInt(allSecurities.size()));
-		trade.setSecurityId(security);
-		trade.setQuantity(1 + rand.nextInt(10000));
-		trade.setPrice(
-				security.getMarketPrice() + rand.nextInt(10) + (float) (Math.round(rand.nextFloat() * 100.0) / 100.0));
-		ClearingMemberEntity bCM = allCM.get(rand.nextInt(allCM.size()));
-		trade.setBuyerClearingMember(bCM);
-		int bCMId = bCM.getClearingMemberId();
-		ClearingMemberEntity sCM;
-		int sCMid;
-		do {
-			sCM = allCM.get(rand.nextInt(allCM.size()));
-			sCMid = sCM.getClearingMemberId();
-		} while (sCMid == bCMId);
-		trade.setSellerClearingMember(sCM);
-		trade.setTransactionAmount(trade.getQuantity() * trade.getPrice());
-		return trade;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<Trade> getAllTrades() {
-
-		return (TradeUtil.convertTradeEntityListIntoTradeList(tradeRepository.findAll()));
+		// TODO Auto-generated method stub
+		return null;
 	}
 
+	@Override
+	public TradeEntity createTrade() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public Pair<HashMap<Integer, Float>, HashMap<Integer, HashMap<Integer, Integer>>> hashMapifyTrades() {
 		List<TradeEntity> tradesList = tradeRepository.findAll();
 		HashMap<Integer, Float> transactionAmountHashMap = new HashMap<Integer, Float>();
@@ -146,38 +103,24 @@ public class TradeServiceImpl implements TradeService {
 
 		return new Pair<HashMap<Integer, Float>, HashMap<Integer, HashMap<Integer, Integer>>>(transactionAmountHashMap,
 				quantityHashMap);
-
 	}
 
 	@Override
 	public List<CMTrade> getBuyerTradesByCMName(String cMName) {
-
-		ClearingMemberEntity cm = cMRepository.findByClearingMemberName(cMName);
-		return TradeUtil.convertTradeEntityListIntoCMTradeList(tradeRepository.findByBuyerClearingMember(cm));
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<CMTrade> getSellerTradesByCMName(String cMName) {
-
-		ClearingMemberEntity cm = cMRepository.findByClearingMemberName(cMName);
-		return TradeUtil.convertTradeEntityListIntoCMTradeList(tradeRepository.findBySellerClearingMember(cm));
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public boolean addNewTrade(Trade trade) {
 		// TODO Auto-generated method stub
-		ClearingMemberEntity cMBuyer = cMRepository.findByClearingMemberName(trade.getBuyerCM());
-		if (cMBuyer == null)
-			return false;
-		ClearingMemberEntity cMSeller = cMRepository.findByClearingMemberName(trade.getSellerCM());
-		if (cMSeller == null)
-			return false;
-		SecuritiesEntity security = securitiesRepository.findBySecurityName(trade.geteS());
-		if (security == null)
-			return false;
-		TradeEntity tradeEntity = TradeUtil.convertTradeIntoTradeEntity(trade, cMBuyer, cMSeller, security);
-		tradeRepository.save(tradeEntity);
-		return true;
+		return false;
 	}
 
 }
