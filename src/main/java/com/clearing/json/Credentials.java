@@ -5,10 +5,10 @@ public class Credentials {
 	private String userName;
 	private String password;
 	
-	public Credentials(String password,String userName){
+	public Credentials(String userName, String password){
 		
-		   this.password = password;
 		   this.userName = userName;
+		   this.password = password;
 	}
 	public Credentials() {}
 	

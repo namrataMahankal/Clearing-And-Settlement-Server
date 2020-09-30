@@ -2,6 +2,7 @@ package com.clearing.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,13 +18,14 @@ import com.clearing.json.Credentials;
 import com.clearing.service.AccService;
 
 @RestController
-@RequestMapping("/acclogin")
+@RequestMapping("/clearing-and-settlement")
+@CrossOrigin(origins="http://localhost:4200")
 public class AccountController {
      
 	 @Autowired
 	 private AccService accountService;
 	 
-     @PostMapping(value="/credentials", produces=MediaType.APPLICATION_JSON_VALUE)
+     @PostMapping(value="/login", produces=MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody Account getAuth(@RequestBody Credentials credential) { 
     	 
     	 return accountService.getAuth(credential);
