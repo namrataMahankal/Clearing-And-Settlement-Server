@@ -1,6 +1,6 @@
 package com.clearing.controller;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +14,16 @@ import com.clearing.entity.CorporateActionEntity;
 import com.clearing.entity.CorporateActionSummaryEntity;
 import com.clearing.service.CorporateActionService;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import com.clearing.json.CorporateActionSummary;
 import com.clearing.json.CorporateActionSummarySecurity;
 import com.clearing.service.MappingServiceImpl;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
 
 
 @Controller // This means that this class is a Controller

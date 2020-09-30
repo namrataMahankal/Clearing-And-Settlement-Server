@@ -2,8 +2,8 @@ package com.clearing.entity;
 
 import java.util.Random;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
+
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SecondaryTable;
+
 import javax.persistence.Table;
 
 @Entity // This tells Hibernate to make a table out of this class

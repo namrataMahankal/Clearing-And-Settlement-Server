@@ -34,7 +34,7 @@ public class SecuritiesEntity {
 	}
 
 	public SecuritiesEntity() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public int getSecurityId() {
