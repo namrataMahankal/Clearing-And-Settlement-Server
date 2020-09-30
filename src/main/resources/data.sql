@@ -32,6 +32,7 @@ insert into corporate_action(corporateActionId,securityId,action,parameter) valu
 insert into corporate_action(corporateActionId,securityId,action,parameter) values(6,11,"cash-dividend","7$");
 insert into corporate_action(corporateActionId,securityId,action,parameter) values(7,12,"cash-dividend","2$");
 insert into corporate_action(corporateActionId,securityId,action,parameter) values(8,3,"stock-dividend","8%");
+
 -- insert into equity_summary values (1,2,1600,0);
 -- insert into equity_summary values (1,11,1200,0);
 -- insert into equity_summary values (5,2,800,0);
