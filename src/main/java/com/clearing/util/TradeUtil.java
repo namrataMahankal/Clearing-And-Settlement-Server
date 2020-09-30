@@ -3,6 +3,8 @@ package com.clearing.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.clearing.entity.ClearingMemberEntity;
+import com.clearing.entity.SecuritiesEntity;
 import com.clearing.entity.TradeEntity;
 import com.clearing.json.CMTrade;
 import com.clearing.json.Trade;
@@ -34,5 +36,17 @@ public class TradeUtil {
 			trades.add(convertTradeEntityIntoCMTrade(tradeEntity));
 		}
 		return trades;
+	}
+	
+	public static TradeEntity convertTradeIntoTradeEntity(Trade trade, ClearingMemberEntity buyerCM, ClearingMemberEntity sellerCM, SecuritiesEntity security)
+	{
+		TradeEntity tradeEntity = new TradeEntity();
+		tradeEntity.setBuyerClearingMember(buyerCM);
+		tradeEntity.setPrice(security.getMarketPrice());
+		tradeEntity.setQuantity(trade.getQty());
+		tradeEntity.setSecurityId(security);
+		tradeEntity.setSellerClearingMember(sellerCM);
+		tradeEntity.setTransactionAmount(tradeEntity.getPrice()*tradeEntity.getQuantity());
+		return tradeEntity;
 	}
 }

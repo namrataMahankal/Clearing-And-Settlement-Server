@@ -163,4 +163,19 @@ public class TradeServiceImpl implements TradeService {
 		return TradeUtil.convertTradeEntityListIntoCMTradeList(tradeRepository.findBySellerClearingMember(cm));
 	}
 
+	@Override
+	public boolean addNewTrade(Trade trade) {
+		// TODO Auto-generated method stub
+		try {
+			ClearingMemberEntity cMBuyer = cMRepository.findByClearingMemberName(trade.getBuyerCM());
+			ClearingMemberEntity cMSeller = cMRepository.findByClearingMemberName(trade.getSellerCM());
+			SecuritiesEntity security = securitiesRepository.findBySecurityName(trade.getES());
+			TradeEntity tradeEntity = TradeUtil.convertTradeIntoTradeEntity(trade, cMBuyer, cMSeller, security);
+			tradeRepository.save(tradeEntity);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 }

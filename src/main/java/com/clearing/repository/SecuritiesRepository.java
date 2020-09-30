@@ -12,4 +12,5 @@ import com.clearing.entity.SecuritiesEntity;
 public interface SecuritiesRepository extends JpaRepository<SecuritiesEntity, Integer> {
     
 	SecuritiesEntity findBySecurityId(int securityId);
+	SecuritiesEntity findBySecurityName(String securityName);
 }

@@ -18,4 +18,5 @@ public interface TradeService {
 	Pair<HashMap<Integer, Float>, HashMap<Integer, HashMap<Integer, Integer>>> hashMapifyTrades();
 	List<CMTrade> getBuyerTradesByCMName(String cMName);
 	List<CMTrade> getSellerTradesByCMName(String cMName);
+	boolean addNewTrade(Trade trade);
 }
