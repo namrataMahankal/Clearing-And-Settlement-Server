@@ -69,5 +69,11 @@ public class Trade {
 		this.transactionAmt = transactionAmt;
 	}
 
+	@Override
+	public String toString() {
+		return "Trade [eS=" + eS + ", qty=" + qty + ", price=" + price + ", buyerCM=" + buyerCM + ", sellerCM="
+				+ sellerCM + ", transactionAmt=" + transactionAmt + "]";
+	}
+
 	
 }

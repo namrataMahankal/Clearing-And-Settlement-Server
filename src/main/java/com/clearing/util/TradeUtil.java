@@ -42,11 +42,11 @@ public class TradeUtil {
 	{
 		TradeEntity tradeEntity = new TradeEntity();
 		tradeEntity.setBuyerClearingMember(buyerCM);
-		tradeEntity.setPrice(security.getMarketPrice());
+		tradeEntity.setPrice(trade.getPrice());
 		tradeEntity.setQuantity(trade.getQty());
 		tradeEntity.setSecurityId(security);
 		tradeEntity.setSellerClearingMember(sellerCM);
-		tradeEntity.setTransactionAmount(tradeEntity.getPrice()*tradeEntity.getQuantity());
+		tradeEntity.setTransactionAmount(trade.getPrice()*trade.getQty());
 		return tradeEntity;
 	}
 }
