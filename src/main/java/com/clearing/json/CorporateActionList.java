@@ -1,6 +1,6 @@
 package com.clearing.json;
 
-import java.util.Map;
+
 
 public class CorporateActionList {
 	

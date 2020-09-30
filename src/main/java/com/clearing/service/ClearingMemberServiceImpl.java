@@ -71,14 +71,14 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 
 	@Override
 	public CostOfSettlementFund getCostOfSettlementFund(String cMName) {
-		// TODO Auto-generated method stub
+
 		ClearingMemberEntity cm = clearingMemberRepository.findByClearingMemberName(cMName);
 		return new CostOfSettlementFund(cm.getShortage(), cm.getInterestRate(), cm.getNetPayable());
 	}
 
 	@Override
 	public List<CostOfSettlementShares> getCostOfSettlementShares(String cMName) {
-		// TODO Auto-generated method stub
+
 		ClearingMemberEntity cm = clearingMemberRepository.findByClearingMemberName(cMName);
 		List<EquitySummaryEntity> shares = equitySummaryRepository.findByIdClearingMemberId(cm.getClearingMemberId());
 		List<CostOfSettlementShares> sharesCost = new ArrayList<CostOfSettlementShares>();

@@ -17,8 +17,7 @@ import com.clearing.util.CorporateActionSummaryUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
+	
 import com.clearing.entity.ClearingMemberEntity;
 import com.clearing.entity.CorporateActionEntity;
 
@@ -73,8 +72,7 @@ public class CorporateActionServiceImpl implements CorporateActionService {
 		// Local Variable store
 		String[] params;
 		int splitRatio;
-		Optional<SecuritiesEntity> securityObj;
-		Optional<ClearingMemberEntity> clearingMemberObj;
+
 		CorporateActionSummaryEntity newAction;
 
 		for (CorporateActionEntity ca : corporateActions) {

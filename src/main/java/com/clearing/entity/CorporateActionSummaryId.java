@@ -3,11 +3,7 @@ package com.clearing.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
 
 //@Embeddable
 public class CorporateActionSummaryId implements Serializable {

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.clearing.entity.ClearingMemberEntity;
-import com.clearing.entity.SecuritiesEntity;
+
 import com.clearing.repository.MapRepo;
 
 @Service

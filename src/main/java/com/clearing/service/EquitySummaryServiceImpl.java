@@ -45,7 +45,7 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 				Optional<ClearingMemberEntity> cmObj = clearingMemberRepository.findById(cmId);
 				if (cmObj.isPresent()) {
 					SecuritiesEntity security = securitiesRepository.findBySecurityId(securityId);
-					int ratePerShare = security.getInterestRate();
+
 					cmSummary.add(new EquitySummaryEntity(new EquitySummaryId(securityId, cmId), openingShareQuantity,
 							qty, 0, 0, security, cmObj.get()));
 				} else {
