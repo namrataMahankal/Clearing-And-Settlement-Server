@@ -29,8 +29,8 @@ public class CorporateActionSummaryUtil {
 			corpList.setParameter(summaryEntity.getParameter());
 			corpList.setSecurityName((summaryEntity.getSecurity()).getSecurityName());
 			(summary.getActionList()).add(corpList);			
-	}	
-		System.out.println(summary.getClearingMemberName());
+		}	
+
 		return summary;
 	
   }

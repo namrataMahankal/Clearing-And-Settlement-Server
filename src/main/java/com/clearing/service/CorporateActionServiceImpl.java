@@ -150,8 +150,7 @@ public class CorporateActionServiceImpl implements CorporateActionService {
 				parameter = parameter.replace("$", "");
 				float dividend = Float.parseFloat(parameter);
 
-				// Change Number of stocks in EquitySummaries and return non-convertible stocks
-				// to CM's funds
+				// Change Number of stocks in EquitySummaries and return non-convertible stocks to CM's funds
 				for (EquitySummaryEntity eqs : summaries) {
 					int numStocks = eqs.getNoOfShares() + eqs.getSettlementChange();
 					if (numStocks > 0) {

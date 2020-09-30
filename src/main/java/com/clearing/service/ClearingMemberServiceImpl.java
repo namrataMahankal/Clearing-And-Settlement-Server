@@ -48,7 +48,7 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 		return EquitySummaryUtil
 				.convertEquitySummaryEntityListIntoEquitySummaryList(equitySummaryRepository.findByIdClearingMemberId(
 						clearingMemberRepository.findByClearingMemberName(cMName).getClearingMemberId()));
-		// return null;
+
 	}
 
 	@Override

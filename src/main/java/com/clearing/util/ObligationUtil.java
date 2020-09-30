@@ -47,7 +47,7 @@ public class ObligationUtil {
 	}
 
 	public static HashMap<String,List<EquityObligations>> convertToObligationMatrix(List<EquitySummaryEntity> equityEntityList){
-		// List<EquityObligations> equityObligationList = new ArrayList<EquityObligations>();
+
 		HashMap<String,List<EquityObligations>> obligationMatrix = new HashMap<String,List<EquityObligations>>();
 		
 		// Local Variable

@@ -5,12 +5,12 @@ import java.util.Objects;
 
 
 
-//@Embeddable
+
 public class CorporateActionSummaryId implements Serializable {
 	
-//	@Column(name="clearing_membr_id")
+
 	private int clearingMemberId;
-//	@Column(name="security_id")
+
 	private int securityId;
 	
 	

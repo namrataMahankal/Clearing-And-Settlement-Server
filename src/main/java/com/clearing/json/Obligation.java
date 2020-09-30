@@ -6,8 +6,7 @@ public class Obligation {
 
 	private String clearingMemberName;
 	private float fundObligation;
-	//private float shortage;
-	//private Map<String, Integer> equityObligation;
+
 	
 	public Obligation(){}
 	

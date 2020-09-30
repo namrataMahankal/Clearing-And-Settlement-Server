@@ -34,8 +34,7 @@ public class TradeController {
 	@Autowired
 	private ClearingMemberService clearingMemberService;
 
-	// @Autowired
-	// private CorporateActionService corporateActionService;
+	
 
 	// Generate Random Trades
 	@GetMapping(path = "/trade/generate")

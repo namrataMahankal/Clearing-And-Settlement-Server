@@ -20,15 +20,15 @@ public class AccServiceImpl implements AccService {
 	public Account getAuth(Credentials credentials) {
 		
 		try {
-			  System.out.println(credentials.getUserName());
-		      List<AccountEntity> accEntityList = accountRep.findByUserName(credentials.getUserName());
-		      if(accEntityList.size()==0) {
-		        return null;
-		      }
-		      else {
-		    	  return AccountUtil.getAuth(accEntityList, credentials.getPassword());
-		      }
-		    }
+			  
+			List<AccountEntity> accEntityList = accountRep.findByUserName(credentials.getUserName());
+			if(accEntityList.size()==0) {
+			return null;
+			}
+			else {
+				return AccountUtil.getAuth(accEntityList, credentials.getPassword());
+			}
+		}
 		   catch(Exception e) {
 		      e.printStackTrace();
 		      return null;
