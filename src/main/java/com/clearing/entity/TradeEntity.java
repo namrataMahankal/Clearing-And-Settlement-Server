@@ -21,17 +21,17 @@ public class TradeEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int tradeId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "securityId", referencedColumnName = "securityId", table = "trade")
 	private SecuritiesEntity security;
 	private int quantity;
 	private float price;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "buyerClearingMemberId", referencedColumnName = "clearingMemberId")
 	private ClearingMemberEntity buyerClearingMember;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "sellerClearingMemberId", referencedColumnName = "clearingMemberId")
 	private ClearingMemberEntity sellerClearingMember;
 
