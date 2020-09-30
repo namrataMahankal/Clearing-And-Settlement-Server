@@ -46,32 +46,6 @@ public class ObligationUtil {
 		  return equityObligationList;
 	}
 
-	public static HashMap<String,List<EquityObligations>> convertToObligationMatrix(List<EquitySummaryEntity> equityEntityList){
-
-		HashMap<String,List<EquityObligations>> obligationMatrix = new HashMap<String,List<EquityObligations>>();
-		
-		// Local Variable
-		String clearingMemberName;
-		List<EquityObligations> cmObligationList;
-
-		for(EquitySummaryEntity equityEntity:equityEntityList) {
-			clearingMemberName = equityEntity.getClearingMember().getClearingMemberName();
-
-			cmObligationList = obligationMatrix.get(clearingMemberName);
-
-			if(cmObligationList == null){
-				obligationMatrix.put(clearingMemberName,new ArrayList<EquityObligations>());
-				cmObligationList = obligationMatrix.get(clearingMemberName);
-			}
-
-			EquityObligations equityObligation = new EquityObligations();
-			equityObligation.setOpeningShareBalance(equityEntity.getNoOfShares());
-			equityObligation.setSecurityName(equityEntity.getSecurity().getSecurityName());
-			equityObligation.setSecurityObligation(equityEntity.getSettlementChange());			
-			cmObligationList.add(equityObligation);
-		  }
-		return obligationMatrix;
-	}
 
 	public static List<Obligation> convertToObligation(List<ClearingMemberEntity> memberEntityList) {
 		

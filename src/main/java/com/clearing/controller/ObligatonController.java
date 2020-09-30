@@ -41,7 +41,7 @@ public class ObligatonController {
 	}
 
 	@GetMapping(value = "/clearing-house/equity-obligations", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody HashMap<String,List<EquityObligations>> getObligationMatrixShares() {
+	public @ResponseBody List<HashMap<String,String>> getObligationMatrixShares() {
 		return obligationService.getAllEquityObligations();
 	}
 
