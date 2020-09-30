@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.clearing.json.EquityObligations;
 import com.clearing.json.Obligation;
+import com.clearing.json.ObligationReport;
 import com.clearing.service.MappingServiceImpl;
 import com.clearing.service.ObligationService;
 
@@ -47,5 +48,10 @@ public class ObligatonController {
 	@GetMapping(value = "/clearing-house/fund-obligations", produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Obligation> getObligationMatrixFunds() {
 		return obligationService.getAllObligations();
+	}
+	 
+	@GetMapping(value = "/clearing-house/obligation-report", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<ObligationReport> getObligationReport() {
+		return obligationService.getObligationReport();
 	}
 }

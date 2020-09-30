@@ -66,7 +66,7 @@ public class TradeServiceImpl implements TradeService {
 		SecuritiesEntity security = allSecurities.get(rand.nextInt(allSecurities.size()));
 		trade.setSecurityId(security);
 		trade.setQuantity(1 + rand.nextInt(10000));
-		trade.setPrice(security.getMarketPrice()+rand.nextInt(10)+rand.nextFloat());
+		trade.setPrice(security.getMarketPrice()+rand.nextInt(10)+(float)(Math.round(rand.nextFloat() * 100.0) / 100.0));
 		ClearingMemberEntity bCM = allCM.get(rand.nextInt(allCM.size()));
 		trade.setBuyerClearingMember(bCM);
 		int bCMId = bCM.getClearingMemberId();
