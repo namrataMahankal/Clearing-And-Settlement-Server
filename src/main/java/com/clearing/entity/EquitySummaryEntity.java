@@ -17,7 +17,7 @@ public class EquitySummaryEntity {
 	private int noOfShares;
 	private int settlementChange;
 	private int shortage;
-	private float netPayable;
+	private double netPayable;
 
 	@MapsId("securityId")
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -33,7 +33,7 @@ public class EquitySummaryEntity {
 		super();
 	}
 
-	public EquitySummaryEntity(EquitySummaryId id, int noOfShares, int settlementChange, int shortage, float netPayable,
+	public EquitySummaryEntity(EquitySummaryId id, int noOfShares, int settlementChange, int shortage, double netPayable,
 			SecuritiesEntity security, ClearingMemberEntity clearingMember) {
 		super();
 		this.id = id;
@@ -93,11 +93,11 @@ public class EquitySummaryEntity {
 		this.shortage = shortage;
 	}
 
-	public float getNetPayable() {
+	public double getNetPayable() {
 		return netPayable;
 	}
 
-	public void setNetPayable(float netPayable) {
+	public void setNetPayable(double netPayable) {
 		this.netPayable = netPayable;
 	}
 

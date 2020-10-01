@@ -4,14 +4,14 @@ import java.util.List;
 
 public class ObligationReport {
 	private String cMName;
-	private float fundsObligation;
+	private double fundsObligation;
 	private List<EquityObligations> shareListObligation;
 
 	public ObligationReport() {
 		super();
 	}
 
-	public ObligationReport(String cMName, float fundsObligation, List<EquityObligations> shareListObligation) {
+	public ObligationReport(String cMName, double fundsObligation, List<EquityObligations> shareListObligation) {
 		super();
 		this.cMName = cMName;
 		this.fundsObligation = fundsObligation;
@@ -26,11 +26,11 @@ public class ObligationReport {
 		this.cMName = cMName;
 	}
 
-	public float getFundsObligation() {
+	public double getFundsObligation() {
 		return fundsObligation;
 	}
 
-	public void setFundsObligation(float fundsObligation) {
+	public void setFundsObligation(double fundsObligation) {
 		this.fundsObligation = fundsObligation;
 	}
 

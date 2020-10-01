@@ -10,9 +10,9 @@ import com.clearing.json.CostOfSettlementShares;
 import com.clearing.json.EquitySummary;
 
 public interface ClearingMemberService {
-	public void addChangeAfterSettlement(HashMap<Integer, Float> transactionAmountHashMap);
+	public void addChangeAfterSettlement(HashMap<Integer, Double> transactionAmountHashMap);
 
-	public float getCMOpeningFundBalance(String cMName);
+	public double getCMOpeningFundBalance(String cMName);
 	public List<EquitySummary> getCMOpeningShareBalance(String cMName);	
 	public CostOfSettlementFund getCostOfSettlementFund(String cMName);
 	public List<CostOfSettlementShares> getCostOfSettlementShares(String cMName);

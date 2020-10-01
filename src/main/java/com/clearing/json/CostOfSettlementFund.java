@@ -2,38 +2,38 @@ package com.clearing.json;
 
 public class CostOfSettlementFund {
 
-	private float fundsToBeBorrowed;
-	private float borrowingRate;
-	private float costIncurred;
+	private double fundsToBeBorrowed;
+	private double borrowingRate;
+	private double costIncurred;
 
-	public CostOfSettlementFund(float fundsToBeBorrowed, float borrowingRate, float costIncurred) {
+	public CostOfSettlementFund(double fundsToBeBorrowed, double borrowingRate, double costIncurred) {
 		super();
 		this.fundsToBeBorrowed = fundsToBeBorrowed;
 		this.borrowingRate = borrowingRate;
 		this.costIncurred = costIncurred;
 	}
 
-	public float getFundsToBeBorrowed() {
+	public double getFundsToBeBorrowed() {
 		return fundsToBeBorrowed;
 	}
 
-	public void setFundsToBeBorrowed(float fundsToBeBorrowed) {
+	public void setFundsToBeBorrowed(double fundsToBeBorrowed) {
 		this.fundsToBeBorrowed = fundsToBeBorrowed;
 	}
 
-	public float getBorrowingRate() {
+	public double getBorrowingRate() {
 		return borrowingRate;
 	}
 
-	public void setBorrowingRate(float borrowingRate) {
+	public void setBorrowingRate(double borrowingRate) {
 		this.borrowingRate = borrowingRate;
 	}
 
-	public float getCostIncurred() {
+	public double getCostIncurred() {
 		return costIncurred;
 	}
 
-	public void setCostIncurred(float costIncurred) {
+	public void setCostIncurred(double costIncurred) {
 		this.costIncurred = costIncurred;
 	}
 

@@ -64,7 +64,7 @@ public class EquitySummaryServiceImpl implements EquitySummaryService {
 			int quantity = es.getNoOfShares() + es.getSettlementChange();
 			if (quantity < 0) {
 				quantity *= -1;
-				float netPayable = quantity * es.getSecurity().getInterestRate();// getRatePerShare();
+				double netPayable = quantity * es.getSecurity().getInterestRate();// getRatePerShare();
 				es.setNetPayable(netPayable);
 				es.setShortage(quantity);
 				equitySummaryRepository.save(es);

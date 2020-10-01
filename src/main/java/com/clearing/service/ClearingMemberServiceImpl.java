@@ -32,7 +32,7 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 	private SecuritiesRepository securitiesRepository;
 
 	@Override
-	public void addChangeAfterSettlement(HashMap<Integer, Float> transactionAmountHashMap) {
+	public void addChangeAfterSettlement(HashMap<Integer, Double> transactionAmountHashMap) {
 		transactionAmountHashMap.forEach((cmId, fundChange) -> {
 			Optional<ClearingMemberEntity> obj = clearingMemberRepository.findById(cmId);
 			if (obj.isPresent()) {
@@ -44,7 +44,7 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 	}
 
 	@Override
-	public float getCMOpeningFundBalance(String cMName) {
+	public double getCMOpeningFundBalance(String cMName) {
 		return clearingMemberRepository.findByClearingMemberName(cMName).getClearingMemberFundBalance();
 	}
 
@@ -62,10 +62,10 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 		ArrayList<ClearingMemberEntity> fundSettlementList = new ArrayList<ClearingMemberEntity>();
 
 		for (ClearingMemberEntity cm : cmList) {
-			float amount = cm.getClearingMemberFundBalance() + cm.getAmountToPay();
+			double amount = cm.getClearingMemberFundBalance() + cm.getAmountToPay();
 			if (amount < 0) {
 				amount *= -1;
-				float netPayable = amount * cm.getInterestRate();
+				double netPayable = amount * cm.getInterestRate();
 				cm.setNetPayable(netPayable);
 				cm.setShortage(amount);
 				fundSettlementList.add(cm);

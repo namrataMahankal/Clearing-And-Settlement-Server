@@ -4,10 +4,10 @@ public class CostOfSettlementShares {
 
 	private String securities;
 	private int shares;
-	private float pricePerShare;
-	private float cost;
+	private double pricePerShare;
+	private double cost;
 
-	public CostOfSettlementShares(String securities, int shares, float pricePerShare, float cost) {
+	public CostOfSettlementShares(String securities, int shares, double pricePerShare, double cost) {
 		super();
 		this.securities = securities;
 		this.shares = shares;
@@ -31,19 +31,19 @@ public class CostOfSettlementShares {
 		this.shares = shares;
 	}
 
-	public float getPricePerShare() {
+	public double getPricePerShare() {
 		return pricePerShare;
 	}
 
-	public void setPricePerShare(float pricePerShare) {
+	public void setPricePerShare(double pricePerShare) {
 		this.pricePerShare = pricePerShare;
 	}
 
-	public float getCost() {
+	public double getCost() {
 		return cost;
 	}
 
-	public void setCost(float cost) {
+	public void setCost(double cost) {
 		this.cost = cost;
 	}
 

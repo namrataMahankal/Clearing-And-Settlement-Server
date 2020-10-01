@@ -15,7 +15,7 @@ public interface TradeService {
 	List<TradeEntity> generateTrades();
 	List<Trade> getAllTrades();
 	TradeEntity createTrade();
-	Pair<HashMap<Integer, Float>, HashMap<Integer, HashMap<Integer, Integer>>> hashMapifyTrades();
+	Pair<HashMap<Integer, Double>, HashMap<Integer, HashMap<Integer, Integer>>> hashMapifyTrades();
 	List<CMTrade> getBuyerTradesByCMName(String cMName);
 	List<CMTrade> getSellerTradesByCMName(String cMName);
 	boolean addNewTrade(Trade trade);

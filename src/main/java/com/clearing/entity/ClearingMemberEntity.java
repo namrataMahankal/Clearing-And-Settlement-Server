@@ -17,13 +17,13 @@ public class ClearingMemberEntity {
 	
 	@Id
 	private int clearingMemberId;
-	private float amountToPay;
-	private float clearingMemberFundBalance;
+	private double amountToPay;
+	private double clearingMemberFundBalance;
 	private String clearingMemberName;
-	private float interestRate;
-	private float shortage;
-	private float netPayable;
-	private float corporateActionChange;
+	private double interestRate;
+	private double shortage;
+	private double netPayable;
+	private double corporateActionChange;
 	
 	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY, mappedBy = "clearingMember")
 	@Column(insertable=false, updatable=false)
@@ -34,8 +34,8 @@ public class ClearingMemberEntity {
     private Set<CorporateActionSummaryEntity> corporateSummaryEntity;
 
 	
-	public ClearingMemberEntity(int clearingMemberId, String clearingMemberName, float clearingMemberFundBalance,
-			float amountToPay,Set<EquitySummaryEntity> equityEntity,Set<CorporateActionSummaryEntity> corporateSummaryEntity, float interestRate, float shortage, float netPayable) {
+	public ClearingMemberEntity(int clearingMemberId, String clearingMemberName, double clearingMemberFundBalance,
+			double amountToPay,Set<EquitySummaryEntity> equityEntity,Set<CorporateActionSummaryEntity> corporateSummaryEntity, double interestRate, double shortage, double netPayable) {
 		this.clearingMemberId = clearingMemberId;
 		this.clearingMemberName = clearingMemberName;
 		this.clearingMemberFundBalance = clearingMemberFundBalance;
@@ -83,57 +83,57 @@ public class ClearingMemberEntity {
 
 
 
-	public float getClearingMemberFundBalance() {
+	public double getClearingMemberFundBalance() {
 		return clearingMemberFundBalance;
 	}
 
 
 
-	public void setClearingMemberFundBalance(float clearingMemberFundBalance) {
+	public void setClearingMemberFundBalance(double clearingMemberFundBalance) {
 		this.clearingMemberFundBalance = clearingMemberFundBalance;
 	}
 
 
 
-	public float getAmountToPay() {
+	public double getAmountToPay() {
 		return amountToPay;
 	}
 
 
 
-	public void setAmountToPay(float amountToPay) {
+	public void setAmountToPay(double amountToPay) {
 		this.amountToPay = amountToPay;
 	}
 	
-	public float getShortage() {
+	public double getShortage() {
 		return shortage;
 	}
 
-	public void setShortage(float shortage) {
+	public void setShortage(double shortage) {
 		this.shortage = shortage;
 	}
 
-	public float getInterestRate() {
+	public double getInterestRate() {
 		return interestRate;
 	}
 
-	public void setInterestRate(float interestRate) {
+	public void setInterestRate(double interestRate) {
 		this.interestRate = interestRate;
 	}
 
-	public float getNetPayable() {
+	public double getNetPayable() {
 		return netPayable;
 	}
 
-	public void setNetPayable(float netPayable) {
+	public void setNetPayable(double netPayable) {
 		this.netPayable = netPayable;
 	}
 
-	public float getCorporateActionChange() {
+	public double getCorporateActionChange() {
 		return corporateActionChange;
 	}
 
-	public void setCorporateActionChange(float corporateActionChange) {
+	public void setCorporateActionChange(double corporateActionChange) {
 		this.corporateActionChange = corporateActionChange;
 	}
 

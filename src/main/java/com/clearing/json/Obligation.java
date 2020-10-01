@@ -5,12 +5,12 @@ package com.clearing.json;
 public class Obligation {
 
 	private String clearingMemberName;
-	private float fundObligation;
+	private double fundObligation;
 
 	
 	public Obligation(){}
 	
-	public Obligation(String clearingMemberName, float fund){
+	public Obligation(String clearingMemberName, double fund){
 		   this.clearingMemberName = clearingMemberName;
 		   this.fundObligation = fund;
 		   
@@ -22,10 +22,10 @@ public class Obligation {
 	public void setClearingMemberName(String name) {
 		this.clearingMemberName = name;
 	}
-	public float getFundObligation() {
+	public double getFundObligation() {
 		return fundObligation;
 	}
-	public void setFundObligaton(float fund) {
+	public void setFundObligaton(double fund) {
 		this.fundObligation = fund;
 	}
 		

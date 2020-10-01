@@ -66,7 +66,7 @@ public class TradeServiceImpl implements TradeService {
 		trade.setSecurityId(security);
 		trade.setQuantity(1 + rand.nextInt(10000));
 		trade.setPrice(
-				security.getMarketPrice() + rand.nextInt(10) + (float) (Math.round(rand.nextFloat() * 100.0) / 100.0));
+				security.getMarketPrice() + rand.nextInt(10) + (double) (Math.round(rand.nextFloat() * 100.0) / 100.0));
 		ClearingMemberEntity bCM = allCM.get(rand.nextInt(allCM.size()));
 		trade.setBuyerClearingMember(bCM);
 		int bCMId = bCM.getClearingMemberId();
@@ -87,9 +87,9 @@ public class TradeServiceImpl implements TradeService {
 		return (TradeUtil.convertTradeEntityListIntoTradeList(tradeRepository.findAll()));
 	}
 
-	public Pair<HashMap<Integer, Float>, HashMap<Integer, HashMap<Integer, Integer>>> hashMapifyTrades() {
+	public Pair<HashMap<Integer, Double>, HashMap<Integer, HashMap<Integer, Integer>>> hashMapifyTrades() {
 		List<TradeEntity> tradesList = tradeRepository.findAll();
-		HashMap<Integer, Float> transactionAmountHashMap = new HashMap<Integer, Float>();
+		HashMap<Integer, Double> transactionAmountHashMap = new HashMap<Integer, Double>();
 		HashMap<Integer, HashMap<Integer, Integer>> quantityHashMap = new HashMap<Integer, HashMap<Integer, Integer>>();
 
 		for (TradeEntity trade : tradesList) {
@@ -100,13 +100,14 @@ public class TradeServiceImpl implements TradeService {
 			if (!transactionAmountHashMap.containsKey(buyerCMId)) {
 				transactionAmountHashMap.put(buyerCMId, -1 * trade.getTransactionAmount());
 			} else {
-				Float updatedTransactionAmount = transactionAmountHashMap.get(buyerCMId) - trade.getTransactionAmount();
+				Double updatedTransactionAmount = transactionAmountHashMap.get(buyerCMId)
+						- trade.getTransactionAmount();
 				transactionAmountHashMap.put(buyerCMId, updatedTransactionAmount);
 			}
 			if (!transactionAmountHashMap.containsKey(sellerCMId)) {
 				transactionAmountHashMap.put(sellerCMId, trade.getTransactionAmount());
 			} else {
-				Float updatedTransactionAmount = transactionAmountHashMap.get(sellerCMId)
+				Double updatedTransactionAmount = transactionAmountHashMap.get(sellerCMId)
 						+ trade.getTransactionAmount();
 				transactionAmountHashMap.put(sellerCMId, updatedTransactionAmount);
 			}
@@ -144,7 +145,7 @@ public class TradeServiceImpl implements TradeService {
 
 		}
 
-		return new Pair<HashMap<Integer, Float>, HashMap<Integer, HashMap<Integer, Integer>>>(transactionAmountHashMap,
+		return new Pair<HashMap<Integer, Double>, HashMap<Integer, HashMap<Integer, Integer>>>(transactionAmountHashMap,
 				quantityHashMap);
 
 	}

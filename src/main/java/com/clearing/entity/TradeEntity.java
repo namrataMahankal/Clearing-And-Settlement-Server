@@ -25,7 +25,7 @@ public class TradeEntity {
 	@JoinColumn(name = "securityId", referencedColumnName = "securityId", table = "trade")
 	private SecuritiesEntity security;
 	private int quantity;
-	private float price;
+	private double price;
 
 	@ManyToOne
 	@JoinColumn(name = "buyerClearingMemberId", referencedColumnName = "clearingMemberId")
@@ -35,7 +35,7 @@ public class TradeEntity {
 	@JoinColumn(name = "sellerClearingMemberId", referencedColumnName = "clearingMemberId")
 	private ClearingMemberEntity sellerClearingMember;
 
-	private float transactionAmount;
+	private double transactionAmount;
 
 	private static Random rand = new Random(System.currentTimeMillis());
 
@@ -44,8 +44,8 @@ public class TradeEntity {
 		// Random rand = new Random();
 	}
 
-	public TradeEntity(int tradeId, SecuritiesEntity securityId, int quantity, float price,
-			ClearingMemberEntity buyerClearingMember, ClearingMemberEntity sellerClearingMember, float transactionAmount) {
+	public TradeEntity(int tradeId, SecuritiesEntity securityId, int quantity, double price,
+			ClearingMemberEntity buyerClearingMember, ClearingMemberEntity sellerClearingMember, double transactionAmount) {
 		super();
 		this.tradeId = tradeId;
 		this.security = securityId;
@@ -80,11 +80,11 @@ public class TradeEntity {
 		this.quantity = quantity;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -104,11 +104,11 @@ public class TradeEntity {
 		this.sellerClearingMember = sellerClearingMember;
 	}
 
-	public float getTransactionAmount() {
+	public double getTransactionAmount() {
 		return transactionAmount;
 	}
 
-	public void setTransactionAmount(float transactionAmount) {
+	public void setTransactionAmount(double transactionAmount) {
 		this.transactionAmount = transactionAmount;
 	}
 

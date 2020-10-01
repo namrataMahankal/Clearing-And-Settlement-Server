@@ -129,8 +129,8 @@ public class CorporateActionServiceImpl implements CorporateActionService {
 			case "stock-dividend":
 				// Parameter format "X%" X% of accumulated shares
 				parameter = parameter.replace("%", "");
-				float dividendPercentage = Float.parseFloat(parameter);
-				float dividendRatio = (float) 1.0 + dividendPercentage / (float) 100.0;
+				double dividendPercentage = Double.parseDouble(parameter);
+				double dividendRatio = (double) 1.0 + dividendPercentage / (double) 100.0;
 				// Change Number of stocks in EquitySummaries
 				for (EquitySummaryEntity eqs : summaries) {
 					int numStocks = eqs.getNoOfShares() + eqs.getSettlementChange();
@@ -148,7 +148,7 @@ public class CorporateActionServiceImpl implements CorporateActionService {
 			case "cash-dividend":
 				// Parameter format "5$" $ per share
 				parameter = parameter.replace("$", "");
-				float dividend = Float.parseFloat(parameter);
+				double dividend = Double.parseDouble(parameter);
 
 				// Change Number of stocks in EquitySummaries and return non-convertible stocks to CM's funds
 				for (EquitySummaryEntity eqs : summaries) {
@@ -156,7 +156,7 @@ public class CorporateActionServiceImpl implements CorporateActionService {
 					if (numStocks > 0) {
 						// Adding dividend of numStocks * Dividend
 						ClearingMemberEntity cm = eqs.getClearingMember();
-						cm.setCorporateActionChange(cm.getCorporateActionChange() + (float) numStocks * dividend);
+						cm.setCorporateActionChange(cm.getCorporateActionChange() + (double) numStocks * dividend);
 						clearingMemberRepository.save(cm);
 					}
 				}

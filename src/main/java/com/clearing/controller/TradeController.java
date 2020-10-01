@@ -62,10 +62,10 @@ public class TradeController {
 	}
 
 	@GetMapping(path = "/trade/settle")
-	public @ResponseBody Pair<HashMap<Integer, Float>, HashMap<Integer, HashMap<Integer, Integer>>> settleTrades() {
-		Pair<HashMap<Integer, Float>, HashMap<Integer, HashMap<Integer, Integer>>> obligationHashMap = tradeService
+	public @ResponseBody Pair<HashMap<Integer, Double>, HashMap<Integer, HashMap<Integer, Integer>>> settleTrades() {
+		Pair<HashMap<Integer, Double>, HashMap<Integer, HashMap<Integer, Integer>>> obligationHashMap = tradeService
 				.hashMapifyTrades();
-		HashMap<Integer, Float> transactionAmountHashMap = obligationHashMap.getValue0();
+		HashMap<Integer, Double> transactionAmountHashMap = obligationHashMap.getValue0();
 		HashMap<Integer, HashMap<Integer, Integer>> quantityHashMap = obligationHashMap.getValue1();
 
 		// Adding settlementChange to equitySummary Table

@@ -17,7 +17,7 @@ public class SecuritiesEntity {
 	@Id
 	private int securityId;
 	private int interestRate;
-	private float marketPrice;
+	private double marketPrice;
 	private String securityName;
 
 	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY, mappedBy = "clearingMember")
@@ -25,7 +25,7 @@ public class SecuritiesEntity {
     private Set<EquitySummaryEntity> equityEntity;
 	
 	
-	public SecuritiesEntity(int securityId, String securityName, float marketPrice, int interestRate, Set<EquitySummaryEntity> equityEntity) {
+	public SecuritiesEntity(int securityId, String securityName, double marketPrice, int interestRate, Set<EquitySummaryEntity> equityEntity) {
 		this.securityId = securityId;
 		this.securityName = securityName;
 		this.marketPrice = marketPrice;
@@ -53,11 +53,11 @@ public class SecuritiesEntity {
 		this.interestRate = interestRate;
 	}
 
-	public float getMarketPrice() {
+	public double getMarketPrice() {
 		return marketPrice;
 	}
 
-	public void setMarketPrice(float marketPrice) {
+	public void setMarketPrice(double marketPrice) {
 		this.marketPrice = marketPrice;
 	}
 

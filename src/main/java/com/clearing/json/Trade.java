@@ -3,15 +3,15 @@ package com.clearing.json;
 public class Trade {
 	private String eS;
 	private int qty;
-	private float price;
+	private double price;
 	private String buyerCM;
 	private String sellerCM;
-	private float transactionAmt;
+	private double transactionAmt;
 
 	public Trade() {
 	}
 
-	public Trade(String eS, int qty, float price, String buyerCM, String sellerCM, float transactionAmt) {
+	public Trade(String eS, int qty, double price, String buyerCM, String sellerCM, double transactionAmt) {
 		super();
 		this.eS = eS;
 		this.qty = qty;
@@ -37,11 +37,11 @@ public class Trade {
 		this.qty = qty;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -61,11 +61,11 @@ public class Trade {
 		this.sellerCM = sellerCM;
 	}
 
-	public float getTransactionAmt() {
+	public double getTransactionAmt() {
 		return transactionAmt;
 	}
 
-	public void setTransactionAmt(float transactionAmt) {
+	public void setTransactionAmt(double transactionAmt) {
 		this.transactionAmt = transactionAmt;
 	}
 

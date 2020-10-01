@@ -26,7 +26,7 @@ public class ClearingMemberController {
 	private ClearingMemberService clearingMemberService;
 
 	@GetMapping(path = "/clearing-member/{cMName}/opening-fund-balance")
-	public @ResponseBody float getCMOpeningFundBalance(@PathVariable("cMName") String cMName) {
+	public @ResponseBody double getCMOpeningFundBalance(@PathVariable("cMName") String cMName) {
 		return clearingMemberService.getCMOpeningFundBalance(cMName);
 	}
 
