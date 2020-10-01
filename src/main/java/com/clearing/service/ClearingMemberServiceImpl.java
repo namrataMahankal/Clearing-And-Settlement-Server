@@ -65,7 +65,7 @@ public class ClearingMemberServiceImpl implements ClearingMemberService {
 			double amount = cm.getClearingMemberFundBalance() + cm.getAmountToPay();
 			if (amount < 0) {
 				amount *= -1;
-				double netPayable = amount * cm.getInterestRate();
+				double netPayable = amount * cm.getInterestRate() / 100;
 				cm.setNetPayable(netPayable);
 				cm.setShortage(amount);
 				fundSettlementList.add(cm);
