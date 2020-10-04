@@ -19,7 +19,7 @@ import com.clearing.service.AccService;
 
 @RestController
 @RequestMapping("/clearing-and-settlement")
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin
 public class AccountController {
      
 	 @Autowired

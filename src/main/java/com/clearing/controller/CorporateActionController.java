@@ -28,7 +28,7 @@ import com.clearing.service.MappingServiceImpl;
 
 @Controller // This means that this class is a Controller
 @RequestMapping(path = "/clearing-and-settlement")
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin
 
 public class CorporateActionController {
 	

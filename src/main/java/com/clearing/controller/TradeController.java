@@ -24,7 +24,7 @@ import com.clearing.service.TradeService;
 
 @Controller // This means that this class is a Controller
 @RequestMapping(path = "/clearing-and-settlement") // This means URL's start with /demo (after Application path)
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin
 public class TradeController {
 
 	@Autowired

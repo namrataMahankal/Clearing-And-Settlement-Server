@@ -20,7 +20,7 @@ import com.clearing.service.ObligationService;
 
 @RestController
 @RequestMapping("/clearing-and-settlement")
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin
 
 public class ObligatonController {
 
